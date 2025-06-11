@@ -1,37 +1,29 @@
 from django.shortcuts import render
 from django.http import JsonResponse
-from  openai import OpenAI
+from django.contrib.auth.decorators import login_required
+from django.utils import timezone
 
 from service.models import Appointment, Patient
 from user.models import User
-
 from .models import Chat
-from django.contrib.auth.decorators import login_required
 
-from django.utils import timezone
-import os
+from transformers import AutoTokenizer, AutoModelForCausalLM
+import torch
 
-# messages = [{"role": "system", "content": "Trả lời hết tất cả câu hỏi bằng tiếng anh dù câu hỏi có thể là ngôn ngữ khác tiếng anh"}]
-messages = [{"role": "system", "content": ""}]  
-def ask_openai(message):
-    api_key = ""
-    os.environ["OPENAI_API_KEY"] = api_key
-    OpenAI.api_key = api_key
+# Cấu hình thiết bị và model
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+model_name = "Qwen/Qwen1.5-1.8B-Chat"
 
-    client = OpenAI(api_key=api_key)
-    
-    messages.append({"role": "user", "content": message})
-        
-    completion = client.chat.completions.create(
-            model="gpt-3.5-turbo",
-            messages=messages
-    )
-    
-    latest_response = completion.choices[0].message.content
-    messages.append({"role": "assistant", "content": latest_response})
-    return latest_response
+# Load model và tokenizer
+# print("Loading Qwen 1.5 1.8B Chat...")
+tokenizer = AutoTokenizer.from_pretrained(model_name)
+model = AutoModelForCausalLM.from_pretrained(
+    model_name,
+    torch_dtype=torch.float16 if torch.cuda.is_available() else torch.float32,
+    device_map="auto"
+)
 
-@login_required(login_url='login')  
+@login_required(login_url='login')
 def chatbot(request):
     chats = Chat.objects.filter(user=request.user)
     user = request.user
@@ -49,8 +41,11 @@ def chatbot(request):
     bloodpressure = patient.blood_pressure or ''
     gender = patient.gender or 1
     email = request.user.email 
-    content = f"""
-        Patient Information:
+
+    patient_info = f"""
+Use my information to answer the question. You are Clinic Chatbot that only gives short and concise answers. You will only answer question about me or relavant to healh problems. Every questions not related to my information and health problems is forbidden:
+
+My Information:
         - First Name: {firstname}
         - Last Name: {lastname}
         - Contact Number: {contact_number}
@@ -65,7 +60,7 @@ def chatbot(request):
         - Email: {email}
 
         Appointments:
-        """
+"""
 
     for appointment in appointments:
         appointment_date = appointment.appointment_date or 'N/A'
@@ -76,7 +71,7 @@ def chatbot(request):
         room_id = appointment.room_id.__str__() if appointment.room_id else 'N/A'
         created = appointment.created or 'N/A'
     
-        content += f"""
+        patient_info += f"""
             - Appointment ID: {appointment.appointment_id}
             - Date: {appointment_date}
             - Start Time: {start_time}
@@ -86,15 +81,26 @@ def chatbot(request):
             - Room: {room_id}
             - Created On: {created}
             """
-        
-    print(content)
-    content += "This is my information. You are Clinic Chatbot. You will only answer question about me or relavant to healh problems. Every questions not related to my information and health problems is forbidden"
-    messages[0]["content"] = content
+    
     if request.method == 'POST':
-        message = request.POST.get('message')
-        response = ask_openai(message)
+        user_msg = request.POST.get('message')
+        full_prompt = f"{patient_info}\nQuestion: {user_msg}\nAssistant:"
 
-        chat = Chat(user=request.user, message=message, response=response, created_at=timezone.now())
+        inputs = tokenizer(full_prompt, return_tensors="pt", truncation=True).to(device)
+        output_ids = model.generate(
+            **inputs,
+            max_new_tokens=160,
+            do_sample=True,
+            temperature=0.3,
+            top_p=0.9,
+            pad_token_id=tokenizer.eos_token_id
+        )
+
+        decoded = tokenizer.decode(output_ids[0], skip_special_tokens=True)
+        response_text = decoded.split("Assistant:")[-1].strip()
+
+        chat = Chat(user=request.user, message=user_msg, response=response_text, created_at=timezone.now())
         chat.save()
-        return JsonResponse({'message': message, 'response': response})
+        return JsonResponse({'message': user_msg, 'response': response_text})
+
     return render(request, 'chatbot/chatbot.html', {'chats': chats})
