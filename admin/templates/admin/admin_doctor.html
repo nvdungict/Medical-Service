@@ -1,0 +1,638 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" />
+  <link rel="stylesheet" href="{% static 'css/grid.css' %}" />
+  <link rel="stylesheet" href="{% static 'css/doctor_admin.css' %}" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,700;9..40,900&family=Ranga&family=Roboto:wght@300;400;500;700&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+  <link rel="stylesheet" href="{% static 'css/grid.css' %}">
+  <link rel="stylesheet" href="{% static 'css/sign_up_page.css' %}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,700;9..40,900&family=Ranga&family=Roboto:wght@300;400;500;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <title>Document</title>
+  <style>
+    /* Add this to your existing CSS file */
+    /* CSS */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0, 0, 0, 0.4);
+    }
+
+    .modal-content {
+      background-color: #fefefe;
+      margin: 15% auto;
+      padding: 20px;
+      border: 1px solid #888;
+      width: 50%;
+    }
+
+    .close-button {
+      color: #aaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+    }
+
+    .close-button:hover,
+    .close-button:focus {
+      color: black;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    .form-group input {
+      display: block;
+      width: 100%;
+      padding: 10px;
+      font-size: 14px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    .form-label {
+      font-size: 16px;
+      font-weight: bold;
+    }
+
+
+    .services-container {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-gap: 20px;
+    }
+
+    .service-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .service-item input[type="checkbox"] {
+      margin-right: 8px;
+      transform: scale(1.1);
+    }
+
+    .service-item label {
+      font-size: 14px;
+      color: #333;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .submit-container {
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
+    }
+
+    .submit-btn {
+      padding: 8px 16px;
+      background-color: #28a745;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .submit-btn:hover {
+      background-color: #218838;
+    }
+  </style>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", (event) => {
+      const modal = document.getElementById("modal");
+      const showModalBtn = document.getElementById("show-modal-btn");
+      const closeBtn = document.getElementsByClassName("close-button")[0];
+
+      showModalBtn.addEventListener("click", function (event) {
+        event.preventDefault(); // Prevent the default link action
+        modal.style.display = "block";
+      });
+
+      closeBtn.addEventListener("click", function () {
+        modal.style.display = "none";
+      });
+
+      window.addEventListener("click", function (event) {
+        if (event.target == modal) {
+          modal.style.display = "none";
+        }
+      });
+
+    });
+
+    document.getElementById('doctorForm').addEventListener('submit', function (event) {
+      event.preventDefault();  // Prevent the default form submission
+    });
+
+    function submitDoctorForm() {
+      const form = document.getElementById('doctorForm');
+      const formData = new FormData(form);
+      const csrfToken = getCookie('csrftoken');
+
+      const servicesContainer = document.querySelector('.services-container');
+      const selectedServices = Array.from(servicesContainer.querySelectorAll('input[name="selected_services"]:checked'))
+        .map(checkbox => checkbox.value);
+
+      formData.append('services', selectedServices);
+      console.log(formData)
+      fetch("{% url 'adminAdd' %}", {
+        method: 'POST',
+        body: formData,
+        headers: {
+          'X-CSRFToken': csrfToken,
+        },
+      })
+        .then(response => response.json())
+        .then(data => {
+          if (data.success) {
+            alert('Doctor account created successfully!');
+            // Optionally, close the modal or reset the form
+            location.reload();
+          } else {
+            alert('An error occurred during registration.');
+            // Optionally, display form errors
+            console.log(data.errors);
+          }
+        })
+        .catch(error => {
+          console.error('Error:', error);
+          alert('An error occurred. Please try again.');
+        });
+    }
+
+    function getCookie(name) {
+      let cookieValue = null;
+      if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+          const cookie = cookies[i].trim();
+          if (cookie.substring(0, name.length + 1) === (name + '=')) {
+            cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+            break;
+          }
+        }
+      }
+      return cookieValue;
+    }
+  </script>
+</head>
+
+<body>
+  <div class="main">
+    <div class="grid">
+      <div class="row no-gutters">
+        <!-- Navbar -->
+        <div class="col ls-1">
+          <div class="navbar">
+            <div class="navbar__addButton">
+              <img src="{% static 'img/all/add_logo.svg' %}" alt="" class="navbar__addButton-img" />
+            </div>
+            <ul class="navbar__list">
+              <a href="{% url 'admin+' %}" class="navbar__item">
+                <img src="{% static 'img/all/dashboard.svg' %}" alt="" class="navbar__item-img" />
+                <div class="navbar__item-heading">Dashboard</div>
+              </a>
+              <a href="{% url 'adminDoctor' %}" class="navbar__item active">
+                <img src="{% static 'img/all/doctor.svg' %}" alt="" class="navbar__item-img" />
+                <div class="navbar__item-heading">Doctors</div>
+              </a>
+              <a href="{% url 'adminPatient' %}" class="navbar__item">
+                <img src="{% static 'img/all/patient.svg' %}" alt="" class="navbar__item-img" />
+                <div class="navbar__item-heading">Patient</div>
+              </a>
+              <a href="{% url 'adminAppointment' %}" class="navbar__item">
+                <img src="{% static 'img/all/order.svg' %}" alt="" class="navbar__item-img" />
+                <div class="navbar__item-heading">Orders</div>
+              </a>
+              <a href="{% url 'adminService' %}" class="navbar__item">
+                <img src="{% static 'img/all/material.svg' %}" alt="" class="navbar__item-img" />
+                <div class="navbar__item-heading">Services</div>
+              </a>
+              <a href="{% url 'admin+' %}" class="navbar__item">
+                <img src="{% static 'img/all/Ranking.svg' %}" alt="" class="navbar__item-img" />
+                <div class="navbar__item-heading">Ranking</div>
+              </a>
+              <a href="{% url 'adminRoom' %}" class="navbar__item">
+                <img src="{% static 'img/all/rooms.svg' %}" alt="" class="navbar__item-img" />
+                <div class="navbar__item-heading">Rooms</div>
+              </a>
+
+              <a href="{% url 'admin+' %}" class="navbar__item home">
+                <img src="{% static 'img/all/homenew.svg' %}" alt="" class="navbar__item-img" />
+                <div class="navbar__item-heading">home</div>
+              </a>
+            </ul>
+          </div>
+        </div>
+
+        <div class="col l-11">
+          <!-- Header -->
+          <div class="row no-gutters">
+            <div class="col l-12">
+              <div class="header">
+                <div class="header__wrapper">
+                  <div class="header__heading">
+                    <div class="header__heading-date">
+                      12:00 AM Thursday, 30 / 11 /2024
+                    </div>
+                    <div class="header__search-wrapper">
+                      <input type="text" class="header__search" />
+                      <img src="{% static 'img/all/brown-search.svg' %}" alt="" class="header__search-icon" />
+                    </div>
+                    <div class="header__account">
+                      <div class="header__account-wrapper">
+                        <img src="{% static 'img/all/avatar.svg' %}" alt="" class="header__account-img" />
+                        <div class="header__account-info">
+                          <div class="header__account-name">@Dmin</div>
+                          <div class="header__acount-role">Admin</div>
+                        </div>
+                        <div class="header__logout-wrapper">
+                          <img src="{% static 'img/all/bell.svg' %}" alt="" class="header__logout-img" />
+                        </div>
+                        <a href="" class="header__logout-wrapper">
+                          <img src="{% static 'img/all/logout.svg' %}" alt="" class="header__logout-img" />
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Dash Board -->
+          <div class="row no-gutters">
+            <div class="col l-8">
+              <div class="row no-gutters">
+                <div class="col l-12">
+                  <div class="dashboard">
+                    <div class="dashboard__header">
+                      <img src="{% static 'img/all/robot.svg' %}" class="dashboard__icon" />
+                      <div class="dashboard__heading">
+                        Welcome to Doctor Manager
+                      </div>
+                    </div>
+                    <div class="dashboard__list">
+                      <form action="" method="POST">
+                        {% csrf_token %}
+                        <button type="submit" value="all" name="all" class="dashboard__item">
+                          <div class="dashboard-item__wrapper">
+                            <img src="{% static 'img/all/manager-icon.svg' %}" alt="" class="dashboard__item-img" />
+                          </div>
+                          <div type="submit" name="total" value="total" method="POST" class="dashboard-item__info">
+                            <div class="dashboard__item-title">Total</div>
+                            <div class="dashboard__item-number">
+                              {{doctors_count}}
+                            </div>
+                          </div>
+                        </button>
+                      </form>
+
+                      <form action="" method="POST">
+                        {% csrf_token %}
+                        <button name="working" value="working" class="dashboard__item">
+                          <div class="dashboard-item__wrapper green">
+                            <img src="{% static 'img/all/manager-icon.svg' %}" alt="" class="dashboard__item-img" />
+                          </div>
+                          <div class="dashboard-item__info">
+                            <div class="dashboard__item-title">Working</div>
+                            <div class="dashboard__item-number">
+                              {{doctors_active}}
+                            </div>
+                          </div>
+                        </button>
+                      </form>
+
+                      <form action="" method="POST">
+                        {% csrf_token %}
+                        <button name="not" value="not" class="dashboard__item">
+                          <div class="dashboard-item__wrapper yellow">
+                            <img src="{% static 'img/all/manager-icon.svg' %}" alt="" class="dashboard__item-img" />
+                          </div>
+                          <div class="dashboard-item__info">
+                            <div class="dashboard__item-title">Free</div>
+                            <div class="dashboard__item-number">
+                              {{doctors_unactive}}
+                            </div>
+                          </div>
+                        </button>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row no-gutters">
+                <div class="col l-12">
+                  <div class="appointment">
+                    <div class="appointment__headers">
+                      <div class="appointment__headers-wrapper">
+                        <img src="{% static 'img/all/paper.svg' %}" alt="" class="appointment__headers-img" />
+                        <div class="appointment__heading">DOCTOR LIST</div>
+                      </div>
+                      <div class="appointment__headers-wrapper">
+                        <a href="#" id="show-modal-btn" class="appointment__add-wrapper">
+                          <img class="appointment__add" src="{% static 'img/all/plus.svg' %}" alt="" />
+                        </a>
+                        <div id="modal" class="modal">
+                          <div class="modal-content">
+                            <span class="close-button">&times;</span>
+                            <form id="doctorForm" method="post">
+                              {% csrf_token %}
+                              <h2>CREATE DOCTOR ACCOUNT</h2>
+                              <div class="form-group">
+                                <label for="email" class="form-label">Email:</label>
+                                <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                              </div>
+                              <div class="form-group">
+                                <label for="username" class="form-label">Username:</label>
+                                <input type="text" id="username" name="username" placeholder="Enter your username">
+                              </div>
+                              <div class="form-group">
+                                <label for="password" class="form-label">Password:</label>
+                                <input type="password" id="password1" name="password1" placeholder="Enter your password"
+                                  required>
+                              </div>
+                              <div class="form-group">
+                                <label for="confirm_password" class="form-label">Confirm Password:</label>
+                                <input type="password" id="password2" name="password2"
+                                  placeholder="Enter your password confirmation" required>
+                              </div>
+                            </form>
+                            <h2>Select Services:</h2>
+                            <div class="services-container">
+                              {% for service in services %}
+                              <div class="service-item">
+                                <input type="checkbox" name="selected_services" value="{{ service }}"
+                                  id="service-{{ forloop.counter }}">
+                                <label for="service-{{ forloop.counter }}" class="form-label">{{ service.service_name }}</label>
+                              </div>
+                              {% endfor %}
+                            </div>
+                            <div class="submit-container">
+                              <button type="button" onclick="submitDoctorForm()" class="submit-btn">CREATE</button>
+                            </div>
+
+                          </div>
+                        </div>
+
+                        <form method="POST" class="appointment__search-wrapper">
+                          {% csrf_token %}
+                          <img src="{% static 'img/all/brown-search.svg' %}" alt="" class="appointment__search-icon" />
+                          <input name="filter" class="appointment__search" />
+                        </form>
+                        <img src="{% static 'img/all/filter.svg' %}" alt="" class="appointment__headers-img" />
+                      </div>
+                    </div>
+                    <div class="appointment__list">
+                      <div class="appointment__list-header">
+                        <div class="appoitment__list-header-item-patient">
+                          Doctor Name
+                        </div>
+                        <div class="appoitment__list-header-item">
+                          Doctor ID
+                        </div>
+                        <div class="appoitment__list-header-item">
+                          Day joined
+                        </div>
+                        <div class="appoitment__list-header-item">
+                          Num of Specializes
+                        </div>
+                        <div class="appoitment__list-header-item">Status</div>
+                      </div>
+                      {% for doctor in doctors %}
+                      <a href="" class="appointment__list-item">
+                        <div class="appointment__item-patient">
+                          <img src="{% static 'img/all/avatar.svg' %}" class="appointment__item-img" />
+                          <div src="" class="appointment__item-name">
+                            {{doctor.firstname}} {{doctor.lastname}}
+                          </div>
+                        </div>
+                        <div class="appointment__item-doctor">
+                          {{doctor.doctor_id}}
+                        </div>
+                        <div class="appointment__item-date">
+                          {{doctor.dob}}
+                        </div>
+                        <div class="appointment__item-time">
+                          {{specialize_count.0.0.total}}
+                        </div>
+                        <div class="appointment__item-status">
+                          {% if doctor.status == 1 %}
+                          <div class="appointment__item-status-wrapper green">
+                            Working
+                          </div>
+                          {% elif doctor.status == 2 %}
+                          <div class="appointment__item-status-wrapper yellow">
+                            Free
+                          </div>
+                          {% endif %}
+                        </div>
+                      </a>
+                      {% endfor %}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col l-4">
+              <div class="service">
+                <div class="service__header">
+                  <img src="{% static 'img/all/hospital-black.svg' %}" alt="" class="service__header-icon" />
+                  <div class="service__heading">
+                    working doctors in each services
+                  </div>
+                </div>
+                <div class="service__list">
+                  <div class="service__row">
+                    <div class="service__item">
+                      <img src="{% static 'img/all/person.svg' %}" alt="" class="service__item-icon" />
+                      <div class="service__info">
+                        <div class="service__name">
+                          {{ service_count.0.service_name }}
+                        </div>
+                        <div class="service__count">
+                          {{service_count.0.total}}
+                        </div>
+                      </div>
+                    </div>
+                    <div class="service__item">
+                      <img src="{% static 'img/all/person.svg' %}" alt="" class="service__item-icon" />
+                      <div class="service__info">
+                        <div class="service__name">
+                          {{ service_count.1.service_name }}
+                        </div>
+                        <div class="service__count">
+                          {{service_count.1.total}}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="service__row">
+                    <div class="service__item">
+                      <img src="{% static 'img/all/person.svg' %}" alt="" class="service__item-icon" />
+                      <div class="service__info">
+                        <div class="service__name">
+                          {{ service_count.2.service_name }}
+                        </div>
+                        <div class="service__count">
+                          {{service_count.2.total}}
+                        </div>
+                      </div>
+                    </div>
+                    <div class="service__item">
+                      <img src="{% static 'img/all/person.svg' %}" alt="" class="service__item-icon" />
+                      <div class="service__info">
+                        <div class="service__name">
+                          {{ service_count.3.service_name }}
+                        </div>
+                        <div class="service__count">
+                          {{service_count.3.total}}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="service__row">
+                    <div class="service__item">
+                      <img src="{% static 'img/all/person.svg' %}" alt="" class="service__item-icon" />
+                      <div class="service__info">
+                        <div class="service__name">
+                          {{ service_count.4.service_name }}
+                        </div>
+                        <div class="service__count">
+                          {{service_count.4.total}}
+                        </div>
+                      </div>
+                    </div>
+                    <div class="service__item">
+                      <img src="{% static 'img/all/person.svg' %}" alt="" class="service__item-icon" />
+                      <div class="service__info">
+                        <div class="service__name">
+                          {{ service_count.5.service_name }}
+                        </div>
+                        <div class="service__count">
+                          {{service_count.5.total}}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="service__row">
+                    <div class="service__item">
+                      <img src="{% static 'img/all/person.svg' %}" alt="" class="service__item-icon" />
+                      <div class="service__info">
+                        <div class="service__name">
+                          {{ service_count.6.service_name }}
+                        </div>
+                        <div class="service__count">
+                          {{service_count.6.total}}
+                        </div>
+                      </div>
+                    </div>
+                    <div class="service__item">
+                      <img src="{% static 'img/all/person.svg' %}" alt="" class="service__item-icon" />
+                      <div class="service__info">
+                        <div class="service__name">
+                          {{ service_count.7.service_name }}
+                        </div>
+                        <div class="service__count">
+                          {{service_count.7.total}}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="service__row">
+                    <div class="service__item">
+                      <img src="{% static 'img/all/person.svg' %}" alt="" class="service__item-icon" />
+                      <div class="service__info">
+                        <div class="service__name">
+                          {{ service_count.8.service_name }}
+                        </div>
+                        <div class="service__count">
+                          {{service_count.8.total}}
+                        </div>
+                      </div>
+                    </div>
+                    <div class="service__item">
+                      <img src="{% static 'img/all/person.svg' %}" alt="" class="service__item-icon" />
+                      <div class="service__info">
+                        <div class="service__name">
+                          {{ service_count.9.service_name }}
+                        </div>
+                        <div class="service__count">
+                          {{service_count.9.total}}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="service__row">
+                    <div class="service__item">
+                      <img src="{% static 'img/all/person.svg' %}" alt="" class="service__item-icon" />
+                      <div class="service__info">
+                        <div class="service__name">
+                          {{ service_count.10.service_name }}
+                        </div>
+                        <div class="service__count">
+                          {{service_count.10.total}}
+                        </div>
+                      </div>
+                    </div>
+                    <div class="service__item">
+                      <img src="{% static 'img/all/person.svg' %}" alt="" class="service__item-icon" />
+                      <div class="service__info">
+                        <div class="service__name">
+                          {{ service_count.11.service_name }}
+                        </div>
+                        <div class="service__count">
+                          {{service_count.11.total}}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

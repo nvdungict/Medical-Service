@@ -1,0 +1,257 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <link rel="stylesheet" href="{% static 'css/grid.css' %}">
+    <link rel="stylesheet" href="{% static 'css/booking_page.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,700;9..40,900&family=Ranga&family=Roboto:wght@300;400;500;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <title>Document</title>
+</head>
+
+<style>
+    .booking-container__error-message {
+        color: red;
+        font-weight: bold;
+        margin-bottom: 20px;
+    }
+</style>
+
+<body>
+    <div class="app">
+        {% include 'booking_header.html' %}
+
+        <div class="booking-container">
+            <div class="booking-container__header">
+                <div class="booking-container__heading">
+                    Let us take care of your <span class="green">health</span>
+                </div>
+            </div>
+            <div class="booking-container__box">
+                <div class="booking-container__box-wrapper">
+                    {% if error_message %}
+                    <div class="booking-container__error-message">
+                        {{ error_message }}
+                    </div>
+                    {% endif %}
+                    <form action="" method="POST">
+                        <div class="booking-container__form">
+                            {% csrf_token %}
+                            <div class="booking-container__datetime">
+                                <div class="booking-container__date">
+                                    <div class="booking-container__date-header">
+                                        <img src="{% static 'img/booking_page/calendar.svg' %}" alt=""
+                                            class="booking-container__symptoms-icon">
+                                        <div class="booking-container__services-heading">Date</div>
+                                    </div>
+                                    <div class="line"></div>
+                                    <input name="date" type="date" class="booking-container__date-choice"
+                                        min="{{current_date}}" max="2025-01-01">
+                                </div>
+                                <div class="booking-container__time">
+                                    <div class="booking-container__time-header">
+                                        <img src="{% static 'img/booking_page/time.svg' %}" alt=""
+                                            class="booking-container__symptoms-icon">
+                                        <div class="booking-container__services-heading">Time</div>
+                                    </div>
+                                    <div class="line"></div>
+                                    <input name="time" type="time" class="booking-container__time-choice">
+                                </div>
+                                <div class="booking-container__email">
+                                    <div class="booking-container__email-header">
+                                        <img src="{% static 'img/booking_page/email.svg' %}" alt=""
+                                            class="booking-container__symptoms-icon">
+                                        <div class="booking-container__services-heading">Email</div>
+                                    </div>
+                                    <div class="line"></div>
+                                    <input value="{{request.user.email}}" name="email" type="email"
+                                        class="booking-container__email-choice" placeholder="Input your email">
+                                </div>
+                            </div>
+
+                            <div class="booking-container__services">
+                                <div class="booking-container__services-header">
+                                    <img src="{% static 'img/booking_page/addIcon.svg' %}" alt=""
+                                        class="booking-container__services-icon">
+                                    <div class="booking-container__services-heading">Services</div>
+                                </div>
+
+                                <div class="line"></div>
+                                <div class="booking-container__services-list">
+                                    <div class="service__row">
+                                        <div class="service__item" onclick="addNameToInput(this)">
+                                            <img src="{% static 'img/all/person.svg' %}" alt=""
+                                                class="service__item-icon">
+                                            <div class="service__info">
+                                                <div class="service__name">{{ service_count.0.service_name }}</div>
+                                            </div>
+                                            <input class="no-input" value="{{service_count.0.service_id}}" name="">
+                                        </div>
+                                        <div class="service__item" onclick="addNameToInput(this)">
+                                            <img src="{% static 'img/all/person.svg' %}" alt=""
+                                                class="service__item-icon">
+                                            <div class="service__info">
+                                                <div class="service__name">{{ service_count.1.service_name }}</div>
+                                            </div>
+                                            <input class="no-input" value="{{service_count.1.service_id}}" name="1">
+                                        </div>
+                                    </div>
+                                    <div class="service__row">
+                                        <div class="service__item" onclick="addNameToInput(this)">
+                                            <img src="{% static 'img/all/person.svg' %}" alt=""
+                                                class="service__item-icon">
+                                            <div class="service__info">
+                                                <div class="service__name">{{ service_count.2.service_name }}</div>
+                                            </div>
+                                            <input class="no-input" value="{{service_count.2.service_id}}" name="">
+                                        </div>
+                                        <div class="service__item" onclick="addNameToInput(this)">
+                                            <img src="{% static 'img/all/person.svg' %}" alt=""
+                                                class="service__item-icon">
+                                            <div class="service__info">
+                                                <div class="service__name">{{ service_count.3.service_name }}</div>
+                                            </div>
+                                            <input class="no-input" value="{{service_count.3.service_id}}" name="">
+                                        </div>
+                                    </div>
+                                    <div class="service__row">
+                                        <div class="service__item" onclick="addNameToInput(this)">
+                                            <img src="{% static 'img/all/person.svg' %}" alt=""
+                                                class="service__item-icon">
+                                            <div class="service__info">
+                                                <div class="service__name">{{ service_count.4.service_name }}</div>
+                                            </div>
+                                            <input class="no-input" value="{{service_count.4.service_id}}" name="">
+                                        </div>
+                                        <div class="service__item" onclick="addNameToInput(this)">
+                                            <img src="{% static 'img/all/person.svg' %}" alt=""
+                                                class="service__item-icon">
+                                            <div class="service__info">
+                                                <div class="service__name">{{ service_count.5.service_name }}</div>
+                                            </div>
+                                            <input class="no-input" value="{{service_count.5.service_id}}" name="">
+                                        </div>
+                                    </div>
+                                    <div class="service__row">
+                                        <div class="service__item" onclick="addNameToInput(this)">
+                                            <img src="{% static 'img/all/person.svg' %}" alt=""
+                                                class="service__item-icon">
+                                            <div class="service__info">
+                                                <div class="service__name">{{ service_count.6.service_name }}</div>
+                                            </div>
+                                            <input class="no-input" value="{{service_count.6.service_id}}" name="">
+                                        </div>
+                                        <div class="service__item" onclick="addNameToInput(this)">
+                                            <img src="{% static 'img/all/person.svg' %}" alt=""
+                                                class="service__item-icon">
+                                            <div class="service__info">
+                                                <div class="service__name">{{ service_count.7.service_name }}</div>
+                                            </div>
+                                            <input class="no-input" value="{{service_count.7.service_id}}" name="">
+                                        </div>
+                                    </div>
+                                    <div class="service__row">
+                                        <div class="service__item" onclick="addNameToInput(this)">
+                                            <img src="{% static 'img/all/person.svg' %}" alt=""
+                                                class="service__item-icon">
+                                            <div class="service__info">
+                                                <div class="service__name">{{ service_count.8.service_name }}</div>
+                                            </div>
+                                            <input class="no-input" value="{{service_count.8.service_id}}" name="">
+                                        </div>
+                                        <div class="service__item" onclick="addNameToInput(this)">
+                                            <img src="{% static 'img/all/person.svg' %}" alt=""
+                                                class="service__item-icon">
+                                            <div class="service__info">
+                                                <div class="service__name">{{ service_count.9.service_name }}</div>
+                                            </div>
+                                            <input class="no-input" value="{{service_count.9.service_id}}" name="">
+                                        </div>
+                                    </div>
+                                    <div class="service__row">
+                                        <div class="service__item" onclick="addNameToInput(this)">
+                                            <img src="{% static 'img/all/person.svg' %}" alt=""
+                                                class="service__item-icon">
+                                            <div class="service__info">
+                                                <div class="service__name">{{ service_count.10.service_name }}</div>
+                                            </div>
+                                            <input class="no-input" value="{{service_count.10.service_id}}" name="">
+                                        </div>
+                                        <div class="service__item" onclick="addNameToInput(this)">
+                                            <img src="{% static 'img/all/person.svg' %}" alt=""
+                                                class="service__item-icon">
+                                            <div class="service__info">
+                                                <div class="service__name">{{ service_count.11.service_name }}</div>
+                                            </div>
+                                            <input class="no-input" value="{{ service_count.11.service_id }}" name="">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="booking-container__symptoms">
+                                <div class="booking-container__symptoms-header">
+                                    <img src="{% static 'img/booking_page/human.svg' %}" alt=""
+                                        class="booking-container__symptoms-icon">
+                                    <div class="booking-container__services-heading">Symptoms</div>
+                                </div>
+
+                                <div class="line"></div>
+
+                                <textarea name="textarea" class="booking-container__symptoms-body"
+                                    placeholder="Write your Symptoms here"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="booking-container__footer">
+                            <div class="booking-container__footer-wrapper">
+                                <div class="booking-container__footer-info">
+                                    Notice: You are using your account personal information to book this appointment!
+                                    You are logging as
+                                </div>
+                                <div class="booking-container__footer-login">
+                                    <div class="header__heading-account-wrapper">
+                                        <div class="header__heading-account">
+                                            <img src="{% static 'img/booking_page/avatar.svg' %}" alt=""
+                                                class="header__heading-avatar">
+                                            <div class="header__heading-info">
+                                                <div class="header__heading-name">{{user.first_name}} {{user.last_name}}
+                                                </div>
+                                                <div class="header__heading-role">{{user.role}}</div>
+                                            </div>
+                                        </div>
+                                        <div class="booking-container__footer-checkbox-wrapper">
+                                            <input type="checkbox" class="booking-container__footer-checkbox">
+                                            <div class="booking-container__footer-checkbox-text">
+                                                Agree with our <span class="red">terms and conditions</span>
+                                            </div>
+                                        </div>
+                                        <div class="booking-container__footer-btn-wrapper">
+                                            <button name="book" value="book" type="submit"
+                                                class="booking-container__footer-btn btn">
+                                                Book an appointment
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="{% static 'js/script.js' %}"></script>
+</body>
+
+</html>

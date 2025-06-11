@@ -1,0 +1,112 @@
+{% load socialaccount %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <link rel="stylesheet" href="{% static 'css/grid.css' %}">
+    <link rel="stylesheet" href="{% static 'css/login_page.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,700;9..40,900&family=Ranga&family=Roboto:wght@300;400;500;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="main">
+        <div class="grid ">
+            <div class="row no-gutters">
+                <div class="col l-6 form-wrapper" style="display: flex; flex-direction: column; align-items: center;">
+                    <a href="{% url 'home' %}" class="form__return-btn">
+                        <img src="{% static 'img/login/return-btn.png' %}" alt="">
+                    </a>
+                    <form class="form" action="" method="POST">
+                        {% csrf_token %}
+                        <h3 class="heading">LOGIN</h3>
+
+                        <div class="spacer"></div>
+
+                        <div class="messages__wrapper">
+                            {% if messages %}
+                            <ul class="messages">
+                                {% for message in messages %}
+                                <li>{{ message }}</li>
+                                {% endfor %}
+                            </ul>
+                            {% endif %}
+                        </div>
+
+                        <div class="form-group">
+                            <svg class="form-icon" width="16" height="21" viewBox="0 0 16 21" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M16 21H14V19C14 17.3431 12.6569 16 11 16H5C3.34315 16 2 17.3431 2 19V21H0V19C0 16.2386 2.23858 14 5 14H11C13.7614 14 16 16.2386 16 19V21ZM8 12C4.68629 12 2 9.3137 2 6C2 2.68629 4.68629 0 8 0C11.3137 0 14 2.68629 14 6C14 9.3137 11.3137 12 8 12ZM8 10C10.2091 10 12 8.20914 12 6C12 3.79086 10.2091 2 8 2C5.79086 2 4 3.79086 4 6C4 8.20914 5.79086 10 8 10Z"
+                                    fill="#1C1C1C" />
+                            </svg>
+                            <input id="email" name="email" type="text" placeholder="Email" class="form-control">
+                            <span class="form-message"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <svg class="form-icon" width="18" height="21" viewBox="0 0 18 21" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M3 7V6C3 2.68629 5.68629 0 9 0C12.3137 0 15 2.68629 15 6V7H17C17.5523 7 18 7.44772 18 8V20C18 20.5523 17.5523 21 17 21H1C0.44772 21 0 20.5523 0 20V8C0 7.44772 0.44772 7 1 7H3ZM16 9H2V19H16V9ZM8 14.7324C7.4022 14.3866 7 13.7403 7 13C7 11.8954 7.8954 11 9 11C10.1046 11 11 11.8954 11 13C11 13.7403 10.5978 14.3866 10 14.7324V17H8V14.7324ZM5 7H13V6C13 3.79086 11.2091 2 9 2C6.79086 2 5 3.79086 5 6V7Z"
+                                    fill="#1C1C1C" />
+                            </svg>
+                            <input id="password" name="password" type="password" placeholder="Password"
+                                class="form-control">
+                            <span class="form-message"></span>
+                        </div>
+
+                        <button class="form-submit">Login now</button>
+
+                        <span class="form-border"><span class="bold">Login</span> with Others</span>
+                        <span class="form-line"></span>
+                    </form>
+                    <div class="" style="display: flex; flex-direction: column; align-items: center; width: 364px;">
+                        <form class="form" action="{% provider_login_url 'google' %}" method="POST">
+                            {% csrf_token %}
+                            <button class="form-submit form-social-login">
+                                <img class="form-social-login__icon" src="{% static 'img/login/google 1.png'%}" alt="">
+                                <div class="form-social-login__text">Login with <span class="bold">Google</span></div>
+                            </button>
+                        </form>
+                        <form class="form" action="{% provider_login_url 'facebook' %}" method="POST">
+                            {% csrf_token %}
+                            <button class="form-submit form-social-login">
+                                <img src="{% static 'img/login/facebook 1.png'%}" alt=""
+                                    class="form-social-login__icon">
+                                <div class="form-social-login__text">Login with <span class="bold">Facebook</span></div>
+                            </button>
+                        </form>
+                        <a href="{% url 'signup' %}" class="sign-up-link">or <span class="green bold">Sign up</span>
+                            here</a>
+                        <div class="sign-up-line"></div>
+
+                    </div>
+
+                </div>
+                <div class="col l-6">
+                    <div class="form-decorator">
+                        <div class="form-decorator__sub-heading">
+                            <div class="form-decorator__sub-heading-text">
+                                Connect <br> with our <br> professional <br> staff now!
+                            </div>
+                        </div>
+                        <img src="{% static 'img/login/form-decorator-img.png' %}" alt="" class="form-decorator__img">
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</body>
+
+</html>

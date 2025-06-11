@@ -1,0 +1,251 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <link rel="stylesheet" href="{% static 'css/grid.css' %}">
+    <link rel="stylesheet" href="{% static 'css/admin.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,700;9..40,900&family=Ranga&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="main">
+        <div class="grid">
+            <div class="row no-gutters">
+                 <!-- Navbar -->
+                <div class="col ls-1">
+                    <div class="navbar">
+                        <div class="navbar__addButton">
+                            <img src="{% static 'img/all/add_logo.svg' %}" alt="" class=navbar__addButton-img>
+                        </div>
+                        <ul class="navbar__list">
+                            <a href="{% url 'admin+' %}" class="navbar__item active">
+                                <img src="{% static 'img/all/dashboard.svg' %}" alt="" class="navbar__item-img">
+                                <div class="navbar__item-heading">Dashboard</div>
+                            </a>
+                            <a href="{% url 'adminDoctor' %}" class="navbar__item ">
+                                <img src="{% static 'img/all/doctor.svg' %}" alt="" class="navbar__item-img">
+                                <div class="navbar__item-heading">Doctors</div>
+                            </a>
+                            <a href="{% url 'adminPatient' %}" class="navbar__item">
+                                <img src="{% static 'img/all/patient.svg' %}" alt="" class="navbar__item-img">
+                                <div class="navbar__item-heading">Patient</div>
+                            </a>
+                            <a href="{% url 'adminAppointment' %}" class="navbar__item">
+                                 <img src="{% static 'img/all/order.svg' %}" alt="" class="navbar__item-img">
+                                 <div class="navbar__item-heading">Orders</div>
+                            </a>
+                            <a href="{% url 'adminService' %}" class="navbar__item">
+                                <img src="{% static 'img/all/material.svg' %}" alt="" class="navbar__item-img">
+                                <div class="navbar__item-heading">Services</div>
+                            </a>
+                            <a href="{% url 'admin+' %}" class="navbar__item">
+                                <img src="{% static 'img/all/Ranking.svg' %}" alt="" class="navbar__item-img">
+                                <div class="navbar__item-heading">Ranking</div>
+                            </a>
+                            <a href="{% url 'adminRoom' %}" class="navbar__item">
+                                <img src="{% static 'img/all/rooms.svg' %}" alt="" class="navbar__item-img">
+                                <div class="navbar__item-heading">Rooms</div>
+                            </a>
+                
+                
+                            <a href="" class="navbar__item home">
+                                <img src="{% static 'img/all/homenew.svg' %}" alt="" class="navbar__item-img">
+                                <div class="navbar__item-heading">home</div>
+                            </a>
+                            
+                        </ul>
+                    </div>
+                </div>
+                    <div class="col l-11">
+                        <!-- Header -->
+                        <div class="row no-gutters">
+                            <div class="col l-12">
+                                <div class="header">
+                                    <div class="header__wrapper">
+                                        <div class="header__heading">
+                                            <div class="header__heading-date">
+                                                12:00 AM Thursday, 30 / 11 /2023
+                                            </div>
+                                            <div class="header__search-wrapper">
+                                                <input type="text" class="header__search">
+                                                <img src="{% static 'img/all/brown-search.svg' %}" alt="" class="header__search-icon">
+                                            </div>
+                                            <div class="header__account">
+                                                <div class="header__account-wrapper">
+                                                    <img src="{% static 'img/all/avatar.svg' %}" alt="" class="header__account-img">
+                                                    <div class="header__account-info">
+                                                        <div class="header__account-name">@Dmin</div>
+                                                        <div class="header__acount-role">Admin</div>
+                                                    </div>
+                                                    <div class="header__logout-wrapper">
+                                                        <img src="{% static 'img/all/bell.svg' %}" alt="" class="header__logout-img">
+                                                    </div>
+                                                    <a href="" class="header__logout-wrapper">
+                                                        <img src="{% static 'img/all/logout.svg' %}" alt="" class="header__logout-img">
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Dash Board -->
+                        <div class="row no-gutters">
+                            <div class="col l-12">
+                                <div class="dashboard">
+                                    <div class="dashboard__header">
+                                        <img src="{% static 'img/all/robot.svg' %}" class="dashboard__icon">
+                                        <div class="dashboard__heading">
+                                            Welcome to HealthCare Manager DashBoard
+                                        </div>
+                                    </div>
+                                    <div class="dashboard__list">
+                                        <div class="dashboard__item">
+                                            <div class="dashboard-item__wrapper">
+                                                <img src="{% static 'img/all/manager-icon.svg' %}" alt="" class="dashboard__item-img">
+                                            </div>
+                                            <a href="{% url 'adminDoctor' %}" class="dashboard-item__info">
+                                                <div class="dashboard__item-number">{{doctors_count}}</div>
+                                                <div class="dashboard__item-title">Doctors Number</div>
+                                            </a>
+                                        </div>
+                                        <div class="dashboard__item">
+                                            <div class="dashboard-item__wrapper">
+                                                <img src="{% static 'img/all/manager-icon.svg' %}" alt="" class="dashboard__item-img">
+                                            </div>
+                                            <a  href="{% url 'adminPatient' %}"class="dashboard-item__info">
+                                                <div class="dashboard__item-number">{{ patients_count }}</div>
+                                                <div class="dashboard__item-title">Patients Number</div>
+                                            </a>
+                                        </div>
+                                        <div class="dashboard__item">
+                                            <div class="dashboard-item__wrapper">
+                                                <img src="{% static 'img/all/manager-icon.svg' %}" alt="" class="dashboard__item-img">
+                                            </div>
+                                            <a href="{% url 'adminAppointment' %}" class="dashboard-item__info">
+                                                <div class="dashboard__item-number">{{ finished_appointment }}</div>
+                                                <div class="dashboard__item-title">Finished Appointments</div>
+                                            </a>
+                                        </div>
+                                        <div class="dashboard__item">
+                                            <div class="dashboard-item__wrapper">
+                                                <img src="{% static 'img/all/manager-icon.svg' %}" alt="" class="dashboard__item-img">
+                                            </div>
+                                            <a href="{% url 'adminAppointment' %}" class="dashboard-item__info">
+                                                <div class="dashboard__item-number">{{ pending_appointment }}</div>
+                                                <div class="dashboard__item-title">Processing Appointments</div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- lastest appointment -->
+                        <div class="row no-gutters">
+                            <div class="col l-7">
+                                <div class="appointment">
+                                    <div class="appointment__headers">
+                                        <div class="appointment__headers-wrapper">
+                                            <img src="{% static 'img/all/calendar-check.svg' %}" alt="" class="appointment__headers-img">
+                                            <div class="appointment__heading">Lastest Appointments</div>
+                                        </div>
+                                        <div class="appointment__headers-wrapper">
+                                            <form method="POST" class="appointment__search-wrapper">
+                                                {% csrf_token %}
+                                                <img src="{% static 'img/all/brown-search.svg' %}" alt="" class="appointment__search-icon">
+                                                <input  name="filter" class="appointment__search">
+                                            </form>
+                                            <img src="{% static 'img/all/filter.svg' %}" alt="" class="appointment__headers-img">
+                                        </div>
+                                    </div>
+                                    <div class="appointment__list">
+                                        <div class="appointment__list-header">
+                                            <div class="appoitment__list-header-item-patient">
+                                                Patient
+                                            </div>
+                                            <div class="appoitment__list-header-item">
+                                                Doctor
+                                            </div>
+                                            <div class="appoitment__list-header-item">
+                                                Order Date
+                                            </div>
+                                            <div class="appoitment__list-header-item">
+                                                Time
+                                            </div>
+                                            <div class="appoitment__list-header-item">
+                                                Status
+                                            </div>
+                                        </div>
+                                        {% for appointment in appointments %}
+                                        <a href="{% url 'appointmentDetail' appointment.appointment_id %}" class="appointment__list-item">
+                                            <div class="appointment__item-patient">
+                                                <img src="{% static 'img/all/avatar.svg' %}" class="appointment__item-img">
+                                                <div src="" class="appointment__item-name">{{ appointment.patient }}</div>
+                                            </div>
+                                            <div class="appointment__item-doctor">{{ appointment.doctor }}</div>
+                                            <div class="appointment__item-date">{{ appointment.appointment_date }}</div>
+                                            <div class="appointment__item-time">{{ appointment.start_time }}</div>
+                                            <div class="appointment__item-status">
+                                                {% if appointment.status == 1  %}
+                                                <div class="appointment__item-status-wrapper completed">
+                                                    Completed 
+                                                </div>
+                                                {% elif appointment.status == 2 %}
+                                                <div class="appointment__item-status-wrapper blue">
+                                                    Processing
+                                                </div>
+                                                {% else %}
+                                                <div class="appointment__item-status-wrapper red">
+                                                    Pending
+                                                </div>
+                                                {% endif %}
+                                            </div>
+                                        </a>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col l-5">
+                                <div class="sales">
+                                    <div class="sales-header">
+                                        Sales in Each Month (USD)
+                                    </div>
+                                    <div class="sales-chart">
+                                        <div class="chart-column">
+                                            <div class="chart-item-2" style="height: {{percent2}}rem;">
+                                                <div class="chart-bar"> {{sale_two_month.total_sales}}</div>
+                                                <div class="chart-title">{{two_month.date}}</div>
+                                            </div>
+                                            <div class="chart-item-3" style="height: {{percent3}}rem;">
+                                                <div class="chart-bar"> {{sale_three_month.total_sales}} </div>
+                                                <div class="chart-title">{{three_month.date}}</div>
+                                            </div>
+                                            <div class="chart-item-4 " style="height: {{percent4}}rem ;">
+                                                <div class="chart-bar" > {{sale_four_month.total_sales}}</div>
+                                                <div class="chart-title">{{four_month.date}}</div>
+                                            </div>
+                                            <div class="chart-item-1" style="height: {{percent1}}rem;">
+                                                <div class="chart-bar">
+                                                    {{sale_last_month.total_sales}}
+                                                </div>
+                                                <div class="chart-title">{{one_month.date}}</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </div>  
+    </div>
+</body>
+</html>

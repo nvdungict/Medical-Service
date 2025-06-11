@@ -1,0 +1,326 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <link rel="stylesheet" href="{% static 'css/grid.css' %}">
+    <link rel="stylesheet" href="{% static 'css/doctor_profile.css' %}">
+    <link rel="stylesheet" href="{% static 'css/patient_profile.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,700;9..40,900&family=Ranga&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="main">
+        <div class="grid">
+            <div class="row no-gutters">
+                 <!-- Navbar -->
+                <div class="col ls-1">
+                    <div class="navbar">
+                        <div class="navbar__addButton">
+                            <img src="{% static 'img/profile/add_logo.svg' %}" alt="" class=navbar__addButton-img>
+                        </div>
+                        <ul class="navbar__list">
+                            <a href="{% url 'home' %}" class="navbar__item">
+                                <img src="{% static 'img/profile/homelogo.svg' %}" alt="" class="navbar__item-img">
+                                <div class="navbar__item-heading">Home</div>
+                            </a>
+                            <a href="{% url 'doctorProfile' request.user.id %}" class="navbar__item active">
+                                 <img src="{% static 'img/profile/profilelogo.svg' %}" alt="" class="navbar__item-img">
+                                <div class="navbar__item-heading">Profile</div>
+                            </a>
+                            <a href="{% url 'supportPage' %}" class="navbar__item">
+                                 <img src="{% static 'img/profile/phonelogo.svg' %}" alt="" class="navbar__item-img">
+                                <div class="navbar__item-heading">Support</div>
+                            </a>
+                            <a href="{% url 'doctorProfile' request.user.id %}" class="navbar__item">
+                                 <img src="{% static 'img/profile/settinglogo.svg' %}" alt="" class="navbar__item-img">
+                                <div class="navbar__item-heading">Settings</div>
+                            </a>
+                        </ul>
+                    </div>
+                </div>
+            
+
+                 
+                    <div class="col l-11">
+                        <!-- Header -->
+                        <div class="row no-gutters">
+                            <div class="col l-12">
+                                <div class="header">
+                                    <div class="header__wrapper">
+                                        <div class="header__heading">
+                                            <div class="header__heading-date">
+                                                Thursday, 30 / 11 /2024 
+                                            </div>
+                                            <div class="header__heading-account">
+                                                <img src="{% static 'img/doctor_profile/doctor_img.svg' %}" alt="" class="header__heading-avatar">
+                                                <div class="header__heading-info">
+                                                    <div class="header__heading-name">{{request.user.doctor }}</div>
+                                                    <div class="header__heading-role">{{request.user.role}}</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="header__line"></div>
+                                        <div class="header__navbar">
+                                            <ul class="header__navbar-list">
+                                               <li class="header__navbar-item active">
+                                                    <a href="{% url 'doctorProfile' request.user.id %}" class="header__navbar-item-content">
+                                                        Doctor profile
+                                                    </a>
+                                               </li> 
+                                                <li class="header__navbar-item">
+                                                    <a href="{% url 'doctorWork' request.user.id %}" class="header__navbar-item-content">
+                                                        Work Schedule
+                                                    </a>
+                                               </li> 
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Info -->
+                        <div class="row no-gutters">
+                            <div class="col l-12">
+                                <div class="info">
+                                    <div class="info__wrapper">
+                                        <img src="{% static 'img/profile/avatar.svg' %}" alt="" class="info__img">
+                                        <div class="info__content">
+                                            {% if edit == False %}
+                                            <form method="POST" class="info__edit-btn">
+                                                {% csrf_token %}
+                                                <div class="name_wrapper">
+                                                    <input value="{{firstname}}" name="firstname" class="info__firstname" placeholder="Enter your firstname" disabled>
+
+                                                    </input>
+                                                    <input value="{{lastname}}" name="lastname" class="info__lastname" placeholder="Enter your lastname" disabled>
+                                                        
+                                                    </input>
+                                                </div>
+                                                <div class="info__basic">
+                                                    <div class="info__gender">
+                                                        <img class="info__icon" src="{% static 'img/profile/genderIcon.svg' %}">
+                                                        <select type="" name="gender" class="info__text edit" disabled>
+                                                            <option value="1">Male</option>
+                                                            <option value="2">Female</option>
+                                                            <option value="3">Different</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="info__address">
+                                                        <img class="info__icon" src="{% static 'img/profile/addrIcon.svg' %}">
+                                                        <input value="{{address}}" name="address" class="info__text edit" disabled></input>
+                                                    </div>
+                                                    <div class="info__dob">
+                                                        <img class="info__icon" src="{% static 'img/profile/dobIcon.svg' %}">
+                                                        <input name="dob" type="date" name="dob" class="info__text edit" disabled></input>
+                                                    </div>
+                                                    <div class="info__gender">
+                                                        <img class="info__icon" src="{% static 'img/profile/genderIcon.svg' %}">
+                                                        <select type="" name="gender" class="info__text edit">
+                                                            {% for service in services %}
+                                                            <option value="{{ service }}">{{ service.service_name }}</option>
+                                                            {% endfor %}
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="info__btn">
+                                                    <button type="submit" class="info__edit-form  btn">
+                                                        <img src="{% static 'img/profile/editbtn.svg' %}" alt="" class="info__btn-icon">
+                                                        <div type="submit" class="info__btn-text">Edit</div>
+                                                        <input name="value" value="edit" id="editbtn">
+                                                    </button>
+                                                </div>
+                                            </form>
+                                            {% else %}
+                                            <form method="POST" class="info__edit-btn">
+                                                {% csrf_token %}
+                                                <div class="name_wrapper">
+                                                    <input value="{{firstname}}" name="firstname" class="info__firstname" placeholder="Enter your firstname">
+
+                                                    </input>
+                                                    <input value="{{lastname}}" name="lastname" class="info__lastname" placeholder="Enter your lastname">
+                                                        
+                                                    </input>
+                                                </div>
+                                                
+                                                <div class="info__basic">
+                                                    <div class="info__gender">
+                                                        <img class="info__icon" src="{% static 'img/profile/genderIcon.svg' %}">
+                                                        <select type="" name="gender" class="info__text edit">
+                                                            for
+                                                            <option value="1">Male</option>
+                                                            <option value="2">Female</option>
+                                                            <option value="3">Different</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="info__address">
+                                                        <img class="info__icon" src="{% static 'img/profile/addrIcon.svg' %}">
+                                                        <input value="{{address}}" name="address" class="info__text edit"></input>
+                                                    </div>
+                                                    <div class="info__dob">
+                                                        <img class="info__icon" src="{% static 'img/profile/dobIcon.svg' %}">
+                                                        <input name="dob" type="date" name="dob" class="info__text edit"></input>
+                                                    </div>
+                                                    <div class="info__gender">
+                                                        <img class="info__icon" src="{% static 'img/profile/genderIcon.svg' %}">
+                                                        <select type="" name="gender" class="info__text edit">
+                                                            {% for service in services %}
+                                                            <option value="{{ service }}">{{ service.service_name }}</option>
+                                                            {% endfor %}
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="info__btn"> 
+                                                        <button type="submit" class="info__edit-form  btn">
+                                                            <img src="{% static 'img/profile/savebtn.svg' %}" alt="" class="info__btn-icon">
+                                                            <div type="submit" class="info__btn-text">Save</div>
+                                                            <input name="value" value="save" id="editbtn">
+                                                        </button>
+                                                </div>
+                                            </form>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Timeline -->
+                        <div class="row no-gutters">
+                            <div class="col l-3">
+                                <div class="timeline">
+                                    <div class="timeline__wrapper">
+                                        <div class="timeline__header">
+                                            <img src="{% static 'img/doctor_profile/calendar.svg' %}" alt="" class="timeline__header-icon">
+                                            <div class="timeline__header-heading">
+                                                Incomming Appointment
+                                            </div>
+                                        </div>
+                                        <div class="timeline__line"></div>
+                                        <ul class="timeline__list">
+                                            {% for appointment in appointments%}
+                                            <li class="timeline__item">
+                                                <div class="timeline__item-date">
+                                                    <div class="timeline__item-day">{{appointment.appointment_date}}</div> 
+                                                </div>
+                                                <div class="timeline__item-icon">
+                                                    <img src="{% static 'img/profile/ellipse2.svg' %}" alt="" class="timeline__item-circle">
+                                                    <img src="{% static 'img/profile/stick.svg' %}" alt="" class="timeline__item-stick">
+                                                </div>
+                                                <div class="timeline__item-content">
+                                                    <div class="timeline__item-title">{{appointment.service.service_name}}</div>
+                                                    <div class="timeline__item-room">{{appointment.room_id}}</div>
+                                                </div>
+                                            </li>
+                                            {% endfor %}
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col l-9">
+                                <div class="personalInfo">
+                                    <div class="personalInfo__wrapper">
+                                        <div class="personalInfo__header">
+                                            <img src="{% static 'img/doctor_profile/personalicon.svg' %}" class="personalInfo__header-icon">
+                                            <div class="personalInfo__header-heading">
+                                                Personal Information
+                                            </div>
+                                        </div>
+                                        <div class="personalInfo__line"></div>
+                                        <form action="" method="POST">
+                                            {% csrf_token %}
+                                            {% if edit_2 == False %}
+                                            <ul class="personalInfo__content">
+                                                <li class="personalInfo__content-item personalInfo__content-phone">
+                                                    <div class="personInfo__content-item-title">
+                                                        Phone
+                                                    </div>
+                                                    <div class="personInfo__content-item-info">
+                                                        {{ contact_number }}
+                                                    </div>
+                                                </li>
+    
+                                                <li class="personalInfo__content-item personalInfo__content-phone">
+                                                    <div class="personInfo__content-item-title">
+                                                        Email
+                                                    </div>
+                                                    <div class="personInfo__content-item-info">
+                                                        {{ email }}
+                                                    </div>
+                                                </li>
+    
+                                                <li class="personalInfo__content-item personalInfo__content-phone">
+                                                    <div class="personInfo__content-item-title">
+                                                        CCCD
+                                                    </div>
+                                                    <div class="personInfo__content-item-info">
+                                                        {{ cccd }}
+                                                    </div>
+                                                </li>
+    
+                                                <li class="personalInfo__content-item personalInfo__content-phone">
+                                                    <div class="personInfo__content-item-title">
+                                                        Address
+                                                    </div>
+                                                    <div class="personInfo__content-item-info">
+                                                        {{ address }}
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                            {% else %}
+                                            <ul class="personalInfo__content">
+                                                <li class="personalInfo__content-item personalInfo__content-phone">
+                                                    <div class="personInfo__content-item-title">
+                                                        Phone
+                                                    </div>
+                                                    <input value="{{ contact_number }}" name="contact_number" class="personInfo__content-item-info edit">
+    
+                                                    </input>
+                                                </li>
+    
+                                                <li class="personalInfo__content-item personalInfo__content-phone">
+                                                    <div class="personInfo__content-item-title">
+                                                        Email
+                                                    </div>
+                                                    <div type="email" name="email" class="personInfo__content-item-info edit">
+                                                        {{ request.user.email }}
+                                                    </div>
+                                                </li>
+    
+                                                <li class="personalInfo__content-item personalInfo__content-phone">
+                                                    <div name="cccd" class="personInfo__content-item-title">
+                                                        CCCD
+                                                    </div>
+                                                    <input value="{{ cccd }}" name="cccd" class="personInfo__content-item-info edit">
+                                                        
+                                                    </input>
+                                                </li>
+    
+                                                <li class="personalInfo__content-item personalInfo__content-phone">
+                                                    <div class="personInfo__content-item-title">
+                                                        Address
+                                                    </div>
+                                                    <input value="{{ address }}" name="address" class="personInfo__content-item-info edit">
+                                                        
+                                                    </input>
+                                                </li>
+                                            </ul>
+                                            {% endif %}
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</body>
+</html>

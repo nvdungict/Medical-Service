@@ -1,0 +1,56 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <link rel="stylesheet" href="{% static 'css/grid.css' %}">
+    <link rel="stylesheet" href="{% static 'css/booking_success.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,700;9..40,900&family=Ranga&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="app">
+        {% include 'booking_header.html' %}
+
+        <div class="booking-container">
+            <div class="booking-container__header">
+                <div class="booking-container__heading">
+                    Let us take care of your <span class="green">health</span>
+                </div>
+            </div>
+            <div class="booking-container__box">
+                <div class="booking-container__box-wrapper">
+                    <div class="booking-container__form">
+                        <div class="booking-container__success">
+                            <img src="{% static 'img/booking_page/big-check-solid.svg'%}" alt="" class="booking-container__success-icon">
+                        </div>
+
+                        <div class="booking-container__success-text">
+                            Your Order have been placed successfully! <br>
+                            Please check your email for further information
+                        </div>
+                        <div class="btn-wrapper">
+                            <div class="booking-container__footer-back-btn-wrapper">
+                                <a href="{% url 'appointmentDetail' appointment_id  %}" class="booking-container__footer-btn btn blue">
+                                    CHECK YOUR ORDER
+                                </a>    
+                            </div>
+                            <div class="booking-container__footer-btn-wrapper">
+                                <a href="{% url 'home' %}" class="booking-container__footer-btn btn ">
+                                    Back to home page
+                                </a>    
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

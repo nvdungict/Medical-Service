@@ -1,0 +1,252 @@
+/* CSS reset */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: 62.5%;
+    font-family: 'DM Sans', sans-serif;
+    line-height: 1.6rem;
+}
+/* Base */
+.bold-green {
+    color: #3CC895;
+    font-weight: 700;
+}
+
+/* Signup Form  */
+.form {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+}
+
+.heading {
+    font-size: 3rem;
+    font-weight: 700;
+    color: #000;
+    line-height: 4rem;
+}
+
+.spacer {
+    height: 16px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-top: 24px;
+}
+
+.form-label {
+    font-size: 1.4rem;
+    margin-bottom: 6px;
+    padding-left: 1.2rem;
+    font-weight: 500;
+}
+
+.form-control__cover {
+    position: relative;
+}
+
+.form-control {
+    padding: 16px 64px;
+    width: 364px;
+    height: 52px;
+    border-radius: 16px;
+    font-size: 1.3rem;
+    color: #000;  
+    background-color: #F0EDFFCC;
+    border: none;
+}
+
+#id_password2 {
+    padding: 16px 64px;
+    width: 364px;
+    height: 52px;
+    border-radius: 16px;
+    font-size: 1.3rem;
+    color: #000;  
+    background-color: #F0EDFFCC;
+    border: none;
+}
+
+#id_password1 {
+    padding: 16px 64px;
+    width: 364px;
+    height: 52px;
+    border-radius: 16px;
+    font-size: 1.3rem;
+    color: #000;  
+    background-color: #F0EDFFCC;
+    border: none;
+}
+#id_email {
+    padding: 16px 64px;
+    width: 364px;
+    height: 52px;
+    border-radius: 16px;
+    font-size: 1.3rem;
+    color: #000;  
+    background-color: #F0EDFFCC;
+    border: none;
+}
+
+#id_username {
+    padding: 16px 64px;
+    width: 364px;
+    height: 52px;
+    border-radius: 16px;
+    font-size: 1.3rem;
+    color: #000;  
+    background-color: #F0EDFFCC;
+    border: none;
+}
+
+.form-icon {
+    object-fit: cover;
+    height: 21px;
+    width: 22px;
+    position: absolute;
+    margin-left: 24px;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+}
+
+.form-icon-img {
+   
+}
+
+.form-message {
+    font-size: 1.4rem;
+    color: #ff0000;
+    line-height: 1.8rem;
+    font-weight: 400;
+    margin-top: 6px;
+    padding-left: 6px;
+}
+
+.form-submit {
+    margin-top: 44px;
+    padding: 14px 14px;
+    width: 124px;
+    border-radius: 16px;
+    font-weight: 700;
+    font-size: 1.4rem;
+    line-height: 2rem;
+    background-color: #3CC895;
+    color: #fff;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 2px 5px 0 rgba(51, 62, 73, 0.1);
+}
+
+.login-return {
+    margin-top: 32px;
+    font-size: 1.6rem;
+    font-weight: 700;
+    line-height: 2.4rem;
+    text-align: center;
+    z-index: 1;
+    background-color: #fff;
+    padding: 0 4px;
+}
+
+.form-line {
+    margin-top: -10px;
+    border: 1px solid #cccccc45;
+    width: 60%;
+    margin-bottom: 32px;
+}
+
+.login-return-btn {
+    text-decoration: none;
+}
+
+.form__return-btn {
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 32px 32px;
+}
+
+/* Signup Decoration */
+.form-decorator {
+    height: 100vh;
+    position: relative;
+    background-image: linear-gradient(to left, #33FF00, #5038ED);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-decorator__sub-heading {
+    padding: 32px 200px 300px 32px;
+    background-image: linear-gradient(rgba(255, 255, 255, .52), rgba(255, 255, 255, .21));
+    border-radius: 46px;
+    border: 1px solid #ffffff52;
+}
+
+.form-decorator__sub-heading-text {
+    font-size: 2.8rem;
+    line-height: 4.6rem;
+    font-weight: 700;
+    color: #fff;  
+}
+
+.form-decorator__img {
+    position: absolute;
+    height: 600px;
+    bottom: 0;
+    right: 10%;
+} 
+
+/* Form validation */
+.form-group.invalid .form-control {
+    border: 2px solid #ff0000 !important;
+}
+
+.form-group.valid .form-control  {
+    border: 2px solid #3CC895 !important;
+}
+
+.form-group.invalid .invalid-icon {
+    display: block;
+}
+
+.form-group.valid .valid-icon {
+    display: block;
+}
+
+
+.invalid-icon {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 4%;
+    height: 24px;
+    display: none;
+}
+
+.valid-icon {
+    position: absolute;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 4%;
+    height: 24px;
+    display: none;
+}
+
+.messages__wrapper {
+    color: #ff0000;
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-right: 16%;
+}

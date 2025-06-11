@@ -1,0 +1,232 @@
+{% extends 'chatbot/base.html' %}
+
+{% block styles %}
+<style>
+  body,
+  html {
+    height: 100%;
+    background: linear-gradient(to right, #00ff00, #0000ff); /* Green to Blue gradient */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    font-family: 'Roboto', sans-serif; /* Apply Roboto font */
+    width: 100%;
+  }
+
+  .messages-box {
+    flex: 1; /* Fill remaining space */
+    overflow-y: auto; /* Enable vertical scrolling */
+    background-color: #f3f7f9;
+    padding: 10px;
+    height: 30%;
+  }
+
+  .messages-list {
+    padding-left: 0;
+  }
+
+  .message {
+    margin-bottom: 15px;
+    list-style: none;
+  }
+
+  .message-text {
+    padding: 10px;
+    border-radius: 5px;
+  }
+
+  .sent {
+    background-color: #dcf8c6;
+    align-self: flex-end;
+  }
+
+  .received {
+    background-color: #f1f0f0;
+    align-self: flex-start;
+  }
+
+  .message-form {
+    display: flex;
+    width: 70%;
+    max-width: 800px;
+    padding: 10px;
+    background-color: #f8f9fa;
+    border-radius: 20px;
+    position: absolute;
+    bottom: 0px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .message-input {
+    flex: 1;
+    border-radius: 20px 0 0 20px;
+    border-right: none;
+  }
+
+  .btn-send {
+    border-radius: 50%;
+    background-color: #0084ff;
+    color: white;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+  }
+
+  .btn-send:hover {
+    background-color: #006bb3;
+  }
+
+  .chat-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh; /* Full height of the viewport */
+  width: 70%; /* Set width to 70% of the viewport */
+  max-width: 800px; /* Limit maximum width */
+  margin: 0 auto; /* Center the container */
+}
+
+  .card {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden; /* Ensure the card doesn't overflow */
+  }
+
+  .card-header {
+    text-align: center;
+  }
+
+  .input-group-append {
+    display: flex;
+    align-items: center;
+  }
+</style>
+{% endblock %}
+
+
+{% block content %}
+<div class="chat-container">
+  <div class="card flex-grow-1">
+    <div class="card-header bg-primary text-white">
+      <a href="{% url 'home' %}"><img src="https://assets.website-files.com/64d6620e2ccbfaec26bbc78e/64da9ac26ade0ff921bc278e_Clinicx%20Webflow%20Medical%20Template%20-%20logo.svg" alt="" class="header__navbar-img" style="width: 100px; height: auto; margin-right: 10px;"></a>
+      </div>
+    {% if user.is_authenticated %}
+    <div class="card-header bg-primary text-white"><b>Welcome, {{user.username}}</b> <a style="color: yellow;"
+        href="{%url 'logout'%}">Logout</a></div>
+    {% else %}
+    <div class="card-header bg-primary text-white"><a style="color: yellow" href="login">Login</a> <a
+        style="color: yellow;" href="register">Register</a></div>
+    {% endif %}
+    <div class="card-body messages-box" style="background-color: #F3F7F9;">
+
+      <ul class="list-unstyled messages-list">
+
+        {% for chat in chats %}
+        {% if chat.user == request.user %}
+
+        <li class="message sent" style="background-color: white;">
+          <div class="message-text">
+            <div class="message-sender">
+              <b>You</b>
+            </div>
+            <div class="message-content">
+              {{chat.message}}
+            </div>
+          </div>
+        </li>
+
+        <li class="message received" style="background-color: #2865E6; color: white;">
+          <div class="message-text">
+            <div class="message-sender">
+              <b>AI Chatbot</b>
+            </div>
+            <div class="message-content">
+              {{chat.response}}
+            </div>
+          </div>
+        </li>
+
+        {% endif %}
+        {% endfor %}
+
+      </ul>
+
+    </div>
+    <br><br>
+  </div>
+  <form class="message-form">
+    {% csrf_token %}
+    <div class="input-group">
+      <input type="text" class="form-control message-input" placeholder="Type your message..." style="border-radius: 20px 0 0 20px;">
+      <div class="input-group-append">
+        <button type="submit" class="btn btn-primary btn-send">
+          <i class="fas fa-paper-plane"></i>
+        </button>
+      </div>
+    </div>
+  </form>
+  
+</div>
+
+<script>
+  const messagesList = document.querySelector('.messages-list');
+  const messageForm = document.querySelector('.message-form');
+  const messageInput = document.querySelector('.message-input');
+
+  messageForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+
+    const message = messageInput.value.trim();
+    if (message.length === 0) {
+      return;
+    }
+
+    const messageItem = document.createElement('li');
+    messageItem.classList.add('message', 'sent');
+    messageItem.innerHTML = `
+        <div class="message-text" style="background-color: white;">
+            <div class="message-sender">
+                <b>You</b>
+            </div>
+            <div class="message-content">
+                ${message}
+            </div>
+        </div>`;
+    messagesList.appendChild(messageItem);
+
+    messageInput.value = '';
+
+    fetch('', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams({
+        'csrfmiddlewaretoken': document.querySelector('[name=csrfmiddlewaretoken]').value,
+        'message': message
+      })
+    })
+      .then(response => response.json())
+      .then(data => {
+        const response = data.response;
+        const messageItem = document.createElement('li');
+        messageItem.classList.add('message', 'received');
+        messageItem.innerHTML = `
+        <div class="message-text" style="background-color: #2865E6; color: white;">
+            <div class="message-sender">
+              <b>AI Chatbot</b>
+            </div>
+            <div class="message-content">
+                ${response}
+            </div>
+        </div>
+          `;
+        messagesList.appendChild(messageItem);
+      });
+  });
+
+</script>
+{% endblock %}

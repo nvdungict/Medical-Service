@@ -1,0 +1,219 @@
+/* Reset CSS */
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 62.5%;
+    line-height: 1.6rem;
+    font-family: 'DM Sans', sans-serif;
+}
+
+/* Base color */
+:root {
+    --white-color: #fff;
+    --text-color: #170f49;
+    --paragraph-color: #6f6c90;
+    --primary-color: #79dd97;
+    --booking-btn-color: #7ea2e4;
+    --priciple-background-color: #bed5ff;
+    --footer-text-color: #f5f5f5;
+}
+
+/* Submit Form */
+.form-wrapper {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.heading {
+    width: 92px;
+    height: 21px;
+    font-size: 3rem;
+    font-weight: 700;
+    color: #000;
+    line-height: 4rem;
+}
+
+.spacer {
+    height: 44px;
+}
+
+
+.form-group {
+    position: relative; 
+    margin-top: 16px;
+}
+
+.form-control {
+    padding: 16px 48px;
+    width: 364px;
+    height: 52px;
+    border-radius: 16px;
+    font-size: 1.4rem;
+    color: #000;  
+    background-color: #F0EDFFCC;
+    border: none;
+}
+
+.form-icon {
+    position: absolute;
+    margin-left: 24px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.form-message {
+
+}
+
+.form-submit {
+    margin-top: 24px;
+    padding: 14px 14px;
+    width: 124px;
+    border-radius: 16px;
+    font-weight: 700;
+    font-size: 1.4rem;
+    line-height: 2rem;
+    background-color: #3CC895;
+    color: #fff;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 2px 5px 0 rgba(51, 62, 73, 0.1);
+}
+
+.form-border {
+    margin-top: 32px;
+    font-size: 1.6rem;
+    font-weight: 400;
+    line-height: 2.0rem;
+    color: #525252;
+    background-color: #fff;
+    padding: 0 8px;
+    z-index: 1;
+}
+
+.bold {
+    color: #1c1c1c;
+    font-weight: 700;
+}
+
+.form-line {
+    margin-top: -10px;
+    border: 1px solid #F0EDFF;
+    width: 100%;
+    margin-bottom: 32px;
+}
+
+.form-social-login {
+    margin-top: 16px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 364px;
+    border: 1px solid #F0EDFF;
+    background-color: #fff; 
+    border-radius: 16px;
+    width: 100%;
+    padding: 12px 0;
+}
+
+.form-social-login__icon {
+    margin-right: 8px;
+}
+
+.form-social-login__text {
+    font-size: 1.2rem;
+    font-weight: 400;
+    line-height: 1.6rem;
+    color: #000;
+}
+/* Login Decoration */
+.form-decorator {
+    height: 100vh;
+    background-image: linear-gradient(to left, #33FF00, #5038ED);
+    position: relative;
+    display: flex;
+    justify-content: center;
+    padding: 120px 120px;
+}   
+
+.form-decorator__sub-heading {
+    padding: 32px 200px 32px 32px;
+    background-image: linear-gradient(rgba(255, 255, 255, .52), rgba(255, 255, 255, .21));
+    border-radius: 46px;
+    border: 1px solid #ffffff52;
+}
+
+.form-decorator__sub-heading-text {
+    font-size: 2.8rem;
+    line-height: 4.6rem;
+    font-weight: 700;
+    color: #fff;    
+}
+
+.form-decorator__img {
+    position: absolute;
+    height: 600px;
+    bottom: 0;
+    right: 70px;
+}
+
+.form__return-btn {
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 32px 32px;
+}
+
+/* Switch to signup */
+.sign-up-link {
+    margin-top: 20px;
+    text-decoration: none;
+    color: var(--text-color);
+    font-size: 1.6rem;
+    line-height: 2rem;
+    font-weight: 700;
+    padding: 0 8px;
+    background-color: #fff;
+    z-index: 1;
+}
+
+.sign-up-line {
+    margin-top: -10px;
+    border: 1px solid #F0EDFF;
+    width: 100%;
+}
+
+.green {
+    color: #3CC895;
+}
+
+.bold {
+    font-weight: 700;
+}
+
+.messages__wrapper {
+    position: relative;
+    margin-right: auto;
+    padding-left: 1.6rem;
+    font-size: 1.2rem;
+    color: red;
+    font-weight: 700;
+}
+
+.messages {
+}

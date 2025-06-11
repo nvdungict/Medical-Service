@@ -1,0 +1,113 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <link rel="stylesheet" href="{% static 'css/grid.css' %}">
+    <link rel="stylesheet" href="{% static 'css/sign_up_page.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,700;9..40,900&family=Ranga&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="main">
+        <div class="grid ">
+            <div class="row no-gutters">
+                <div class="col l-6">
+                    <form class="form" action="{% url 'signup' %}" method="POST" id="form-1">
+                    {% csrf_token %}
+                        <a href="{% url 'home' %}" class="form__return-btn">
+                            <img src="{% static 'img/signup/return-btn.png' %}" alt="">
+                        </a>
+                        <div class="heading">SIGN UP</div>
+                        <div class="spacer"></div>
+                        {% if form.errors %}
+                        <div class="messages__wrapper">
+                            {% for field in form %}
+                                <ul class="messages">
+                                    {% for error in field.errors %}
+                                        <li>{{ error }}</li>
+                                    {% endfor %}
+                                </ul>
+                            {% endfor %}
+                            </div>
+                            {% for error in form.non_field_errors %}
+                                <div class="alert alert-danger">
+                                    <strong>{{ error|escape }}</strong>
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+                    {% for field in form %}
+                    <div class="form-group">
+                        <label class="form-label" for="username">{{field.label}}</label>
+                        <div class="form-control__cover" >
+                            {{field}}
+                            {% if field.label == 'Username' %}
+                            <svg class="form-icon" width="16" height="21" viewBox="0 0 16 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M16 21H14V19C14 17.3431 12.6569 16 11 16H5C3.34315 16 2 17.3431 2 19V21H0V19C0 16.2386 2.23858 14 5 14H11C13.7614 14 16 16.2386 16 19V21ZM8 12C4.68629 12 2 9.3137 2 6C2 2.68629 4.68629 0 8 0C11.3137 0 14 2.68629 14 6C14 9.3137 11.3137 12 8 12ZM8 10C10.2091 10 12 8.20914 12 6C12 3.79086 10.2091 2 8 2C5.79086 2 4 3.79086 4 6C4 8.20914 5.79086 10 8 10Z" fill="#1C1C1C"/>
+                            </svg>
+                            {% elif field.label == 'Email' %}
+                            <img src="{% static 'img/signup/gmail-icon.svg' %}" alt="" class="form-icon form-icon-img">
+                            {% elif field.label == 'Password' %}
+                            <svg class="form-icon" width="17" height="22" viewBox="0 0 26 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M4.96683 10.2198V8.84613C4.96683 4.29433 8.65679 0.60437 13.2086 0.60437C17.7604 0.60437 21.4503 4.29433 21.4503 8.84613V10.2198H24.1976C24.9563 10.2198 25.5712 10.8348 25.5712 11.5934V28.0769C25.5712 28.8355 24.9563 29.4505 24.1976 29.4505H2.21957C1.46095 29.4505 0.845947 28.8355 0.845947 28.0769V11.5934C0.845947 10.8348 1.46095 10.2198 2.21957 10.2198H4.96683ZM22.824 12.967H3.5932V26.7033H22.824V12.967ZM11.835 20.8412C11.0138 20.3662 10.4613 19.4784 10.4613 18.4615C10.4613 16.9442 11.6913 15.7143 13.2086 15.7143C14.7259 15.7143 15.9558 16.9442 15.9558 18.4615C15.9558 19.4784 15.4034 20.3662 14.5822 20.8412V23.956H11.835V20.8412ZM7.71408 10.2198H18.7031V8.84613C18.7031 5.81159 16.2431 3.35162 13.2086 3.35162C10.1741 3.35162 7.71408 5.81159 7.71408 8.84613V10.2198Z" fill="#1C1C1C"/>
+                            </svg>
+                            {% elif field.label == 'Password confirmation' %}
+                            <svg class="form-icon" width="17" height="22" viewBox="0 0 26 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M4.96683 10.2198V8.84613C4.96683 4.29433 8.65679 0.60437 13.2086 0.60437C17.7604 0.60437 21.4503 4.29433 21.4503 8.84613V10.2198H24.1976C24.9563 10.2198 25.5712 10.8348 25.5712 11.5934V28.0769C25.5712 28.8355 24.9563 29.4505 24.1976 29.4505H2.21957C1.46095 29.4505 0.845947 28.8355 0.845947 28.0769V11.5934C0.845947 10.8348 1.46095 10.2198 2.21957 10.2198H4.96683ZM22.824 12.967H3.5932V26.7033H22.824V12.967ZM11.835 20.8412C11.0138 20.3662 10.4613 19.4784 10.4613 18.4615C10.4613 16.9442 11.6913 15.7143 13.2086 15.7143C14.7259 15.7143 15.9558 16.9442 15.9558 18.4615C15.9558 19.4784 15.4034 20.3662 14.5822 20.8412V23.956H11.835V20.8412ZM7.71408 10.2198H18.7031V8.84613C18.7031 5.81159 16.2431 3.35162 13.2086 3.35162C10.1741 3.35162 7.71408 5.81159 7.71408 8.84613V10.2198Z" fill="#1C1C1C"/>
+                            </svg> 
+                            {% endif %}   
+                            <img src="{% static 'img/signup/invalid.png' %}" alt="" class="invalid-icon">
+                            <img src="{% static 'img/signup/valid.png' %}" alt="" class="valid-icon">
+                        </div>
+                        <span class="form-message"></span>
+                    </div>
+                    {%  endfor %}
+                    <button type="submit" class="form-submit">JOIN US</button>
+
+                        <div class="login-return">Already have an account, <a href="{% url 'login' %}" class="login-return-btn bold-green">Login</a> here</div>
+                        <span class="form-line"></span>
+                    </form>
+                </div>
+                <div class="col l-6">
+                    <div class="form-decorator">
+                        <div class="form-decorator__sub-heading">
+                            <div class="form-decorator__sub-heading-text">
+                                Bright minds, <br> big hearts, <br> the best <br> medicine.
+                            </div>
+                        </div>
+                        <img src="{% static 'img/signup/nurse.png' %}" alt="" class="form-decorator__img">
+                    </div>  
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="{% static 'js/validator.js' %}"></script>
+    <script>
+        // Our wish
+        Validator({
+            form: '#form-1', // Vì một trang có thể có nhiều form nên cần form để chỉ định
+            formGroupSelector: '.form-group',
+            errorSelector: '.form-message',
+            rules: [
+                Validator.isRequired('#id_username', 'Please fill up your username'),
+                Validator.isRequired('#id_email', 'Please fill up your email'),
+                Validator.isEmail('#id_email', 'Invalid Email'),
+                Validator.minLength('#id_password1', 8),
+                Validator.isRequired('#id_password2', 'Please fill up this field'),
+                Validator.isConfirmed('#id_password2', function () {
+                    return document.querySelector('#form-1 #id_password1').value;
+                }, 'Password does not match')
+            ],
+            onSubmit: function(data) {
+                // Call API
+                document.getElementById("myForm").submit();
+            }
+        });
+    </script>
+</body>
+</html>

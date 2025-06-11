@@ -1,0 +1,121 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <link rel="stylesheet" href="{% static 'css/grid.css' %}">
+    <link rel="stylesheet" href="{% static 'css/booking_payment.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,700;9..40,900&family=Ranga&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="app">
+        {% include 'booking_header.html' %}
+
+        <div class="booking-container">
+            <div class="booking-container__header">
+                <div class="booking-container__heading">
+                    Let us take care of your <span class="green">health</span>
+                </div>
+            </div>
+            <div class="booking-container__box">
+                <div class="booking-container__box-wrapper">
+                    <div class="booking-container__form">
+                        <div class="bill__container">
+                            <div class="bill__header">
+                                <img src="{% static 'img/booking_page/cart.svg'%}" class="bill_icon">
+                                <div class="bill__text">Bill</div>
+                            </div>
+                            <div class="bill__list">
+                                <div class="bill__item">
+                                    <div class="bill__item-name">{{ service_name }}</div>
+                                    <div class="bill__item-price">{{ price }} USD</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="receipt__container">
+                            <div class="receipt__header">
+                                <div class="receipt__heading">
+                                    MINI RECEIPT
+                                </div>
+                            </div>
+                            <div class="line"></div>
+                            <div class="receipt__list">
+                                <div class="receipt__item">
+                                    <div class="receipt__item-title">Total</div>
+                                    <div class="receipt__item-value">{{price}} USD</div>
+                                </div>
+                                <div class="receipt__item">
+                                    <div class="receipt__item-title">Insurance Class</div>
+                                    <div class="receipt__item-value">{{membership_type}}</div>
+                                </div>
+                                <div class="receipt__item">
+                                    <div class="receipt__item-title">Discount</div>
+                                    <div class="receipt__item-value">{{discount}} USD</div>
+                                </div>
+                                <div class="receipt__item">
+                                    <div class="receipt__item-title">VAT</div>
+                                    <div class="receipt__item-value">{{vat}} USD</div>
+                                </div>
+                            </div>
+                            <div class="line"></div>
+                            <div class="receipt__total-wrapper">
+                                <div class="receipt__total">
+                                    <div class="receipt__total-title">Bill</div>
+                                    <div class="receipt__total-value">{{bill}} USD</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="qr__container">
+                            <div class="qr__heading">
+                                Please scan this QR code by your mobile banking<br> apps to pay the bill
+                            </div>
+                            <img src="{% static 'img/booking_page/QRimg.svg'%}" alt="" class="qr__img">
+                            <div class="qr__footer">
+                                If you need a helps, please call 1900 8888 or <br> 1900 6666 to talk with our staff \<\3
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="booking-container__footer">
+                        <div class="booking-container__footer-wrapper">
+                            <div class="booking-container__footer-info">
+                                Notice: You are using your account personal information to book this appointment! You are logging as
+                            </div>
+                            <div class="booking-container__footer-login">
+                                <div class="header__heading-account-wrapper">
+                                    <div class="header__heading-account">
+                                        <img src="{% static 'img/booking_page/avatar.svg'%}" alt="" class="header__heading-avatar">
+                                        <div class="header__heading-info">
+                                            <div class="header__heading-name">Hoang Ba Bao</div>
+                                            <div class="header__heading-role">Patient</div>
+                                        </div>
+                                    </div>
+                                    <div class="booking-container__footer-back-btn-wrapper">
+                                        <a href="{% url 'bookingCheck' %}" class="booking-container__footer-btn btn blue">
+                                            Go Back
+                                        </a>    
+                                    </div>
+                                    <div class="booking-container__footer-btn-wrapper">
+                                        <a href="{% url 'bookingSuccess' %}" class="booking-container__footer-btn btn ">
+                                            Finish Booking
+                                        </a>    
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

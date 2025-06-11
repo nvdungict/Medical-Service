@@ -1,0 +1,142 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <link rel="stylesheet" href="{% static 'css/grid.css' %}">
+    <link rel="stylesheet" href="{% static 'css/booking_check.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,700;9..40,900&family=Ranga&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="app">
+        {% include 'booking_header.html' %}
+
+        <div class="booking-container">
+            <div class="booking-container__header">
+                <div class="booking-container__heading">
+                    Let us take care of your <span class="green">health</span>
+                </div>
+            </div>
+            <div class="booking-container__box">
+                <div class="booking-container__box-wrapper">
+                    <div class="booking__content">
+                        <div class="booking-container__form">
+                            
+                            <div class="info__container-wrapper">
+                                <div class="info__container">
+                                    <div class="info__date">
+                                        <img src="{% static 'img/booking_page/calendar.svg'%}" class="info_date-icon">
+                                        <div class="info__date-text">Date</div>
+                                        <div class="info__date-data">{{date}}</div>
+                                    </div>
+                                    <div class="info__time">
+                                        <img src="{% static 'img/booking_page/time.svg'%}" class="info_time-icon">
+                                        <div class="info__time-text">Time</div>
+                                        <div class="info__time-data">{{time}}</div>
+                                    </div>
+                                    <div class="info__email">
+                                        <img src="{% static 'img/booking_page/email.svg'%}" class="info_email-icon">
+                                        <div class="info__email-text">Email</div>
+                                        <div class="info__email-data">{{email}}</div>
+                                    </div>
+                                </div>
+                                
+                                <div class="booking-container__symptoms">
+                                    <div class="booking-container__symptoms-header">
+                                        <img src="{% static 'img/booking_page/human.svg'%}" alt="" class="booking-container__symptoms-icon">
+                                        <div class="booking-container__services-heading">Symptoms</div>
+                                    </div>
+                                    
+                                    <div class="line"></div>
+        
+                                    <div class="booking-container__symptoms-body" placeholder="Write your Symptoms here">
+                                        {{symtomps}}
+                                    </div>
+                                </div>
+                            </div>
+                            
+        
+                            <div class="booking-container__services">
+                                <div class="booking-container__services-header">
+                                    <img src="{% static 'img/booking_page/addIcon.svg'%}" alt="" class="booking-container__services-icon">
+                                    <div class="booking-container__services-heading">Services</div>
+                                </div>
+                                    
+                                <div class="bookservice__iteming-container__services-list">
+                                        <div class="service__row">
+                                            <div class="service__item" onclick="addNameToInput(this)">
+                                                <img src="{% static 'img/all/person.svg' %}" alt="" class="service__item-icon">
+                                                <div class="service__info">
+                                                    <div class="service__name">{{ service_name }}</div>
+                                                </div>
+                                                <input class="no-input" value="{{booking_info.service_id}}" >
+                                            </div>
+                                        </div>
+                                </div>
+                            </div> 
+            
+                                <div class="bill__container">
+                                    <div class="bill__header">
+                                        <img src="{% static 'img/booking_page/cart.svg'%}" class="bill_icon">
+                                        <div class="bill__text">Bill</div>
+                                    </div>
+                                    <div class="bill__list">
+                                        <div class="bill__item">
+                                            <div class="bill__item-name">{{service_name}}</div>
+                                            <div class="bill__item-price">{{service_price}} USD</div>
+                                        </div>
+                                        
+                                    </div>
+                                    <div class="line"></div>
+                                    <div class="booking-container__services-footer">
+                                        <div class="booking-container__services-text">Total</div>
+                                        <div class="booking-container__services-total">{{service_price}} USD</div>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+
+                    <div class="booking-container__footer">
+                        <div class="booking-container__footer-wrapper">
+                            <div class="booking-container__footer-info">
+                                Notice: You are using your account personal information to book this appointment! You are logging as
+                            </div>
+                            <div class="booking-container__footer-login">
+                                <div class="header__heading-account-wrapper">
+                                    <div class="header__heading-account">
+                                        <img src="{% static 'img/booking_page/avatar.svg'%}" alt="" class="header__heading-avatar">
+                                        <div class="header__heading-info">
+                                            <div class="header__heading-name">None</div>
+                                            <div class="header__heading-role">Patient</div>
+                                        </div>
+                                    </div>
+                                    <div class="booking-container__footer-back-btn-wrapper">
+                                        <a href="{% url 'bookingPage' %}" class="booking-container__footer-btn btn blue">
+                                            Go Back
+                                        </a>    
+                                    </div>
+                                    <form action="" method="POST">
+                                        {% csrf_token %}
+                                        <div class="booking-container__footer-btn-wrapper">
+                                            <button  type="submit" class="booking-container__footer-btn btn ">
+                                                Pay the Bill
+                                            </button>    
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
