@@ -105,9 +105,14 @@
     display: flex;
     align-items: center;
   }
+
+  /* Đảm bảo phản hồi AI được hiển thị đẹp và xuống dòng đúng */
+  .message-content {
+    white-space: pre-line;  /* Giữ định dạng xuống dòng */
+    word-wrap: break-word;  /* Ngắt từ khi cần thiết */
+  }
 </style>
 {% endblock %}
-
 
 {% block content %}
 <div class="chat-container">
@@ -146,7 +151,7 @@
               <b>AI Chatbot</b>
             </div>
             <div class="message-content">
-              {{chat.response}}
+              {{chat.response|linebreaksbr}}  <!-- Đảm bảo phản hồi AI hiển thị đúng định dạng -->
             </div>
           </div>
         </li>
