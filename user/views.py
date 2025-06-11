@@ -7,6 +7,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from service.models import Membership, Patient
 
+
 def home(request):
     return render(request, 'user/home.html')
 
@@ -62,3 +63,15 @@ def signup(request):
 
     context = {'form':form}
     return render(request, 'user/signup.html', context)
+
+def booking_appointment(request):
+    return render(request, 'services/booking.html')
+
+def telemedicine(request):
+    return render(request, 'services/telemedicine.html')
+
+def patient_records(request):
+    return render(request, 'services/records.html')
+
+def appointment_calendar(request):
+    return render(request, 'services/calendar.html')

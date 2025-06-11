@@ -14,7 +14,7 @@ def bookingPage(request):
         service_count = Service.objects.annotate(total=Count('doctor')).values('service_id', 'service_name', 'total')
         user = User.objects.get(id=request.user.id)
         current_date = datetime.now().strftime('%Y-%m-%d')
-        next_year = (datetime.now() + timedelta(days=365)).strftime('%Y-%m-%d')
+        next_year = (timedelta(days=365) + datetime.now()).strftime('%Y-%m-%d')
 
         if request.method == 'POST':
             date = request.POST.get('date')
@@ -483,3 +483,6 @@ def serviceDetail(request, pk):
     return render(request, 'service/service_detail.html', context)
 
 
+def telemedicine(request):
+    return render(request, 'service/telemedicine.html')
+    

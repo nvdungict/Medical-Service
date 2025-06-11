@@ -13,5 +13,6 @@ urlpatterns = [
     path('doctor-work/<str:pk>', views.doctorWork, name='doctorWork'),
     path('appointment-detail/<str:pk>', views.appointmentDetail, name='appointmentDetail'),
     path('supportPage/', views.supportPage, name='supportPage'),
+    path('telemedicine/', views.telemedicine, name='telemedicine'),
     
 ]

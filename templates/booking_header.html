@@ -17,7 +17,10 @@
                 <li class="header__navbar-item">
                     <a href="#about-section" class="header__navbar-link">About us</a>
                 </li>
-                <li class="header__navbar-item header__navbar-item-menu-switch">
+
+
+
+<li class="header__navbar-item header__navbar-item-menu-switch">
                     <div href="#" class="header__navbar-link header__navbar-link-dropdown-menu">
                         Services
                         <i class="header__navbar-icon fa-solid fa-chevron-down"></i>
@@ -26,75 +29,63 @@
                                 <div class="grid">
                                     <ul class="header__navbar-dropdown-menu-list">
                                         <div class="row medium-gutters">
-                                            <div class="col l-4">
+
+                                            <div class="col l-6">
                                                 <li class="header__navbar-dropdown-menu-item">
-                                                    <a href="" class="header__navbar-dropdown-menu-link navbar-card">
+                                                    <a href="{% url 'bookingPage' %}" class="header__navbar-dropdown-menu-link navbar-card">
                                                         <img src="https://assets.website-files.com/64d9eef747edd1c43be00c2a/64da4f40005c25565ce14b8f_Clinicx%20Webflow%20Medical%20Template%20-%20icon%20orthopedy.svg" alt="" class="header__navbar-dropdown-menu-icon">
-                                                        <div class="header__navbar-dropdown-menu-heading">Neurology Services</div>
-                                                        <p class="header__navbar-dropdown-menu-paragraph">
-                                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique.
+                                                        <div class="header__navbar-dropdown-menu-heading">Booking Appointment</div>
+                                                        <p class="header__navbar-dropdown-menu-paragraph" >
+                                                            Schedule appointments with doctors easily
                                                         </p> 
                                                     </a>
                                                 </li>
                                             </div>
-                                            <div class="col l-4">
+
+                                            <div class="col l-6">
                                                 <li class="header__navbar-dropdown-menu-item">
-                                                    <a href="" class="header__navbar-dropdown-menu-link navbar-card">
+                                                    <a href="{% url 'telemedicine' %}" class="header__navbar-dropdown-menu-link navbar-card">
                                                         <img src="https://assets.website-files.com/64d9eef747edd1c43be00c2a/64da4f40005c25565ce14b8f_Clinicx%20Webflow%20Medical%20Template%20-%20icon%20orthopedy.svg" alt="" class="header__navbar-dropdown-menu-icon">
-                                                        <div class="header__navbar-dropdown-menu-heading">Neurology Services</div>
+                                                        <div class="header__navbar-dropdown-menu-heading">Telemedicine</div>
                                                         <p class="header__navbar-dropdown-menu-paragraph">
-                                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique.
+                                                            Video consulations with a variety of health issues
                                                         </p> 
                                                     </a>
                                                 </li>
                                             </div>
-                                            <div class="col l-4">
-                                                <li class="header__navbar-dropdown-menu-item">
-                                                    <a href="" class="header__navbar-dropdown-menu-link navbar-card">
-                                                        <img src="https://assets.website-files.com/64d9eef747edd1c43be00c2a/64da4f40005c25565ce14b8f_Clinicx%20Webflow%20Medical%20Template%20-%20icon%20orthopedy.svg" alt="" class="header__navbar-dropdown-menu-icon">
-                                                        <div class="header__navbar-dropdown-menu-heading">Neurology Services</div>
-                                                        <p class="header__navbar-dropdown-menu-paragraph">
-                                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique.
-                                                        </p> 
-                                                    </a>
-                                                </li>
-                                            </div>
+
                                         </div>
+
+
                                         <div class="row  medium-gutters">
-                                            <div class="col l-4">
+
+                                            <div class="col l-6">
                                                 <li class="header__navbar-dropdown-menu-item">
-                                                    <a href="" class="header__navbar-dropdown-menu-link navbar-card">
+                                                    <a href="{% url 'supportPage' %}" class="header__navbar-dropdown-menu-link navbar-card">
                                                         <img src="https://assets.website-files.com/64d9eef747edd1c43be00c2a/64da4f40005c25565ce14b8f_Clinicx%20Webflow%20Medical%20Template%20-%20icon%20orthopedy.svg" alt="" class="header__navbar-dropdown-menu-icon">
-                                                        <div class="header__navbar-dropdown-menu-heading">Neurology Services</div>
+                                                        <div class="header__navbar-dropdown-menu-heading">Support contact</div>
                                                         <p class="header__navbar-dropdown-menu-paragraph">
-                                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique.
+                                                            Need a help? Contact us via several phone numbers
                                                         </p> 
                                                     </a>
                                                 </li>
                                             </div>
-                                            <div class="col l-4">
+
+                                            <div class="col l-6">
                                                 <li class="header__navbar-dropdown-menu-item">
-                                                    <a href="" class="header__navbar-dropdown-menu-link navbar-card">
+                                                    <a href="{% url 'chatbot' %}" class="header__navbar-dropdown-menu-link navbar-card">
                                                         <img src="https://assets.website-files.com/64d9eef747edd1c43be00c2a/64da4f40005c25565ce14b8f_Clinicx%20Webflow%20Medical%20Template%20-%20icon%20orthopedy.svg" alt="" class="header__navbar-dropdown-menu-icon">
-                                                        <div class="header__navbar-dropdown-menu-heading">Neurology Services</div>
+                                                        <div class="header__navbar-dropdown-menu-heading">Medical Chatbot</div>
                                                         <p class="header__navbar-dropdown-menu-paragraph">
-                                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique.
+                                                            Feel free to ask our chatbot about your health issues
                                                         </p> 
                                                     </a>
                                                 </li>
                                             </div>
-                                            <div class="col l-4">
-                                                <li class="header__navbar-dropdown-menu-item">
-                                                    <a href="" class="header__navbar-dropdown-menu-link navbar-card">
-                                                        <img src="https://assets.website-files.com/64d9eef747edd1c43be00c2a/64da4f40005c25565ce14b8f_Clinicx%20Webflow%20Medical%20Template%20-%20icon%20orthopedy.svg" alt="" class="header__navbar-dropdown-menu-icon">
-                                                        <div class="header__navbar-dropdown-menu-heading">Neurology Services</div>
-                                                        <p class="header__navbar-dropdown-menu-paragraph">
-                                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique.
-                                                        </p> 
-                                                    </a>
-                                                </li>
-                                            </div>
+
                                         </div>
+
+
                                     </ul> 
                                 </div>
                             </div>
@@ -103,6 +94,10 @@
                     </div>
                     
                 </li>
+
+
+
+
                 <li class="header__navbar-item">
                     <a href="{% url 'blog' %}" class="header__navbar-link">Blog</a>
                 </li>
