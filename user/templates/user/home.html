@@ -1,0 +1,458 @@
+{% extends 'main.html' %}
+
+{% block content %}
+<div class="content">
+    <!-- Hero Section -->
+    <div class="hero-section">
+        <div class="grid wide">
+            <div class="row large-gutters">
+                <div class="col l-6">
+                    <div class="hero-section__left-half">
+                        <div class="hero-section__heading">
+                            Welcome to Clinicx:<br> your health,
+                            <span class="hero-section__heading-color-text">our <br>priority</span>
+                        </div>
+                        <p class="hero-section__paragraph">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+                            Suspendisse varius enim in eros elementum tristique. 
+                            Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, 
+                            ut commodo diam libero vitae erat.
+                        </p>
+                        {% if request.user.role == 'ADMIN' %}
+                        <div class="hero-section__btn-wrapper">
+                            <a href="{% url 'admin+' %}" class="hero-section__btn btn">
+                                Admin control panel
+                            </a>    
+                        </div>
+                        {% elif request.user.role == 'DOCTOR'  %}
+                        <div class="hero-section__btn-wrapper">
+                            <a href="{% url 'doctorWork' request.user.id %}" class="hero-section__btn btn">
+                                Check coming appointments
+                            </a>    
+                        </div>
+                        {% else %}
+                        <div class="hero-section__btn-wrapper">
+                            <a href="{% url 'bookingPage' %}" class="hero-section__btn btn">
+                                Make an appointment 
+                            </a>    
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="col l-6">
+                    <div class="hero-section__right-half">
+                        <div class="hero-section__img-wrapper">
+                            <img class="hero-section__img" src="https://assets.website-files.com/64d6620e2ccbfaec26bbc78e/64d6620e2ccbfaec26bbc838_Paramedic%2520Insurance%2520-%2520assurances%2520inde%25CC%2581pendant%2520e%25CC%2581tudiants%2520inde%25CC%2581pendants%2520me%25CC%2581decins-p-1600.webp" alt="">
+                        </div>
+                        <div class="hero-section__quote">
+                            <img class="hero-section__quote-icon" src="https://assets.website-files.com/64d6620e2ccbfaec26bbc78e/64d6620e2ccbfaec26bbc7b5_Paramedic%20Insurance%20-%20Icone%20avis%20client.svg">
+                            <p class="hero-section__quote-paragraph">
+                                The whole team is superbly competent, 
+                                and we get an appointment quickly.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Services Section -->
+    <div class="services-section">
+        <div class="grid wide">
+            <div class="col medium-gutters">
+                <div class="services-section__header">
+                    <span class="services-section__heading heading">Services</span>
+                    <h2 class="services-section__sub-heading sub-heading">Comprehensive medical services tailored for you</h2>
+                </div>
+            </div>
+            
+            <div class="services-section__list">
+                <div class="row medium-gutters">
+                    <div class="col l-4">
+                        <div class="services-section__item">
+                            <a href="#" class="services-section__link">
+                                <div class="services-section__item-icon">
+                                    <img src="https://assets.website-files.com/64d9eef747edd1c43be00c2a/64da07de1df12d4a365bcc47_Clinicx%20Webflow%20Medical%20Template%20-%20icon%20neurology.svg" alt="">
+                                </div>
+                                <h3 class="services-section__item-heading">
+                                    Neurology Services
+                                </h3>
+                                <p class="services-section__item-paragraph">
+                                    Lorem ipsum dolor sit amet, 
+                                    consectetur adipiscing elit. 
+                                    Suspendisse varius enim in eros elementum tristique.
+                                </p>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col l-4">
+                        <div class="services-section__item">
+                            <a href="#" class="services-section__link">
+                                <div class="services-section__item-icon">
+                                    <img src="https://assets.website-files.com/64d9eef747edd1c43be00c2a/64da07de1df12d4a365bcc47_Clinicx%20Webflow%20Medical%20Template%20-%20icon%20neurology.svg" alt="">
+                                </div>
+                                <h3 class="services-section__item-heading">
+                                    Neurology Services
+                                </h3>
+                                <p class="services-section__item-paragraph">
+                                    Lorem ipsum dolor sit amet, 
+                                    consectetur adipiscing elit. 
+                                    Suspendisse varius enim in eros elementum tristique.
+                                </p>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col l-4">
+                        <div class="services-section__item">
+                            <a href="#" class="services-section__link">
+                                <div class="services-section__item-icon">
+                                    <img src="https://assets.website-files.com/64d9eef747edd1c43be00c2a/64da07de1df12d4a365bcc47_Clinicx%20Webflow%20Medical%20Template%20-%20icon%20neurology.svg" alt="">
+                                </div>
+                                <h3 class="services-section__item-heading">
+                                    Neurology Services
+                                </h3>
+                                <p class="services-section__item-paragraph">
+                                    Lorem ipsum dolor sit amet, 
+                                    consectetur adipiscing elit. 
+                                    Suspendisse varius enim in eros elementum tristique.
+                                </p>
+                            </a>
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="row mt-16 medium-gutters">
+                    <div class="col l-4">
+                        <div class="services-section__item">
+                            <a href="#" class="services-section__link">
+                                <div class="services-section__item-icon">
+                                    <img src="https://assets.website-files.com/64d9eef747edd1c43be00c2a/64da07de1df12d4a365bcc47_Clinicx%20Webflow%20Medical%20Template%20-%20icon%20neurology.svg" alt="">
+                                </div>
+                                <h3 class="services-section__item-heading">
+                                    Neurology Services
+                                </h3>
+                                <p class="services-section__item-paragraph">
+                                    Lorem ipsum dolor sit amet, 
+                                    consectetur adipiscing elit. 
+                                    Suspendisse varius enim in eros elementum tristique.
+                                </p>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col l-4">
+                        <div class="services-section__item">
+                            <a href="#" class="services-section__link">
+                                <div class="services-section__item-icon">
+                                    <img src="https://assets.website-files.com/64d9eef747edd1c43be00c2a/64da07de1df12d4a365bcc47_Clinicx%20Webflow%20Medical%20Template%20-%20icon%20neurology.svg" alt="">
+                                </div>
+                                <h3 class="services-section__item-heading">
+                                    Neurology Services
+                                </h3>
+                                <p class="services-section__item-paragraph">
+                                    Lorem ipsum dolor sit amet, 
+                                    consectetur adipiscing elit. 
+                                    Suspendisse varius enim in eros elementum tristique.
+                                </p>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col l-4">
+                        <div class="services-section__item">
+                            <a href="#" class="services-section__link">
+                                <div class="services-section__item-icon">
+                                    <img src="https://assets.website-files.com/64d9eef747edd1c43be00c2a/64da07de1df12d4a365bcc47_Clinicx%20Webflow%20Medical%20Template%20-%20icon%20neurology.svg" alt="">
+                                </div>
+                                <h3 class="services-section__item-heading">
+                                    Neurology Services
+                                </h3>
+                                <p class="services-section__item-paragraph">
+                                    Lorem ipsum dolor sit amet, 
+                                    consectetur adipiscing elit. 
+                                    Suspendisse varius enim in eros elementum tristique.
+                                </p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- About Section -->
+    <div class="about-section" id="about-section">
+        <div class="grid wide">
+            <div class="row medium-gutters">
+                <div class="col l-6">
+                    <div class="about-section__left-half">
+                        <div class="about-section__left-half-img-wrapper">
+                            <img class="about-section__left-half-img" src="https://assets.website-files.com/64d6620e2ccbfaec26bbc78e/64d6620e2ccbfaec26bbc83a_Paramedic%2520Insurance%2520-%2520assurances%2520inde%25CC%2581pendant%2520me%25CC%2581decin%2520ge%25CC%2581ne%25CC%2581raliste%2520inde%25CC%2581pendant-p-1600.webp" alt="">
+                            <div class="about-section__left-half-img-description">
+                                <span class="about-section__left-half-img-description-number">+600</span>
+                                Consultations each month
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col l-6">
+                    <div class="about-section__right-half">
+                        <div class="about-section__heading heading">Experience</div>
+                        <div class="about-section__sub-heading sub-heading">We've been looking after you for over 100 years</div>
+                        <p class="about-section__paragraph">Lorem ipsum dolor sit amet, consectetur adipiscing elit.<br> 
+                            Suspendisse varius enim in eros elementum tristique. Duis cursus,<br> mi quis viverra ornare, 
+                            eros dolor interdum nulla, ut commodo diam libero vitae erat.
+                            <br>
+                            <br>
+                            Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Values Section -->
+    <div class="value-section">
+        <div class="grid wide">
+            <div class="row medium-gutters">
+                <div class="col l-6">
+                    <div class="value-section__left-section">
+                        <div class="value-section__heading heading">Values</div>
+                        <div class="value-section__sub-heading sub-heading">Key values that guide our work</div>
+                        <ul class="value-section__list">
+                            <div class="row">
+                                <div class="col l-6">
+                                    <li class="value-section__item">
+                                        <img src="https://assets.website-files.com/64d6620e2ccbfaec26bbc78e/64d6620e2ccbfaec26bbc7ee_Paramedic%20Insurance%20-%20icone%20experts%20a%CC%80%20l%27e%CC%81coute.svg" alt="" class="value-section__item-icon">
+                                        <div class="value-section__title">Professionals who listen</div>
+                                        <p class="value-section__paragraph">Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam.</p>
+                                    </li>
+                                </div>
+                                <div class="col l-6">
+                                    <li class="value-section__item">
+                                        <img src="https://assets.website-files.com/64d6620e2ccbfaec26bbc78e/64d6620e2ccbfaec26bbc7ee_Paramedic%20Insurance%20-%20icone%20experts%20a%CC%80%20l%27e%CC%81coute.svg" alt="" class="value-section__item-icon">
+                                        <div class="value-section__title">More than 10 medical clinics</div>
+                                        <p class="value-section__paragraph">Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam.</p>
+                                    </li>
+                                </div>
+                            </div>
+                            <div class="row  mt-16">
+                                <div class="col l-6">
+                                    <li class="value-section__item">
+                                        <img src="https://assets.website-files.com/64d6620e2ccbfaec26bbc78e/64d6620e2ccbfaec26bbc7ee_Paramedic%20Insurance%20-%20icone%20experts%20a%CC%80%20l%27e%CC%81coute.svg" alt="" class="value-section__item-icon">
+                                        <div class="value-section__title">Professionals who listen</div>
+                                        <p class="value-section__paragraph">Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam.</p>
+                                    </li>
+                                </div>
+                                <div class="col l-6">
+                                    <li class="value-section__item">
+                                        <img src="https://assets.website-files.com/64d6620e2ccbfaec26bbc78e/64d6620e2ccbfaec26bbc7ee_Paramedic%20Insurance%20-%20icone%20experts%20a%CC%80%20l%27e%CC%81coute.svg" alt="" class="value-section__item-icon">
+                                        <div class="value-section__title">More than 10 medical clinics</div>
+                                        <p class="value-section__paragraph">Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam.</p>
+                                    </li>
+                                </div>
+                            </div>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col l-6">
+                    <div class="value-section__right-section">
+                        <div class="value-section__img-wrapper">
+                            <img src="https://assets.website-files.com/64d6620e2ccbfaec26bbc78e/64d6620e2ccbfaec26bbc837_Paramedic%2520Insurance%2520-%2520assurances%2520inde%25CC%2581pendant%2520me%25CC%2581dical-p-1600.webp" alt="" class="value-section__img">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Appointment Section -->
+    <div class="appointment-section">
+        <div class="grid wide">
+            <div class="row medium-gutters">
+                <div class="col l-7">
+                    <div class="appointment-section__heading">Make an appointment now</div>
+                    <div class="appointment-section__sub-heading">Make an appointment at our medical clinic and 
+                        trust our professionals to take care of your health.</div>
+                </div>
+                <div class="col l-5">
+                    <div class="appointment-section__btn-wrapper">
+                        <div class="appointment-section__call-btn-wrapper">
+                            <a href="" class="appointment-section__call-btn btn">Call us</a>
+                        </div>
+                        <div class="appointment-section__write-btn-wrapper">
+                            <a href="" class="appointment-section__write-btn btn white">Write us</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Team Section -->
+    <div class="team-section">
+        <div class="grid wide">
+            <div class="row medium-gutters">
+                <div class="col l-12">
+                    <div class="team-section__heading heading">Our team</div>
+                </div>
+            </div>
+            <div class="row medium-gutters">
+                <div class="col l-12">
+                    <div class="team-section__sub-heading sub-heading">Our team of professional doctors to serve you</div>
+                </div>
+            </div>
+            
+            
+            <ul class="team-section__list">
+                <div class="row medium-gutters">
+                    <div class="col l-4">
+                        <li class="team-section__item">
+                            <img src="https://assets.website-files.com/64d6620e2ccbfaec26bbc78e/64d6620e2ccbfaec26bbc83a_Paramedic%2520Insurance%2520-%2520assurances%2520inde%25CC%2581pendant%2520me%25CC%2581decin%2520ge%25CC%2581ne%25CC%2581raliste%2520inde%25CC%2581pendant-p-1600.webp" alt="" class="team-section__img">
+                            <div class="team-section__name">John Caret</div>
+                            <div class="team-section__position">DENTIST</div>
+                        </li>
+                    </div>
+                    <div class="col l-4">
+                        <li class="team-section__item">
+                            <img src="https://assets.website-files.com/64d6620e2ccbfaec26bbc78e/64d6620e2ccbfaec26bbc83a_Paramedic%2520Insurance%2520-%2520assurances%2520inde%25CC%2581pendant%2520me%25CC%2581decin%2520ge%25CC%2581ne%25CC%2581raliste%2520inde%25CC%2581pendant-p-1600.webp" alt="" class="team-section__img">
+                            <div class="team-section__name">John Caret</div>
+                            <div class="team-section__position">DENTIST</div>
+                        </li>
+                    </div>
+                    <div class="col l-4">
+                        <li class="team-section__item">
+                            <img src="https://assets.website-files.com/64d6620e2ccbfaec26bbc78e/64d6620e2ccbfaec26bbc83a_Paramedic%2520Insurance%2520-%2520assurances%2520inde%25CC%2581pendant%2520me%25CC%2581decin%2520ge%25CC%2581ne%25CC%2581raliste%2520inde%25CC%2581pendant-p-1600.webp" alt="" class="team-section__img">
+                            <div class="team-section__name">John Caret</div>
+                            <div class="team-section__position">DENTIST</div>
+                        </li>
+                    </div>
+                </div>
+                <div class="row medium-gutters mt-16">
+                    <div class="col l-4">
+                        <li class="team-section__item">
+                            <img src="https://assets.website-files.com/64d6620e2ccbfaec26bbc78e/64d6620e2ccbfaec26bbc83a_Paramedic%2520Insurance%2520-%2520assurances%2520inde%25CC%2581pendant%2520me%25CC%2581decin%2520ge%25CC%2581ne%25CC%2581raliste%2520inde%25CC%2581pendant-p-1600.webp" alt="" class="team-section__img">
+                            <div class="team-section__name">John Caret</div>
+                            <div class="team-section__position">DENTIST</div>
+                        </li>
+                    </div>
+                    <div class="col l-4">
+                        <li class="team-section__item">
+                            <img src="https://assets.website-files.com/64d6620e2ccbfaec26bbc78e/64d6620e2ccbfaec26bbc83a_Paramedic%2520Insurance%2520-%2520assurances%2520inde%25CC%2581pendant%2520me%25CC%2581decin%2520ge%25CC%2581ne%25CC%2581raliste%2520inde%25CC%2581pendant-p-1600.webp" alt="" class="team-section__img">
+                            <div class="team-section__name">John Caret</div>
+                            <div class="team-section__position">DENTIST</div>
+                        </li>
+                    </div>
+                    <div class="col l-4">
+                        <li class="team-section__item">
+                            <img src="https://assets.website-files.com/64d6620e2ccbfaec26bbc78e/64d6620e2ccbfaec26bbc83a_Paramedic%2520Insurance%2520-%2520assurances%2520inde%25CC%2581pendant%2520me%25CC%2581decin%2520ge%25CC%2581ne%25CC%2581raliste%2520inde%25CC%2581pendant-p-1600.webp" alt="" class="team-section__img">
+                            <div class="team-section__name">John Caret</div>
+                            <div class="team-section__position">DENTIST</div>
+                        </li>
+                    </div>
+                </div>
+            </ul>
+        </div>
+    </div>
+    <!-- Highlight Section -->
+    <div class="highlight-section">
+        <div class="grid wide">
+            <div class="highlight-section__header">
+                <div class="row medium-gutters">
+                    <div class="col l-6 l-o-3">
+                        <div class="highlight-section__heading">Our guiding principles</div>
+                    </div>
+                </div>
+                <div class="row medium-gutters">
+                    <div class="col l-8 l-o-2">
+                        <div class="highlight-section__sub-heading">At Clinicx, our core values shape every aspect of our care,
+                            ensuring that your well-being remains at the heart of our mission.</div>
+                    </div>
+                </div>
+            </div>
+            
+            <ul class="highlight-section__list">
+                <div class="row medium-gutters">
+                    <div class="col l-4">
+                        <div class="highlight-section__item">
+                            <img src="https://assets.website-files.com/64d6620e2ccbfaec26bbc78e/64d6620e2ccbfaec26bbc7d6_Paramedic%20Insurance%20-%20ico%CC%82ne%20valeurs%20experts%20a%CC%80%20l%27e%CC%81coute.svg" alt="" class="highlight-section__item-icon">
+                            <div class="highlight-section__item-heading">Compassionate care</div>
+                            <p class="highlight-section__item-paragraph">We provide empathetic care, 
+                                recognizing the unique needs and concerns of each patient.</p>
+                        </div>
+                    </div>
+                    <div class="col l-4">
+                        <div class="highlight-section__item">
+                            <img src="https://assets.website-files.com/64d6620e2ccbfaec26bbc78e/64d6620e2ccbfaec26bbc7d6_Paramedic%20Insurance%20-%20ico%CC%82ne%20valeurs%20experts%20a%CC%80%20l%27e%CC%81coute.svg" alt="" class="highlight-section__item-icon">
+                            <div class="highlight-section__item-heading">Compassionate care</div>
+                            <p class="highlight-section__item-paragraph">We provide empathetic care, 
+                                recognizing the unique needs and concerns of each patient.</p>
+                        </div>
+                    </div>
+                    <div class="col l-4">
+                        <div class="highlight-section__item">
+                            <img src="https://assets.website-files.com/64d6620e2ccbfaec26bbc78e/64d6620e2ccbfaec26bbc7d6_Paramedic%20Insurance%20-%20ico%CC%82ne%20valeurs%20experts%20a%CC%80%20l%27e%CC%81coute.svg" alt="" class="highlight-section__item-icon">
+                            <div class="highlight-section__item-heading">Compassionate care</div>
+                            <p class="highlight-section__item-paragraph">We provide empathetic care, 
+                                recognizing the unique needs and concerns of each patient.</p>
+                        </div>
+                    </div>
+                </div>
+            </ul>
+        </div>
+    </div>
+    <!-- Blog Section -->
+    <div class="blog-section">
+        <div class="grid wide">
+            <div class="row medium-gutters">
+                <div class="col l-12">
+                    <div class="blog-section__heading heading">News</div>
+                </div>
+            </div>
+            <div class="row medium-gutters">
+                <div class="col l-12">
+                    <div class="blog-section__sub-heading sub-heading">Discover our latest blog posts</div>
+                </div>
+            </div>
+            <ul class="blog-section__list">
+                <div class="row medium-gutters">
+                    <div class="col l-4">
+                        <li class="blog-section__item ">
+                            <a href="" class="blog-section__item-link card-item">
+                                <img src="https://assets.website-files.com/64d9eef747edd1c43be00c2a/64da047713e9e2fb15b4fa59_Clinicx%20Webflow%20Medical%20Template%20-%20pediatry%20hero-p-1080.jpg" alt="" class="blog__section-img">
+                                <h3 class="blog-section__heading">Common pediatric illnesses</h3>
+                                <p class="blog-section__preview">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                        Suspendisse varius enim in eros elementum tristique.</p>
+                                <div class="blog-section__btn-wrapper">
+                                    <div href="" class="blog-section__btn btn">Read more</div>
+                                </div>
+                            </a>  
+                        </li>
+                    </div>
+                    <div class="col l-4">
+                        <li class="blog-section__item ">
+                            <a href="" class="blog-section__item-link card-item">
+                                <img loading="lazy" src="https://assets.website-files.com/64d9eef747edd1c43be00c2a/64da047713e9e2fb15b4fa59_Clinicx%20Webflow%20Medical%20Template%20-%20pediatry%20hero-p-1080.jpg" alt="" class="blog__section-img">
+                                <h3 class="blog-section__heading">Common pediatric illnesses</h3>
+                                <p class="blog-section__preview">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                        Suspendisse varius enim in eros elementum tristique.</p>
+                                <div class="blog-section__btn-wrapper">
+                                    <div href="" class="blog-section__btn btn">Read more</div>
+                                </div>
+                            </a>  
+                        </li>
+                    </div>
+                    <div class="col l-4">
+                        <li class="blog-section__item ">
+                            <a href="" class="blog-section__item-link card-item">
+                                <img src="https://assets.website-files.com/64d9eef747edd1c43be00c2a/64da047713e9e2fb15b4fa59_Clinicx%20Webflow%20Medical%20Template%20-%20pediatry%20hero-p-1080.jpg" alt="" class="blog__section-img">
+                                <h3 class="blog-section__heading">Common pediatric illnesses</h3>
+                                <p class="blog-section__preview">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                        Suspendisse varius enim in eros elementum tristique.</p>
+                                <div class="blog-section__btn-wrapper">
+                                    <div href="" class="blog-section__btn btn">Read more</div>
+                                </div>
+                            </a>  
+                        </li>
+                    </div>
+                </div>
+            </ul>
+        </div>
+    </div>
+    <!-- Testimonials Section -->
+</div>
+{% endblock %}

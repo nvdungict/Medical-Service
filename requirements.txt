@@ -1,0 +1,20 @@
+# Core framework
+Django>=4.2
+
+# Social authentication
+django-allauth>=0.57.0
+
+# Monetary fields
+django-money>=3.3
+
+# HTTP requests
+requests>=2.31.0
+
+# JWT support
+PyJWT>=2.8.0
+
+# Cryptographic support (used by JWT, OAuth, etc.)
+cryptography>=42.0.0
+
+# OpenAI API
+openai>=1.14.0

@@ -1,0 +1,252 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <link rel="stylesheet" href="{% static 'css/grid.css' %}">
+    <link rel="stylesheet" href="{% static 'css/service_admin.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,700;9..40,900&family=Ranga&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="main">
+        <div class="grid">
+            <div class="row no-gutters">
+                 <!-- Navbar -->
+                <div class="col ls-1">
+                    <div class="navbar">
+                        <div class="navbar__addButton">
+                            <img src="{% static 'img/all/add_logo.svg' %}" alt="" class=navbar__addButton-img>
+                        </div>
+                        <ul class="navbar__list">
+                            <a href="{% url 'admin+' %}" class="navbar__item">
+                                <img src="{% static 'img/all/dashboard.svg' %}" alt="" class="navbar__item-img">
+                                <div class="navbar__item-heading">Dashboard</div>
+                            </a>
+                            <a href="{% url 'adminDoctor' %}" class="navbar__item ">
+                                <img src="{% static 'img/all/doctor.svg' %}" alt="" class="navbar__item-img">
+                                <div class="navbar__item-heading">Doctors</div>
+                            </a>
+                            <a href="{% url 'adminPatient' %}" class="navbar__item">
+                                <img src="{% static 'img/all/patient.svg' %}" alt="" class="navbar__item-img">
+                                <div class="navbar__item-heading">Patient</div>
+                            </a>
+                            <a href="{% url 'adminAppointment' %}" class="navbar__item">
+                                 <img src="{% static 'img/all/order.svg' %}" alt="" class="navbar__item-img">
+                                 <div class="navbar__item-heading">Orders</div>
+                            </a>
+                            <a href="{% url 'adminService' %}" class="navbar__item  active">
+                                <img src="{% static 'img/all/material.svg' %}" alt="" class="navbar__item-img">
+                                <div class="navbar__item-heading">Services</div>
+                            </a>
+                            <a href="{% url 'admin+' %}" class="navbar__item">
+                                <img src="{% static 'img/all/Ranking.svg' %}" alt="" class="navbar__item-img">
+                                <div class="navbar__item-heading">Ranking</div>
+                            </a>
+                            <a href="{% url 'adminRoom' %}" class="navbar__item">
+                                <img src="{% static 'img/all/rooms.svg' %}" alt="" class="navbar__item-img">
+                                <div class="navbar__item-heading">Rooms</div>
+                            </a>
+                
+                
+                            <a href="" class="navbar__item home">
+                                <img src="{% static 'img/all/homenew.svg' %}" alt="" class="navbar__item-img">
+                                <div class="navbar__item-heading">home</div>
+                            </a>
+                        </ul>
+                    </div>
+                </div>
+                    <div class="col l-11">
+                        <!-- Header -->
+                        <div class="row no-gutters">
+                            <div class="col l-12">
+                                <div class="header">
+                                    <div class="header__wrapper">
+                                        <div class="header__heading">
+                                            <div class="header__heading-date">
+                                                12:00 AM Thursday, 30 / 11 /2023
+                                            </div>
+                                            <div class="header__search-wrapper">
+                                                <input type="text" class="header__search">
+                                                <img src="{% static 'img/all/brown-search.svg' %}" alt="" class="header__search-icon">
+                                            </div>
+                                            <div class="header__account">
+                                                <div class="header__account-wrapper">
+                                                    <img src="{% static 'img/all/avatar.svg' %}" alt="" class="header__account-img">
+                                                    <div class="header__account-info">
+                                                        <div class="header__account-name">@Dmin</div>
+                                                        <div class="header__acount-role">Admin</div>
+                                                    </div>
+                                                    <div class="header__logout-wrapper">
+                                                        <img src="{% static 'img/all/bell.svg' %}" alt="" class="header__logout-img">
+                                                    </div>
+                                                    <a href="" class="header__logout-wrapper">
+                                                        <img src="{% static 'img/all/logout.svg' %}" alt="" class="header__logout-img">
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Dash Board -->
+                        <div class="row no-gutters">
+                            <div class="col l-12">
+                                <div class="dashboard">
+                                    <div class="dashboard__header">
+                                        <img src="{% static 'img/all/robot.svg' %}" class="dashboard__icon">
+                                        <div class="dashboard__heading">
+                                            Welcome to Services Manager
+                                        </div>
+                                    </div>
+                                    <div class="dashboard__list">
+
+                                        <form action="" method="POST">
+                                            {% csrf_token %}
+                                            <button name="all" value="all" class="dashboard__item" style="background-color: white;">
+                                                <div class="dashboard-item__wrapper">
+                                                    <img src="{% static 'img/all/manager-icon.svg' %}" alt="" class="dashboard__item-img">
+                                                </div>
+                                                <div class="dashboard-item__info">
+                                                    <div class="dashboard__item-title">Total</div>
+                                                    <div class="dashboard__item-number">{{total}}</div>
+                                                </div>
+                                            </button>
+                                        </form>
+
+                                        <form action="" method="POST">
+                                            {% csrf_token %}
+                                            <button name="running" value="running" class="dashboard__item" style="background-color: white;">
+                                                <div class="dashboard-item__wrapper green">
+                                                    <img src="{% static 'img/all/manager-icon.svg' %}" alt="" class="dashboard__item-img">
+                                                </div>
+                                                <div class="dashboard-item__info">
+                                                    <div class="dashboard__item-title">Services Running</div>
+                                                    <div class="dashboard__item-number">{{service_running}}</div>
+                                                </div>
+                                            </button>
+                                        </form>
+
+                                        <form action="" method="POST">
+                                            {% csrf_token %}
+                                            <button name="freezed" value="freezed" class="dashboard__item" style="background-color: white;">
+                                                <div class="dashboard-item__wrapper blue">
+                                                    <img src="{% static 'img/all/manager-icon.svg' %}" alt="" class="dashboard__item-img">
+                                                </div>
+                                                <div class="dashboard-item__info">
+                                                    <div class="dashboard__item-title">Freezed Service</div>
+                                                    <div class="dashboard__item-number">{{service_freezed}}</div>
+                                                </div>
+                                            </button>
+                                        </form>
+
+                                        <form action="" method="POST">
+                                            {% csrf_token %}
+                                            <button value="pending" name="pending" class="dashboard__item" style="background-color: white;">
+                                                <div class="dashboard-item__wrapper red">
+                                                    <img src="{% static 'img/all/manager-icon.svg' %}" alt="" class="dashboard__item-img">
+                                                </div>
+                                                <div class="dashboard-item__info">
+                                                    <div class="dashboard__item-title">Pending</div>
+                                                    <div class="dashboard__item-number">{{service_pending}}</div>
+                                                </div>
+                                            </button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- lastest appointment -->
+                        <div class="row no-gutters">
+                            <div class="col l-12">
+                                <div class="appointment">
+                                    <div class="appointment__headers">
+                                        <div class="appointment__headers-wrapper">
+                                            <img src="{% static 'img/all/paper.svg' %}" alt="" class="appointment__headers-img">
+                                            <div class="appointment__heading">SERVICES LIST</div>
+                                        </div>
+                                        <div class="appointment__headers-wrapper">
+                                            <div class="appointment__add-wrapper">
+                                                <img class="appointment__add" src="{% static 'img/all/plus.svg' %}" alt="">
+                                            </div>
+                                            <form method="POST" class="appointment__search-wrapper">
+                                                {% csrf_token %}
+                                                <img src="{% static 'img/all/brown-search.svg' %}" alt="" class="appointment__search-icon">
+                                                <input  name="filter" class="appointment__search">
+                                            </form>
+                                            <img src="{% static 'img/all/filter.svg' %}" alt="" class="appointment__headers-img">
+                                        </div>
+                                    </div>
+                                    <div class="appointment__list">
+                                        <div class="appointment__list-header">
+                                            <div class="appoitment__list-header-item-patient">
+                                                Service Name
+                                            </div>
+                                            <div class="appoitment__list-header-item">
+                                                ServiceID
+                                            </div>
+                                            <div class="appoitment__list-header-item">
+                                                Fee
+                                            </div>
+                                            <div class="appoitment__list-header-item">
+                                                Last booking
+                                            </div>
+                                            <div class="appoitment__list-header-item">
+                                                Number of Bookings
+                                            </div>
+                                            <div class="appoitment__list-header-item">
+                                                Total Payment(USD)
+                                            </div>
+                                            <div class="appoitment__list-header-item">
+                                                Status
+                                            </div>
+                                        </div>
+                                        {% for service in services %}
+                                        <a href="{% url 'serviceDetail' service.service_id  %}" class="appointment__list-item">
+                                            <div class="appointment__item-patient">
+                                                <div class="appointment__item-wrapper">
+                                                    <img src="{% static 'img/all/eye.svg' %}" class="appointment__item-img">
+                                                </div>
+                                                <div src="" class="appointment__item-name">{{service.service_name}}</div>
+                                            </div>
+                                            <div class="appointment__item-attr">{{service.service_id}}</div>
+                                            <div class="appointment__item-attr">{{service.price}}</div>
+                                            <div class="appointment__item-attr">{{service.lastbooking_date}}</div>
+                                            <div class="appointment__item-attr">{{service.total_order}}</div>
+                                            <div class="appointment__item-attr">{{service.total_payment}}</div>
+                                            <div class="appointment__item-status">
+                                                {% if service.status == 1  %}
+                                                <div class="appointment__item-status-wrapper green">
+                                                    Running 
+                                                </div>
+                                                {% elif service.status == 2 %}
+                                                <div class="appointment__item-status-wrapper blue">
+                                                    Freezed
+                                                </div>
+                                                {% else %}
+                                                <div class="appointment__item-status-wrapper red">
+                                                    Pending
+                                                </div>
+                                                {% endif %}
+                                            </div>
+                                        </a>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</body>
+</html>

@@ -1,0 +1,108 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <link rel="stylesheet" href="{% static 'css/grid.css' %}">
+    <link rel="stylesheet" href="{% static 'css/support_page.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,700;9..40,900&family=Ranga&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="main">
+        <div class="grid">
+            <div class="row no-gutters">
+                 <!-- Navbar -->
+                <div class="col ls-1">
+                    <div class="navbar">
+                        <div class="navbar__addButton">
+                            <img src="{% static 'img/all/add_logo.svg' %}" alt="" class=navbar__addButton-img>
+                        </div>
+                        <ul class="navbar__list">
+                            <a href="{% url 'home' %}" class="navbar__item">
+                                <img src="{% static 'img/all/homelogo.svg' %}" alt="" class="navbar__item-img">
+                                <div class="navbar__item-heading">Home</div>
+                            </a>
+                            {% if request.user.role == 'PATIENT' %}
+                            <a href="{% url 'profile' request.user.id %}" class="navbar__item">
+                                 <img src="{% static 'img/all/profilelogo.svg' %}" alt="" class="navbar__item-img">
+                                <div class="navbar__item-heading">Profile</div>
+                            </a>
+                            {% elif request.user.role == 'DOCTOR' %}
+                            <a href="{% url 'doctorProfile' request.user.id %}" class="navbar__item">
+                                <img src="{% static 'img/all/profilelogo.svg' %}" alt="" class="navbar__item-img">
+                               <div class="navbar__item-heading">Profile</div>
+                            </a>
+                            {% endif %}
+                            <a href="{% url 'supportPage' %}" class="navbar__item active">
+                                 <img src="{% static 'img/all/phonelogo.svg' %}" alt="" class="navbar__item-img">
+                                <div class="navbar__item-heading">Support</div>
+                            </a href="{}">
+                            <a href="{% url 'supportPage' %}" class="navbar__item">
+                                 <img src="{% static 'img/all/settinglogo.svg' %}" alt="" class="navbar__item-img">
+                                <div class="navbar__item-heading">Settings</div>
+                            </a>
+                        </ul>
+                    </div>
+                </div>
+            
+
+                 
+                <div class="col l-11">
+                    <!-- Header -->
+                    <div class="row no-gutters">
+                        <div class="col l-12">
+                            <div class="header">
+                                <div class="header__wrapper">
+                                    <div class="header__heading">
+                                        <div class="header__heading-date">
+                                            {{time_now}}
+                                        </div>
+                                        <div class="header__heading-account">
+                                            <img src="{% static 'img/all/avatar.svg' %}" alt="" class="header__heading-avatar">
+                                            <div class="header__heading-info">
+                                                <div class="header__heading-name">{{request.user.patient}}</div>
+                                                <div class="header__heading-role">{{request.user.role}}</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="header__line"></div>
+                                    <div class="header__navbar">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Filter -->
+                    <div class="row no-gutters">
+                        <div class="col l-12">
+                            <div class="support">
+                                <div class="support__header">
+                                    <div class="support__header-text">
+                                        NEED A HELP? PLEASE CONTACT US VIA THESE <br> FOLLOWING WAYS!
+                                    </div>
+                                </div>
+                                <div class="support__body">
+                                    <div class="support__phone-wrapper">
+                                        <div class="support__phone-1">
+                                            phone 1 : 1900 8888 
+                                        </div>
+                                        <div class="support__phone-2">
+                                            phone 2 : 1900 6666 
+                                        </div>
+                                    </div>
+                                    <img src="{% static 'img/all/doctor1.svg' %}" alt="" class="support__img">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+</body>

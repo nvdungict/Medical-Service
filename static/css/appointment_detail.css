@@ -1,0 +1,536 @@
+/* Reset CSS */
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 62.5%;
+    line-height: 1.6rem;
+    font-family: 'DM Sans', sans-serif;
+}
+
+/* Base color */
+:root {
+    --white-color: #fff;
+    --text-color: #170f49;
+    --paragraph-color: #6f6c90;
+    --primary-color: #79dd97;
+    --booking-btn-color: #7ea2e4;
+    --priciple-background-color: #bed5ff;
+    --footer-text-color: #f5f5f5;
+}
+
+.main {
+    background-image: url(../img/booking_page/bookbg.svg);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+/* Navbar  */
+.navbar {
+    height: 100vh;
+    background-color: #170F49;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.navbar__addButton {
+    margin-top: 20px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.navbar__addButton:hover {
+    cursor: pointer;
+    background-image: linear-gradient(to right,#3CC89599, #D9D9D900);
+    opacity: 0.8;
+}
+
+.navbar__addButton-img {
+    height: 3rem;
+}
+
+
+.navbar__list {
+    text-decoration: none;
+    list-style: none;
+    margin-top: 4rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.navbar__item {
+    text-decoration: none;
+    text-decoration: none;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1.6rem 1.2rem;
+}
+
+.navbar__item.active {
+    background-image: linear-gradient(to right,#3CC89599, #D9D9D900);
+}
+
+.navbar__item:hover {
+    cursor: pointer;
+    background-image: linear-gradient(to right,#3CC89599, #D9D9D900);
+    opacity: 0.8;
+}
+
+.navbar__item-img {
+    height: 1.6rem;
+}
+
+.navbar__item-heading {
+    line-height: 2rem;
+    font-size: 1.6rem;
+    color: #fff;
+    text-align: center;
+    font-weight: 500;
+    margin-top: 8px;
+}
+
+/* Appointment Detail */
+
+.appointment__detail {
+    
+}
+
+.appointment__detail-wrapper {
+    position: relative;
+    margin: 3.2rem 1.6rem;
+    background-color: #fff;
+    border-radius: 2rem;
+}
+
+.appointment__box {
+    padding: 1.6rem 1.6rem;
+}
+
+.appointment__header {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.6rem 0; 
+    margin-bottom: .4rem; 
+}
+
+.appointment__btn-wrapper {
+    position: absolute;
+    height: 4.6rem;
+    left: 0;
+    cursor: pointer;
+}
+
+.appointment__btn {
+    position: absolute;
+    height: 4.6rem;
+    left: 0;
+    cursor: pointer;
+}
+
+.appointment__btn:hover {
+    opacity: 0.8;
+}
+
+.appointment__heading {
+    font-size: 3.2rem;
+    font-weight: 700;
+    
+}
+
+.appointment__body-1 {
+    display: flex;
+    align-items: center;
+    margin-top: 4.4rem;
+    justify-content: space-around;
+}
+
+.appointment__info {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #8b8b8b50;
+    border-radius: 1rem;
+
+}
+
+.appointment__item {
+    display: flex;
+    min-width: 46rem;
+    align-items: center;
+    padding: 0.8rem 1.6rem;
+    border-bottom: 1px solid #8b8b8b50;
+}
+
+.appointment__icon {
+    height: 1.8rem;
+    width: 1.8rem;
+    margin-right: 1.2rem;
+}
+
+.appoinment__title {
+    font-size: 1.4rem;
+    font-weight: 700;
+    line-height: 2rem;
+}
+
+.appointment__content {
+    position: absolute;
+    right: 1.6rem;
+    font-size: 1.4rem;
+    font-weight: 900;
+    line-height: 2rem;
+    text-align: center;
+}
+
+.appointment__content-gmail {
+    position: absolute;
+    right: 1.6rem;
+    font-size: 1.4rem;
+    font-style: italic;
+    line-height: 2rem;
+}
+
+.appointment__services {
+    margin-left: 2.4rem;
+    width: 36rem;
+    border: 1px solid #8b8b8b50;
+    border-radius: 1rem; 
+    position: relative;
+    display: flex; 
+    flex-direction: column;
+}
+
+.appointment__services-header {
+    display: flex;
+    padding: 0.8rem 1.2rem;
+    border-bottom: 1px solid #8b8b8b50;
+}
+
+.appointment__icon {
+   height: 1.8rem; 
+}
+
+.appointment__title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 2rem;
+}
+
+.appointment__services-body {
+    min-height: 14.5rem;
+}
+
+.mini__receipt {
+    display: flex;
+    flex-direction: column;
+    width: 46rem;
+    border: 1px solid #8b8b8b50;
+    border-radius: 1rem;
+    margin-left: 2.4rem;
+}
+
+.mini__receipt-header {
+    text-align: center;
+    border-bottom: 1px solid #8b8b8b50;
+    padding: 0.8rem 0;
+}
+
+.mini__header-receipt-title {
+    font-size: 1.4rem;
+    font-weight: 700;
+    line-height: 2rem;
+}
+
+.mini__receipt-body {
+    display: flex;
+    flex-direction: column;
+    padding: 0.8rem 1.2rem;
+    border: 1px solid #8b8b8b50;
+}
+
+.mini__receipt-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.15rem 0;
+}
+
+.mini__receipt-item-title {
+    font-size: 1.4rem;
+    line-height: 2rem;
+    font-weight: 700;
+}
+
+.mini__receipt-item-value {
+    font-size: 1.3rem;
+    font-weight: 400;
+    line-height: 2rem;
+    color: #8b8b8b;  
+}
+
+.mini__receipt-footer {
+    display: flex;
+    align-items: center;
+    padding: 0.8rem 1.2rem;
+    justify-content: space-between;
+}
+
+.mini__receipt-footer-title {
+    font-size: 1.4rem;
+    line-height: 2rem;
+    font-weight: 700;
+}
+
+.mini__receipt-footer-value {
+    font-size: 1.4rem;
+    line-height: 2rem;
+    font-weight: 700;
+}
+
+.appointment__body-2 {
+    display: flex;
+    margin-top: 3.6rem;
+    justify-content: space-around;
+}
+
+.patient__info {
+    display: flex;
+    flex-direction: column;
+}
+
+.patient__info-list {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #8b8b8b50;
+    border-radius: 1rem;
+}
+
+.patient__info-item {
+    display: flex;
+    min-width: 46rem;
+    align-items: center;
+    padding: 0.8rem 1.6rem;
+    border-bottom: 1px solid #8b8b8b50;
+}
+
+.patient__info-title {
+    font-size: 1.4rem;
+    font-weight: 700;
+    line-height: 2rem;
+}
+
+.patient__info-value {
+    position: absolute;
+    right: 1.6rem;
+    font-size: 1.4rem;
+    font-weight: 900;
+    line-height: 2rem;
+    text-align: center;
+}
+
+.patient__notice {
+    margin-top: 6.6rem;
+    font-style: italic;
+    font-size: 1.3rem;
+    padding-left: 1rem;
+}
+
+.header__heading-account {
+    border:1px solid #bbb;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    padding: 12px 12px;
+    cursor: pointer;
+    width: 100%;
+}
+
+.header__heading-account:hover {
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.15);
+}
+
+.header__heading-avatar {
+   height: 46px;
+}
+
+.header__heading-info {
+    margin-left: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 44px;
+}
+
+.header__heading-name {
+   font-size: 1.4rem;
+   font-weight: 700;
+   line-height: 1.8rem;
+}
+
+.header__heading-role {
+    font-size: 1.4rem;
+    font-weight: 500;
+    line-height: 1.8rem;
+    color: #7e7e7e;
+}
+
+.patient__account {
+    width: 40%;
+    margin-top: 1.2rem;
+}
+
+
+.patient__record {
+    margin-left: 2.4rem;
+    width: 36rem;
+    border: 1px solid #8b8b8b50;
+    border-radius: 1rem; 
+    position: relative;
+    display: flex; 
+    flex-direction: column;
+}
+
+.patient__record-header {
+    display: flex;
+    padding: 0.8rem 1.2rem;
+    border-bottom: 1px solid #8b8b8b50;
+}
+
+.patient__record-icon {
+    height: 1.8rem;
+    width: 1.8rem;
+    margin-right: 1.2rem;
+}
+
+.patient__record-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 2rem;
+}
+
+.patient__record-body {
+    min-height: 28rem;
+}
+
+.prescription {
+    margin-left: 2.4rem;
+    width: 46rem;
+    border: 1px solid #8b8b8b50;
+    border-radius: 1rem; 
+    position: relative;
+    display: flex; 
+    flex-direction: column;
+}
+
+.prescription__header {
+    display: flex;
+    padding: 0.8rem 1.2rem;
+    border-bottom: 1px solid #8b8b8b50;
+    align-items: center;
+}
+
+.prescription__icon {
+    height: 1.8rem;
+    width: 1.8rem;
+    margin-right: 1.2rem;
+}
+
+.prescription__title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 2rem;
+}
+
+.service__row {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin-top: 1.6rem;
+}
+
+.service__item {
+    width: 18rem;
+    height: 7rem;
+    display: flex;
+    align-items: center;
+    padding: 0.8rem 1.2rem;
+    border: 1px solid #1E3050;
+    border-radius: 1rem;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.service__item:hover {
+    background-color: var(--primary-color);
+    cursor: pointer;
+}
+
+.activated {
+    background-color: var(--primary-color);
+    cursor: pointer;
+}
+
+
+.service__item-icon {
+    height: 5rem;
+}
+
+.service__info {
+    text-align: right;
+    width: 100%;
+}
+
+.service__name {
+    color: #000;
+    text-align: right;
+    font-size: 1.3rem;
+    font-weight: 700;
+}
+
+
+
+.no-input {
+    display: none;
+}
+
+.booking__content {
+    display: flex;
+}
+
+.appointment__finish-btn {
+    
+    height: 4.6rem;
+    cursor: pointer;
+    padding: 1.2rem;
+    border: 3px solid #8b8b8b;
+    font-size: 1.4rem;
+    border-radius: 1rem;
+    text-decoration: none;
+    color: #000;
+    font-weight: 700;    
+}   
+
+.appointment_finish {
+    position: absolute;  
+    right: 3%;
+}
+
+.appointment__finish-btn:hover {
+    background-color: #8b8b8b50;
+}
+

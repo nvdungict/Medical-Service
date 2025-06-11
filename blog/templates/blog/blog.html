@@ -1,0 +1,365 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <link rel="stylesheet" href="{% static 'css/grid.css'%}">
+    <link rel="stylesheet" href="{% static 'css/base.css'%}">
+    <link rel="stylesheet" href="{% static 'css/blog.css'%}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,700;9..40,900&family=Dynalight&family=Ranga&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="app">
+        <div class="app__wrapper">
+            <div class="header-container">
+                <div class="header">
+                    <div class="header__navbar">
+                        <ul class="header__navbar-list">
+                            <li class="header__navbar-item">
+                                <a href="{% url 'home' %}" class="header__navbar-link">
+                                    <img src="https://assets.website-files.com/64d6620e2ccbfaec26bbc78e/64da9ac26ade0ff921bc278e_Clinicx%20Webflow%20Medical%20Template%20-%20logo.svg" alt="" class="header__navbar-img">
+                                </a>
+                            </li>
+                        </ul>
+    
+                        <ul class="header__navbar-list">
+                            <li class="header__navbar-item">
+                                <a href="{% url 'home' %}" class="header__navbar-link">Home</a>
+                            </li>
+                            <li class="header__navbar-item">
+                                <a href="/developing" class="header__navbar-link">About us</a>
+                            </li>
+                            <li class="header__navbar-item header__navbar-item-menu-switch">
+                                <div href="#" class="header__navbar-link header__navbar-link-dropdown-menu">
+                                    Services
+                                    <i class="header__navbar-icon fa-solid fa-chevron-down"></i>
+                                    <div class="dropdown-menu-cover">
+                                        <div class="header__navbar-dropdown-menu">
+                                            <div class="grid">
+                                                <ul class="header__navbar-dropdown-menu-list">
+                                                    <div class="row medium-gutters">
+                                                        <div class="col l-4">
+                                                            <li class="header__navbar-dropdown-menu-item">
+                                                                <a href="/developing" class="header__navbar-dropdown-menu-link navbar-card">
+                                                                    <img src="https://assets.website-files.com/64d9eef747edd1c43be00c2a/64da4f40005c25565ce14b8f_Clinicx%20Webflow%20Medical%20Template%20-%20icon%20orthopedy.svg" alt="" class="header__navbar-dropdown-menu-icon">
+                                                                    <div class="header__navbar-dropdown-menu-heading">Neurology Services</div>
+                                                                    <p class="header__navbar-dropdown-menu-paragraph">
+                                                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique.
+                                                                    </p> 
+                                                                </a>
+                                                            </li>
+                                                        </div>
+                                                        <div class="col l-4">
+                                                            <li class="header__navbar-dropdown-menu-item">
+                                                                <a href="/developing" class="header__navbar-dropdown-menu-link navbar-card">
+                                                                    <img src="https://assets.website-files.com/64d9eef747edd1c43be00c2a/64da4f40005c25565ce14b8f_Clinicx%20Webflow%20Medical%20Template%20-%20icon%20orthopedy.svg" alt="" class="header__navbar-dropdown-menu-icon">
+                                                                    <div class="header__navbar-dropdown-menu-heading">Neurology Services</div>
+                                                                    <p class="header__navbar-dropdown-menu-paragraph">
+                                                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique.
+                                                                    </p> 
+                                                                </a>
+                                                            </li>
+                                                        </div>
+                                                        <div class="col l-4">
+                                                            <li class="header__navbar-dropdown-menu-item">
+                                                                <a href="/developing" class="header__navbar-dropdown-menu-link navbar-card">
+                                                                    <img src="https://assets.website-files.com/64d9eef747edd1c43be00c2a/64da4f40005c25565ce14b8f_Clinicx%20Webflow%20Medical%20Template%20-%20icon%20orthopedy.svg" alt="" class="header__navbar-dropdown-menu-icon">
+                                                                    <div class="header__navbar-dropdown-menu-heading">Neurology Services</div>
+                                                                    <p class="header__navbar-dropdown-menu-paragraph">
+                                                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique.
+                                                                    </p> 
+                                                                </a>
+                                                            </li>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row  medium-gutters">
+                                                        <div class="col l-4">
+                                                            <li class="header__navbar-dropdown-menu-item">
+                                                                <a href="/developing" class="header__navbar-dropdown-menu-link navbar-card">
+                                                                    <img src="https://assets.website-files.com/64d9eef747edd1c43be00c2a/64da4f40005c25565ce14b8f_Clinicx%20Webflow%20Medical%20Template%20-%20icon%20orthopedy.svg" alt="" class="header__navbar-dropdown-menu-icon">
+                                                                    <div class="header__navbar-dropdown-menu-heading">Neurology Services</div>
+                                                                    <p class="header__navbar-dropdown-menu-paragraph">
+                                                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique.
+                                                                    </p> 
+                                                                </a>
+                                                            </li>
+                                                        </div>
+                                                        <div class="col l-4">
+                                                            <li class="header__navbar-dropdown-menu-item">
+                                                                <a href="/developing" class="header__navbar-dropdown-menu-link navbar-card">
+                                                                    <img src="https://assets.website-files.com/64d9eef747edd1c43be00c2a/64da4f40005c25565ce14b8f_Clinicx%20Webflow%20Medical%20Template%20-%20icon%20orthopedy.svg" alt="" class="header__navbar-dropdown-menu-icon">
+                                                                    <div class="header__navbar-dropdown-menu-heading">Neurology Services</div>
+                                                                    <p class="header__navbar-dropdown-menu-paragraph">
+                                                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique.
+                                                                    </p> 
+                                                                </a>
+                                                            </li>
+                                                        </div>
+                                                        <div class="col l-4">
+                                                            <li class="header__navbar-dropdown-menu-item">
+                                                                <a href="/developing" class="header__navbar-dropdown-menu-link navbar-card">
+                                                                    <img src="https://assets.website-files.com/64d9eef747edd1c43be00c2a/64da4f40005c25565ce14b8f_Clinicx%20Webflow%20Medical%20Template%20-%20icon%20orthopedy.svg" alt="" class="header__navbar-dropdown-menu-icon">
+                                                                    <div class="header__navbar-dropdown-menu-heading">Neurology Services</div>
+                                                                    <p class="header__navbar-dropdown-menu-paragraph">
+                                                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique.
+                                                                    </p> 
+                                                                </a>
+                                                            </li>
+                                                        </div>
+                                                    </div>
+                                                </ul> 
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                                
+                            </li>
+                            <li class="header__navbar-item active">
+                                <a href="{% url 'blog' %}" class="header__navbar-link">Blog</a>
+                            </li>
+                            <li class="header__navbar-item">
+                                <a href="{% url 'supportPage' %}" class="header__navbar-link">Contact</a>
+                            </li>
+                            <li class="header__account">
+                                <div class="header__account-wrapper">
+                                    <img src="{% static 'img/blog/avatar.svg' %}" alt="" class="header__account-img">
+                                    {% if request.user.role == 'ADMIN' %}
+                                    <div class="header__account-info">
+                                        <div class="header__account-name">Admin</div>
+                                        <div class="header__acount-role">{{request.user.role}}</div>
+                                    </div>
+                                    {% else %}
+                                    <div class="header__account-info">
+                                        <div class="header__account-name">{{request.user.patient.firstname}} {{request.user.patient.lastname}}</div>
+                                        <div class="header__acount-role">{{request.user.role}}</div>
+                                    </div>
+                                    {% endif %}
+                                    <a href="{% url 'logout' %}" class="header__logout-wrapper">
+                                        <img src="{% static 'img/blog/logout.svg' %}" alt="" class="header__logout-img">
+                                    </a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="body-container">
+                <div class="grid">
+                    <div class="row no-gutters">
+                        <div class="col l-3">
+                            <div class="topics">
+                                <div class="topics__wrapper">
+                                    <div class="topics__header">
+                                        <div class="topics_heading">
+                                            Better Healthcare, Better Tomorrow
+                                        </div>
+                                    </div>
+                                    <div class="topics__search">    
+                                        <input placeholder="Search topic / username" type="text" class="topics__search-bar">
+                                        <img src="{% static 'img/blog/brown-search.svg'%}" alt="" class="topics__search-icon">
+                                    </div>   
+                                    <div class="topics__list">
+                                        <div class="topics__list-header">
+                                            <img src="{% static 'img/blog/fire.svg'%}" alt="" class="topics__list-icon">
+                                            <div class="topics__list-heading">Hot Topic</div>
+                                        </div>
+                                        <div class="topics__item">#suckhoe</div>
+                                        <div class="topics__item">#suckhoe</div>
+                                        <div class="topics__item">#suckhoe</div>
+                                        <div class="topics__item">#suckhoe</div>
+                                        <div class="topics__item">#suckhoe</div>
+                                        <div class="topics__item">#suckhoe</div>
+                                        <div class="topics__item">#suckhoe</div>
+                                        <div class="topics__item">#suckhoe</div>
+                                        <div class="topics__item">#suckhoe</div>
+                                    </div>   
+                                    <div class="topics__category-list">
+                                        <div class="topics__category-item">
+                                            <img src="{% static 'img/blog/category-img.svg'%}" class="topics__category-item-img">
+                                            <div class="topics__category-item-headers">New day new energy</div>
+                                            <img src="{% static 'img/blog/category-change.svg'%}" alt="" class="topics__category-item-btn">
+                                        </div>
+                                        <div class="topics__category-item">
+                                            <img src="{% static 'img/blog/category-change2.svg' %}" class="topics__category-item-img">
+                                            <div class="topics__category-item-headers">New day new energy</div>
+                                            <img src="{% static 'img/blog/category-change.svg'%}" alt="" class="topics__category-item-btn">
+                                        </div>  
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+    
+                        <div class="col l-5">
+                            <div class="newfeeds">
+                                <div class="newfeeds__decoration">
+                                    <div class="row no-gutters newfeeds__decoration-wrapper">
+                                        <img src="{% static 'img/blog/book1.svg'%}" alt="" class="newfeeds__decoration-item-img">
+                                        <img src="{% static 'img/blog/book2.svg'%}" alt="" class="newfeeds__decoration-item-img">
+                                        <img src="{% static 'img/blog/book3.svg'%}" alt="" class="newfeeds__decoration-item-img">
+                                    </div>
+                                </div>
+                                
+                                <div class="row no-gutters">
+                                    <div class="col l-12">
+                                        <div class="newfeeds__post">
+                                            <form action="" method="POST">
+                                                {% csrf_token %}
+                                                <div class="newfeeds__post-header">
+                                                    <img src="{% static 'img/blog/avatar.svg'%}" class="newfeeds__post-header-icon">
+                                                    <input name="input" placeholder="What are you thinking @@" type="text" class="newfeed__post-header-input">
+                                                </div>
+                                                <div class="newfeeds__post-footer">
+                                                    <div class="newfeeds__post-footer-item">
+                                                        <img src="{% static 'img/blog/bookmark.svg'%}" alt="" class="newfeeds__post-footer-icon">
+                                                        <div class="newfeeds__post-footer-text">Bookmarks</div>
+                                                    </div>
+                                                    <div class="newfeeds__post-footer-item">
+                                                        <img src="{% static 'img/blog/image.svg'%}" alt="" class="newfeeds__post-footer-icon">
+                                                        <div class="newfeeds__post-footer-text">Images</div>
+                                                    </div>
+                                                    <div class="newfeeds__post-footer-item">
+                                                        <img src="{% static 'img/blog/usertag.svg'%}" alt="" class="newfeeds__post-footer-icon">
+                                                        <div class="newfeeds__post-footer-text">User Tag</div>
+                                                    </div>
+                                                    <div class="newfeeds__post-footer-item">
+                                                        <img src="{% static 'img/blog/emoji.svg'%}" alt="" class="newfeeds__post-footer-icon">
+                                                        <div class="newfeeds__post-footer-text">Emoji</div>
+                                                    </div>
+                                                    <button value="post" name="post" type="submit" class="newfeeds__post-footer-btn">
+                                                        POST
+                                                    </button>                                                
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <div class="newfeeds__blog">
+                                            {% for post in posts %}
+                                            <div class="newfeeds__blog-item">
+                                                <div class="newfeeds__blog-header">
+                                                    <img src="{% static 'img/blog/avatar.svg'%}" class="newfeeds__blog-img">
+                                                    <div class="newfeeds__blog-info">
+                                                        {% if post.author.role == 'ADMIN' %}
+                                                        <div class="header__wrapper">
+                                                            <div class="newfeeds__blog-hostname"> BA BAO  </div>
+                                                            <div class="commented__role">{{ post.author.role }}</div>
+                                                        </div>
+                                                        {% else %}
+                                                        <div class="header__wrapper">
+                                                            <div class="newfeeds__blog-hostname">{{ post.author.patient }} </div>
+                                                            <div class="commented__role">{{ post.author.role }}</div>
+                                                        </div>
+                                                        {% endif %}
+                                                        <div class="newfeeds__blog-time">{{post.created|timesince}}</div>
+                                                    </div>
+                                                </div>
+                                                <div class="newfeeds__blog-content">
+                                                    {{ post.description }}
+                                                </div>
+                                                <div class="newfeeds__blog-button">
+                                                    <div class="newfeeds__blog-button-item">
+                                                        <img src="{% static 'img/blog/heart.svg' %}" class="newfeeds__blog-button-icon">
+                                                        <div class="newfeeds__blog-button-text">Like</div>
+                                                    </div>
+                                                    <div class="newfeeds__blog-button-item">
+                                                        <img src="{% static 'img/blog/comment.svg' %}" class="newfeeds__blog-button-icon">
+                                                        <div class="newfeeds__blog-button-text">Comment</div>
+                                                    </div>
+                                                    <div class="newfeeds__blog-button-item">
+                                                        <img src="{% static 'img/blog/share.svg' %}" class="newfeeds__blog-button-icon">
+                                                        <div class="newfeeds__blog-button-text">Share</div>
+                                                    </div>
+                                                </div>
+                                                <form method="POST" class="newfeeds__blog-comment">
+                                                    {% csrf_token %}
+                                                    <img src="{% static 'img/blog/avatar.svg' %}" alt="" class="newfeeds__blog-comment-img">
+                                                    <div class="comment__wrapper">
+                                                        <input name="message"  type="text" class="comment__input">
+                                                        <input name="post_id"  value="{{post.post_id}}" class="comment__input-hidden">
+                                                        <img src="{% static 'img/blog/face.svg'%}" alt="" class="comment__icon">
+                                                        <img src="{% static 'img/blog/grey-img.svg'%}" alt="" class="icon__img">
+                                                    </div>
+                                                    <button value="comment" name="comment" type="submit" class="comment__button">
+                                                        <img src="{% static 'img/blog/send.svg'%}" alt="" class="comment__button-icon">
+                                                        <div class="comment__button-text">Send</div>
+                                                    </button>
+                                                </form>
+                                                {% for comment in comments %}
+                                                    {% if comment.post.post_id == post.post_id %}
+                                                    <div class="newfeeds__blog-commented">
+                                                        <img src="{% static 'img/blog/avatar.svg' %}" alt="" class="commented__img">
+                                                        <div class="commented__body">
+                                                            <div class="commented__info">
+                                                                <div class="commented__name">{{ comment.user.first_tname }} {{ comment.user.last_name }}</div>
+                                                                <div class="commented__role">{{ comment.user.role }}</div>
+                                                                <div class="commented__timesince">{{ comment.created|timesince }}</div>
+                                                            </div>
+                                                            <div class="commented__content">{{comment.body}}</div>
+                                                        </div>
+                                                    </div>
+                                                    {% endif %}
+                                                {% endfor %}
+                                            </div>
+                                            {% endfor %}
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>     
+                        </div>
+                        
+                        <div class="col l-4">
+                            <div class="chatbox">
+                              <img src="{% static 'img/blog/ads1.svg'%}" alt="" class="chatbox__decoration">
+                              <img src="{% static 'img/blog/ads2.svg'%}" alt="" class="chatbox__decoration">
+                              <div class="chatbox__content">
+                                <div class="chatbox__header">
+                                    <div class="chatbox__icon-wrapper">
+                                        <img src="{% static 'img/blog/message.svg'%}" class="chatbox_icon">
+                                    </div>
+                                    <div class="chatbox__heading">Chat Box</div>
+                                    <div class="chatbox_search-wrapper">
+                                        <input class="chatbox__search" placeholder="Search username"></input>
+                                        <img src="{% static 'img/blog/brown-search.svg'%}" alt="" class="chatbox__search-icon">
+                                    </div>                                
+                                </div>
+                                <div class="chatbox__list">
+                                    <div class="chatbox__item">
+                                        <img src="{% static 'img/blog/avatar.svg'%}" class="chatbox__item-icon">
+                                        <div class="chatbox__item-info">
+                                            <div class="chatbox__item-name">NoName</div>
+                                            <div class="chatbox_item-role">Doctor</div>
+                                        </div>
+                                    </div>
+                                    <div class="chatbox__item">
+                                        <img src="{% static 'img/blog/avatar.svg'%}" class="chatbox__item-icon">
+                                        <div class="chatbox__item-info">
+                                            <div class="chatbox__item-name">NoName</div>
+                                            <div class="chatbox_item-role">Doctor</div>
+                                        </div>
+                                    </div>
+                                    <div class="chatbox__item">
+                                        <img src="{% static 'img/blog/avatar.svg'%}" class="chatbox__item-icon">
+                                        <div class="chatbox__item-info">
+                                            <div class="chatbox__item-name">NoName</div>
+                                            <div class="chatbox_item-role">Doctor</div>
+                                        </div>
+                                    </div>
+                                </div>
+                              </div>  
+                            </div>   
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+
+    
+</body>
+</html>

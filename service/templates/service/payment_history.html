@@ -1,0 +1,217 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <link rel="stylesheet" href="{% static 'css/grid.css' %}">
+    <link rel="stylesheet" href="{% static 'css/payment_history.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,700;9..40,900&family=Ranga&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="main">
+        <div class="grid">
+            <div class="row no-gutters">
+                 <!-- Navbar -->
+                <div class="col ls-1">
+                    <div class="navbar">
+                        <div class="navbar__addButton">
+                            <img src="{% static 'img/profile/add_logo.svg' %}" alt="" class=navbar__addButton-img>
+                        </div>
+                        <ul class="navbar__list">
+                            <a href="{% url 'home' %}" class="navbar__item">
+                                <img src="{% static 'img/profile/homelogo.svg' %}" alt="" class="navbar__item-img">
+                                <div class="navbar__item-heading">Home</div>
+                            </a>
+                            <a href="{% url 'profile' request.user.id %}" class="navbar__item active">
+                                 <img src="{% static 'img/profile/profilelogo.svg' %}" alt="" class="navbar__item-img">
+                                <div class="navbar__item-heading">Profile</div>
+                            </a>
+                            <a href="{% url 'profile' request.user.id %}" class="navbar__item">
+                                 <img src="{% static 'img/profile/phonelogo.svg' %}" alt="" class="navbar__item-img">
+                                <div class="navbar__item-heading">Support</div>
+                            </a>
+                            <a href="{% url 'profile' request.user.id %}" class="navbar__item">
+                                 <img src="{% static 'img/profile/settinglogo.svg' %}" alt="" class="navbar__item-img">
+                                <div class="navbar__item-heading">Settings</div>
+                            </a>
+                        </ul>
+                    </div>
+                </div>
+            
+
+                 
+                    <div class="col l-11">
+                        <!-- Header -->
+                        <div class="row no-gutters">
+                            <div class="col l-12">
+                                <div class="header">
+                                    <div class="header__wrapper">
+                                        <div class="header__heading">
+                                            <div class="header__heading-date">
+                                                Thursday, 30 / 11 /2024
+                                            </div>
+                                            <div class="header__heading-account">
+                                                <img src="{% static 'img/profile/avatar.svg' %}" alt="" class="header__heading-avatar">
+                                                <div class="header__heading-info">
+                                                    <div class="header__heading-name">{{ request.user.patient }}</div>
+                                                    <div class="header__heading-role">Patient</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="header__line"></div>
+                                        <div class="header__navbar">
+                                            <ul class="header__navbar-list">
+                                                <a href="{% url 'profile' request.user.id %}" class="header__navbar-item">
+                                                     <div class="header__navbar-item-content">
+                                                         Patient profile
+                                                     </div>
+                                                </a> 
+                                                 <a href="{% url 'history' request.user.id %}" class="header__navbar-item">
+                                                     <div class="header__navbar-item-content">
+                                                         Appointment History
+                                                     </div>
+                                                 </a> 
+                                                <a href="{% url 'payment' request.user.id %}" class="header__navbar-item active">
+                                                     <div class="header__navbar-item-content">
+                                                         Payment History
+                                                     </div>
+                                                 </a> 
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row no-gutters">
+                            <div class="col l-5">
+                                <div class="searchBox">
+                                    <form action="" method="POST">
+                                        {% csrf_token %}
+                                        <div class="searchBox__wrapper">
+                                            <div class="searchBox__header">
+                                                <img src="{% static 'img/profile/cart.svg' %}" alt="" class="searchBox__icon">
+                                                <div class="searchBox__heading">
+                                                    Payment ID
+                                                </div>
+                                            </div>
+                                            <input name="id" class="searchBox__search-bar" type="text">
+                                            <button type="submit" class="searchBox__btn">
+                                                <img src="{% static 'img/profile/searchBtn.svg' %}" class="searchBox__btn-icon">
+                                                <div class="searchBox__btn-text">Search</div>
+                                            </button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                             <!-- Payment Search Bar -->
+                            <div class="col l-7">
+
+                            </div>
+                        </div>
+                        
+                        <div class="row no-gutters">
+                            <div class="col l-12">
+                                <!-- Payment List -->
+                                <div class="paymentList">
+                                    <div class="paymentList__wrapper">
+                                        <div class="row no-gutters">
+                                            <div class="col l-12">
+                                                <div class="paymentList__header">
+                                                    <div class="col l-2">
+                                                        <div class="paymentList__header-element">
+                                                            Type
+                                                        </div>
+                                                    </div>
+                                                    <div class="col l-2">
+                                                        <div class="paymentList__header-element">
+                                                            Payment ID
+                                                        </div>
+                                                    </div>
+                                                    <div class="col l-2">
+                                                        <div class="paymentList__header-element">
+                                                            Appointment ID
+                                                        </div>
+                                                    </div>
+                                                    <div class="col l-2">
+                                                        <div class="paymentList__header-element">
+                                                            Medical ID
+                                                        </div>
+                                                    </div>
+                                                    <div class="col l-2">
+                                                        <div class="paymentList__header-element">
+                                                            Amount
+                                                        </div>
+                                                    </div>
+                                                    <div class="col l-2">
+                                                        <div class="paymentList__header-element">
+                                                            Status
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {% for appointment in appointments%}
+                                        <div class="row no-gutters">
+                                            <div class="col l-12">
+                                                <a href="{% url 'appointmentDetail' appointment.appointment_id %}" class="paymentList__item">
+                                                    <div class="col l-2">
+                                                        <div class="paymentList__item-element">
+                                                            <div class="paymentList__icon-wrapper">
+                                                                <img src="{% static 'img/profile/pill.svg' %}" alt="" class="paymentList__icon">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col l-2">
+                                                        <div class="paymentList__item-element">
+                                                            {{appointment.appointment_id}}
+                                                        </div>
+                                                    </div>
+                                                    <div class="col l-2">
+                                                        <div class="paymentList__item-element">
+                                                            {{appointment.appointment_id}}
+                                                        </div>
+                                                    </div>
+                                                    <div class="col l-2">
+                                                        <div class="paymentList__item-element">
+                                                            {{appointment.room_id}}
+                                                        </div>
+                                                    </div>
+                                                    <div class="col l-2">
+                                                        <div class="paymentList__item-element">
+                                                            {{appointment.service.price}}
+                                                        </div>
+                                                    </div>
+                                                    <div class="col l-2">
+                                                        {% if appointment.status == 1 %}
+                                                        <div class="paymentList__item-element paymentList__status--success">
+                                                            Completed
+                                                        </div>
+                                                        {% elif appointment.status == 2 %}
+                                                        <div class="paymentList__item-element paymentList__status--pending">
+                                                            Processing
+                                                        </div>
+                                                        {% else %}
+                                                        <div class="paymentList__item-element paymentList__status--pending">
+                                                            Pending
+                                                        </div>
+                                                        {% endif %}
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+</body>

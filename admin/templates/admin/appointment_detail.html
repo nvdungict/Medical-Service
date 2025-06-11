@@ -1,0 +1,266 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <link rel="stylesheet" href="{% static 'css/grid.css' %}">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <link rel="stylesheet" href="{% static 'css/appointment_detail.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,700;9..40,900&family=Ranga&family=Roboto:wght@300;400;500;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="main">
+        <div class="grid">
+            <div class="row no-gutters">
+                <!-- Navbar -->
+                <div class="col ls-1">
+                    <div class="navbar">
+                        <div class="navbar__addButton">
+                            <img src="{% static 'img/all/add_logo.svg' %}" alt="" class=navbar__addButton-img>
+                        </div>
+                        <ul class="navbar__list">
+                            <a href="{% url 'admin+' %}" class="navbar__item active">
+                                <img src="{% static 'img/all/dashboard.svg' %}" alt="" class="navbar__item-img">
+                                <div class="navbar__item-heading">Dashboard</div>
+                            </a>
+                            <a href="{% url 'adminDoctor' %}" class="navbar__item ">
+                                <img src="{% static 'img/all/doctor.svg' %}" alt="" class="navbar__item-img">
+                                <div class="navbar__item-heading">Doctors</div>
+                            </a>
+                            <a href="{% url 'adminPatient' %}" class="navbar__item">
+                                <img src="{% static 'img/all/patient.svg' %}" alt="" class="navbar__item-img">
+                                <div class="navbar__item-heading">Patient</div>
+                            </a>
+                            <a href="{% url 'adminAppointment' %}" class="navbar__item">
+                                 <img src="{% static 'img/all/order.svg' %}" alt="" class="navbar__item-img">
+                                 <div class="navbar__item-heading">Orders</div>
+                            </a>
+                            <a href="{% url 'adminService' %}" class="navbar__item">
+                                <img src="{% static 'img/all/material.svg' %}" alt="" class="navbar__item-img">
+                                <div class="navbar__item-heading">Services</div>
+                            </a>
+                            <a href="{% url 'admin+' %}" class="navbar__item">
+                                <img src="{% static 'img/all/Ranking.svg' %}" alt="" class="navbar__item-img">
+                                <div class="navbar__item-heading">Ranking</div>
+                            </a>
+                            <a href="{% url 'adminRoom' %}" class="navbar__item">
+                                <img src="{% static 'img/all/rooms.svg' %}" alt="" class="navbar__item-img">
+                                <div class="navbar__item-heading">Rooms</div>
+                            </a>
+                
+                
+                            <a href="" class="navbar__item home">
+                                <img src="{% static 'img/all/homenew.svg' %}" alt="" class="navbar__item-img">
+                                <div class="navbar__item-heading">home</div>
+                            </a>
+                            
+                        </ul>
+                    </div>
+                </div>
+
+
+
+                <div class="col l-11">
+                    <div class="appointment__detail">
+                        <div class="appointment__detail-wrapper">
+                            <div class="appointment__box">
+                                <div class="appointment__header">
+                                    <a href="{{request.META.HTTP_REFERER}}" class="appointment__btn-wrapper">
+                                        <img src="{% static 'img/profile/backbtn.svg' %}" alt=""
+                                            class="appointment__btn">
+                                    </a>
+                                    <div class="appointment__heading">
+                                        APPOINTMENT DETAILS
+                                    </div>
+                                    {% if request.user.is_anonymous and appointment.status == 3 %}
+                                    <form class="appointment_finish" action="" method="POST">
+                                        {% csrf_token %}
+                                        <button name="finish" value="finish" class="appointment__finish-btn">
+                                            CONFIRM
+                                        </button>
+                                    </form>
+                                    {% endif %}
+                                </div>
+                                <div class="line"></div>
+                                <div class="appointment__body-1">
+                                    <div class="appointment__info">
+                                        <div class="appointment__item">
+                                            <img src="{% static 'img/profile/calendar-check.svg' %}" alt=""
+                                                class="appointment__icon">
+                                            <div class="appoinment__title">Appointment ID</div>
+                                            <div class="appointment__content">{{appointment.appointment_id}}</div>
+                                        </div>
+                                        <div class="appointment__item">
+                                            <img src="{% static 'img/profile/calendar.svg' %}" alt=""
+                                                class="appointment__icon">
+                                            <div class="appoinment__title">Date</div>
+                                            <div class="appointment__content">{{appointment.appointment_date}}</div>
+                                        </div>
+                                        <div class="appointment__item">
+                                            <img src="{% static 'img/profile/time.svg' %}" alt=""
+                                                class="appointment__icon">
+                                            <div class="appoinment__title">Time</div>
+                                            <div class="appointment__content">{{appointment.start_time}}</div>
+                                        </div>
+                                        <div class="appointment__item">
+                                            <img src="{% static 'img/profile/email.svg' %}" alt=""
+                                                class="appointment__icon">
+                                            <div class="appoinment__title">Email</div>
+                                            <div class="appointment__content-gmail">{{appointment.patient.user.email}}
+                                            </div>
+                                        </div>
+                                        <div class="appointment__item">
+                                            <img src="{% static 'img/profile/room.svg' %}" alt=""
+                                                class="appointment__icon">
+                                            <div class="appoinment__title">Room</div>
+                                            <div class="appointment__content">{{appointment.room_id}}</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="appointment__services">
+                                        <div class="appointment__services-header">
+                                            <img src="{% static 'img/profile/cart.svg' %}" class="appointment__icon">
+                                            <div class="appointment__title">Services used</div>
+                                        </div>
+                                        <div class="appointment__services-body">
+                                            <div class="service__row">
+                                                <div class="service__item">
+                                                    <img src="{% static 'img/all/person.svg' %}" alt=""
+                                                        class="service__item-icon">
+                                                    <div class="service__info">
+                                                        <div class="service__name">{{appointment.service.service_name}}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="mini__receipt">
+                                        <div class="mini__receipt-header">
+                                            <div class="mini__header-receipt-title">MINI RECEIPT</div>
+                                        </div>
+
+                                        <div class="mini__receipt-body">
+                                            <div class="mini__receipt-item">
+                                                <div class="mini__receipt-item-title">
+                                                    Total
+                                                </div>
+                                                <div class="mini__receipt-item-value">
+                                                    {{appointment.service.price}} USD
+                                                </div>
+                                            </div>
+                                            <div class="mini__receipt-item">
+                                                <div class="mini__receipt-item-title">
+                                                    Insurance Class
+                                                </div>
+                                                <div class="mini__receipt-item-value">
+                                                    {{appointment.patient.membership.type}}
+                                                </div>
+                                            </div>
+                                            <div class="mini__receipt-item">
+                                                <div class="mini__receipt-item-title">
+                                                    Discount
+                                                </div>
+                                                <div class="mini__receipt-item-value">
+                                                    {{discount}} USD
+                                                </div>
+                                            </div>
+                                            <div class="mini__receipt-item">
+                                                <div class="mini__receipt-item-title">
+                                                    VAT
+                                                </div>
+                                                <div class="mini__receipt-item-value">
+                                                    {{vat}}
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="mini__receipt-footer">
+                                            <div class="mini__receipt-footer-title">
+                                                Bill
+                                            </div>
+                                            <div class="mini__receipt-footer-value">
+                                                {{bill}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="appointment__body-2">
+                                    <div class="patient__info">
+                                        <div class="patient__info-list">
+                                            <div class="patient__info-item">
+                                                <div class="patient__info-title">Patient ID</div>
+                                                <div class="patient__info-value">{{appointment.patient.patient_id}}
+                                                </div>
+                                            </div>
+                                            <div class="patient__info-item">
+                                                <div class="patient__info-title">Patient Name</div>
+                                                <div class="patient__info-value">{{appointment.patient}}</div>
+                                            </div>
+                                            <div class="patient__info-item">
+                                                <div class="patient__info-title">Doctor ID</div>
+                                                <div class="patient__info-value">{{appointment.doctor.doctor_id}}</div>
+                                            </div>
+                                            <div class="patient__info-item">
+                                                <div class="patient__info-title">Doctor Name</div>
+                                                <div class="patient__info-value">{{appointment.doctor}}</div>
+                                            </div>
+                                        </div>
+
+                                        <div class="patient__notice">
+                                            Notice: You are logging as
+                                        </div>
+
+                                        <div class="patient__account">
+                                            <div class="header__heading-account">
+                                                <img src="{% static 'img/profile/avatar.svg' %}" alt=""
+                                                    class="header__heading-avatar">
+                                                <div class="header__heading-info">
+                                                    <div class="header__heading-name">{{appointment.patient}}</div>
+                                                    <div class="header__heading-role">{{request.user.role}}</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="patient__record">
+                                        <div class="patient__record-header">
+                                            <img src="{% static 'img/profile/human.svg' %}"
+                                                class="patient__record-icon">
+                                            <div class="patient__record-title">Record</div>
+                                        </div>
+
+                                        <div class="patient__record-body">
+
+                                        </div>
+                                    </div>
+
+                                    <div class="prescription">
+                                        <div class="prescription__header">
+                                            <img src="{% static 'img/profile/pill-blue.svg' %}"
+                                                class="prescription__icon">
+                                            <div class="prescription__title">Prescription</div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>

@@ -1,0 +1,365 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <link rel="stylesheet" href="{% static 'css/grid.css' %}">
+    <link rel="stylesheet" href="{% static 'css/patient_profile.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,700;9..40,900&family=Ranga&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="main">
+        <div class="grid">
+            <div class="row no-gutters">
+                 <!-- Navbar -->
+                <div class="col ls-1">
+                    <div class="navbar">
+                        <div class="navbar__addButton">
+                            <img src="{% static 'img/profile/add_logo.svg' %}" alt="" class=navbar__addButton-img>
+                        </div>
+                        <ul class="navbar__list">
+                            <a href="{% url 'home' %}" class="navbar__item">
+                                <img src="{% static 'img/profile/homelogo.svg' %}" alt="" class="navbar__item-img">
+                                <div class="navbar__item-heading">Home</div>
+                            </a>
+                            <a href="{% url 'profile' request.user.id %}" class="navbar__item active">
+                                 <img src="{% static 'img/profile/profilelogo.svg' %}" alt="" class="navbar__item-img">
+                                <div class="navbar__item-heading">Profile</div>
+                            </a>
+                            <a href="{% url 'supportPage' %}" class="navbar__item">
+                                 <img src="{% static 'img/profile/phonelogo.svg' %}" alt="" class="navbar__item-img">
+                                <div class="navbar__item-heading">Support</div>
+                            </a>
+                            <a href="{% url 'profile' request.user.id %}" class="navbar__item">
+                                 <img src="{% static 'img/profile/settinglogo.svg' %}" alt="" class="navbar__item-img">
+                                <div class="navbar__item-heading">Settings</div>
+                            </a>
+                        </ul>
+                    </div>
+                </div>
+            
+
+                 
+                    <div class="col l-11">
+                        <!-- Header -->
+                        <div class="row no-gutters">
+                            <div class="col l-12">
+                                <div class="header">
+                                    <div class="header__wrapper">
+                                        <div class="header__heading">
+                                            <div class="header__heading-date">
+                                                {{time_now}}
+                                            </div>
+                                            <div class="header__heading-account">
+                                                <img src="{% static 'img/profile/avatar.svg' %}" alt="" class="header__heading-avatar">
+                                                <div class="header__heading-info">
+                                                    <div class="header__heading-name">{{user.patient}}</div>
+                                                    <div class="header__heading-role">{{user.role}}</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="header__line"></div>
+                                        <div class="header__navbar">
+                                            <ul class="header__navbar-list">
+                                               <a href="{% url 'profile' request.user.id %}" class="header__navbar-item active">
+                                                    <div class="header__navbar-item-content">
+                                                        Patient profile
+                                                    </div>
+                                               </a> 
+                                                <a href="{% url 'history' request.user.id %}" class="header__navbar-item">
+                                                    <div class="header__navbar-item-content">
+                                                        Appointment History
+                                                    </div>
+                                                </a> 
+                                               <a href="{% url 'payment' request.user.id %}" class="header__navbar-item">
+                                                    <div class="header__navbar-item-content">
+                                                        Payment History
+                                                    </div>
+                                                </a> 
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Info -->
+                        <form action="" method="POST">
+                            <div class="row no-gutters">
+                                <div class="col l-12">
+                                    <div class="info">
+                                        <div class="info__wrapper">
+                                            <img src="{% static 'img/profile/avatar.svg' %}" alt="" class="info__img">
+                                            <div class="info__content">
+                                                {% if edit == False %}
+                                                <form method="POST" class="info__edit-btn">
+                                                    {% csrf_token %}
+                                                    <div class="name_wrapper">
+                                                        <div class="info__name">
+                                                            {{ firstname }} {{lastname}} 
+                                                        </div>
+                                                    </div>
+                                                    <div class="info__basic">
+                                                        <div class="info__gender">
+                                                            <img class="info__icon" src="{% static 'img/profile/genderIcon.svg' %}">
+                                                            {% if gender == 1 %}
+                                                            <div class="info__text">Male</div>
+                                                            {% elif gender == 2 %}
+                                                            <div class="info__text">Female</div>
+                                                            {% else %}
+                                                            <div class="info__text">Different</div>
+                                                            {% endif %}
+                                                        </div>
+                                                        <div class="info__address">
+                                                            <img class="info__icon" src="{% static 'img/profile/addrIcon.svg' %}">
+                                                            <div class="info__text">{{ address }}</div>
+                                                        </div>
+                                                        <div class="info__dob">
+                                                            <img class="info__icon" src="{% static 'img/profile/dobIcon.svg' %}">
+                                                            <div class="info__text">{{ dob }}</div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="info__health">
+                                                        <div class="info__health-bmi info__health-box">
+                                                            <div class="info__health-heading">BMI</div>
+                                                            <div class="info__health-stat">{{ bmi }}</div>
+                                                        </div>
+                                                        <div class="info__health-weight info__health-box">
+                                                            <div class="info__health-heading">Weight</div>
+                                                            <div class="info__health-stat">{{ weight }}</div>
+                                                        </div>
+                                                        <div class="info__health-height info__health-box">
+                                                            <div class="info__health-heading">Height</div>
+                                                            <div class="info__health-stat">{{ height }}</div>
+                                                        </div>
+                                                        <div class="info__health-blood-pressure info__health-box">
+                                                            <div class="info__health-heading">Blood pressure</div>
+                                                            <div class="info__health-stat">{{ bloodpressure }}</div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="info__btn">
+                                                        <button type="submit" class="info__edit-form  btn">
+                                                            <img src="{% static 'img/profile/editbtn.svg' %}" alt="" class="info__btn-icon">
+                                                            <div type="submit" class="info__btn-text">Edit</div>
+                                                            <input name="value" value="edit" id="editbtn">
+                                                        </button>
+                                                    </div>
+                                                </form>
+                                                {% else %}
+                                                <form method="POST" class="info__edit-btn">
+                                                    {% csrf_token %}
+                                                    <div class="name_wrapper">
+                                                        <input value="{{firstname}}" name="firstname" class="info__firstname" placeholder="Enter your firstname">
+
+                                                        </input>
+                                                        <input value="{{lastname}}" name="lastname" class="info__lastname" placeholder="Enter your lastname">
+                                                            
+                                                        </input>
+                                                    </div>
+                                                    
+                                                    <div class="info__basic">
+                                                        <div class="info__gender">
+                                                            <img class="info__icon" src="{% static 'img/profile/genderIcon.svg' %}">
+                                                            <select type="" name="gender" class="info__text edit">
+                                                                <option value="1">Male</option>
+                                                                <option value="2">Female</option>
+                                                                <option value="3">Different</option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="info__address">
+                                                            <img class="info__icon" src="{% static 'img/profile/addrIcon.svg' %}">
+                                                            <input value="{{address}}" name="address" class="info__text edit"></input>
+                                                        </div>
+                                                        <div class="info__dob">
+                                                            <img class="info__icon" src="{% static 'img/profile/dobIcon.svg' %}">
+                                                            <input name="dob" type="date" name="dob" class="info__text edit"></input>
+                                                        </div>
+                                                    </div>
+                                                    <div class="info__health">
+                                                        <div class="edit-mode info__health-box">
+                                                            <div class="info__health-heading">BMI</div>
+                                                            <input value="{{bmi}}" name="bmi" class="info__health-stat"></input>
+                                                        </div>
+                                                        <div class="edit-mode info__health-box">
+                                                            <div class="info__health-heading">Weight</div>
+                                                            <input value="{{weight}}" name="weight" class="info__health-stat"></input>
+                                                        </div>
+                                                        <div class="edit-mode info__health-box">
+                                                            <div class="info__health-heading">Height</div>
+                                                            <input value="{{height}}" name="height" class="info__health-stat"></input>
+                                                        </div>
+                                                        <div class="edit-mode info__health-box">
+                                                            <div class="info__health-heading">Blood pressure</div>
+                                                            <input value="{{bloodpressure}}" name="bloodpressure" class="info__health-stat"></input>
+                                                        </div>
+                                                    </div>
+                                                    <div class="info__btn"> 
+                                                            <button type="submit" class="info__edit-form  btn">
+                                                                <img src="{% static 'img/profile/savebtn.svg' %}" alt="" class="info__btn-icon">
+                                                                <div type="submit" class="info__btn-text">Save</div>
+                                                                <input name="value" value="save" id="editbtn">
+                                                            </button>
+                                                    </div>
+                                                </form>
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Timeline -->
+                            <div class="row no-gutters">
+                                <div class="col l-3">
+                                    <div class="timeline">
+                                        <div class="timeline__wrapper">
+                                            <div class="timeline__header">
+                                                <img src="{% static 'img/profile/calendar.svg' %}" alt="" class="timeline__header-icon">
+                                                <div class="timeline__header-heading">
+                                                    Incomming Appointment
+                                                </div>
+                                            </div>
+                                            <div class="timeline__line"></div>
+                                            <ul class="timeline__list">
+                                                {% for appointment in appointments%}
+                                                <a href="{% url 'appointmentDetail' appointment.appointment_id %}" class="timeline__item">
+                                                    <div class="timeline__item-date">
+                                                        <div class="timeline__item-day">{{appointment.appointment_date}}</div> 
+                                                    </div>
+                                                    <div class="timeline__item-icon">
+                                                        <img src="{% static 'img/profile/ellipse2.svg' %}" alt="" class="timeline__item-circle">
+                                                        <img src="{% static 'img/profile/stick.svg' %}" alt="" class="timeline__item-stick">
+                                                    </div>
+                                                    <div class="timeline__item-content">
+                                                        <div class="timeline__item-title">{{appointment.service.service_name}}</div>
+                                                        <div class="timeline__item-room">{{appointment.room_id}}</div>
+                                                    </div>
+                                                </a>
+                                                {% endfor %}
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col l-9">
+                                    <div class="personalInfo">
+                                        <div class="personalInfo__wrapper">
+                                            <div class="personalInfo__header">
+                                                <img src="{% static 'img/profile/personalicon.svg' %}" class="personalInfo__header-icon">
+                                                <div class="personalInfo__header-heading">
+                                                    Personal Information
+                                                </div>
+                                            </div>
+                                            <div class="personalInfo__line"></div>
+                                            <form action="" method="POST">
+                                                {% csrf_token %}
+                                                {% if edit_2 == False %}
+                                                <ul class="personalInfo__content">
+                                                    <li class="personalInfo__content-item personalInfo__content-phone">
+                                                        <div class="personInfo__content-item-title">
+                                                            Phone
+                                                        </div>
+                                                        <div class="personInfo__content-item-info">
+                                                            {{ contact_number }}
+                                                        </div>
+                                                    </li>
+        
+                                                    <li class="personalInfo__content-item personalInfo__content-phone">
+                                                        <div class="personInfo__content-item-title">
+                                                            Email
+                                                        </div>
+                                                        <div class="personInfo__content-item-info">
+                                                            {{ email }}
+                                                        </div>
+                                                    </li>
+        
+                                                    <li class="personalInfo__content-item personalInfo__content-phone">
+                                                        <div class="personInfo__content-item-title">
+                                                            CCCD
+                                                        </div>
+                                                        <div class="personInfo__content-item-info">
+                                                            {{ cccd }}
+                                                        </div>
+                                                    </li>
+        
+                                                    <li class="personalInfo__content-item personalInfo__content-phone">
+                                                        <div class="personInfo__content-item-title">
+                                                            Address
+                                                        </div>
+                                                        <div class="personInfo__content-item-info">
+                                                            {{ address }}
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                                <div class="btn__wrapper">
+                                                    <button type="submit" class="btn__cover">
+                                                        <div class="btn__edit">
+                                                            <input name="value" value="edit_2" id="editbtn">
+                                                            <img src="{% static 'img/profile/edit-bnt.svg' %}" alt="" class="btn__edit-img">
+                                                        </div>
+                                                    </button>
+                                                </div>
+                                                {% else %}
+                                                <ul class="personalInfo__content">
+                                                    <li class="personalInfo__content-item personalInfo__content-phone">
+                                                        <div class="personInfo__content-item-title">
+                                                            Phone
+                                                        </div>
+                                                        <input value="{{ contact_number }}" name="contact_number" class="personInfo__content-item-info edit">
+        
+                                                        </input>
+                                                    </li>
+        
+                                                    <li class="personalInfo__content-item personalInfo__content-phone">
+                                                        <div class="personInfo__content-item-title">
+                                                            Email
+                                                        </div>
+                                                        <div type="email" name="email" class="personInfo__content-item-info edit">
+                                                            {{ request.user.email }}
+                                                        </div>
+                                                    </li>
+        
+                                                    <li class="personalInfo__content-item personalInfo__content-phone">
+                                                        <div name="cccd" class="personInfo__content-item-title">
+                                                            CCCD
+                                                        </div>
+                                                        <input value="{{ cccd }}" name="cccd" class="personInfo__content-item-info edit">
+                                                            
+                                                        </input>
+                                                    </li>
+        
+                                                    <li class="personalInfo__content-item personalInfo__content-phone">
+                                                        <div class="personInfo__content-item-title">
+                                                            Address
+                                                        </div>
+                                                        <input value="{{ address }}" name="address" class="personInfo__content-item-info edit">
+                                                            
+                                                        </input>
+                                                    </li>
+                                                </ul>
+                                                <div class="btn__wrapper">
+                                                    <button type="submit" class="btn__cover">
+                                                        <div class="btn__edit">
+                                                            <input name="value" value="save_2" id="editbtn">
+                                                            <img src="{% static 'img/profile/save-btn.svg' %}" alt="" class="btn__edit-img">
+                                                        </div>
+                                                    </button>
+                                                </div>
+                                                {% endif %}
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</body>
+</html>

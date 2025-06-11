@@ -1,0 +1,263 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <link rel="stylesheet" href="{% static 'css/grid.css' %}">
+    <link rel="stylesheet" href="{% static 'css/room_detail.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,700;9..40,900&family=Ranga&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="main">
+        <div class="grid">
+            <div class="row no-gutters">
+                 <!-- Navbar -->
+                <div class="col ls-1">
+                    <div class="navbar">
+                        <div class="navbar__addButton">
+                            <img src="{% static 'img/all/add_logo.svg' %}" alt="" class=navbar__addButton-img>
+                        </div>
+                        <ul class="navbar__list">
+                            <a href="{% url 'admin+' %}" class="navbar__item">
+                                <img src="{% static 'img/all/dashboard.svg' %}" alt="" class="navbar__item-img">
+                                <div class="navbar__item-heading">Dashboard</div>
+                            </a>
+                            <a href="{% url 'adminDoctor' %}" class="navbar__item ">
+                                <img src="{% static 'img/all/doctor.svg' %}" alt="" class="navbar__item-img">
+                                <div class="navbar__item-heading">Doctors</div>
+                            </a>
+                            <a href="{% url 'adminPatient' %}" class="navbar__item">
+                                <img src="{% static 'img/all/patient.svg' %}" alt="" class="navbar__item-img">
+                                <div class="navbar__item-heading">Patient</div>
+                            </a>
+                            <a href="{% url 'adminAppointment' %}" class="navbar__item">
+                                 <img src="{% static 'img/all/order.svg' %}" alt="" class="navbar__item-img">
+                                 <div class="navbar__item-heading">Orders</div>
+                            </a>
+                            <a href="{% url 'adminService' %}" class="navbar__item">
+                                <img src="{% static 'img/all/material.svg' %}" alt="" class="navbar__item-img">
+                                <div class="navbar__item-heading">Services</div>
+                            </a>
+                            <a href="{% url 'admin+' %}" class="navbar__item">
+                                <img src="{% static 'img/all/Ranking.svg' %}" alt="" class="navbar__item-img">
+                                <div class="navbar__item-heading">Ranking</div>
+                            </a>
+                            <a href="{% url 'adminRoom' %}" class="navbar__item  active">
+                                <img src="{% static 'img/all/rooms.svg' %}" alt="" class="navbar__item-img">
+                                <div class="navbar__item-heading">Rooms</div>
+                            </a>
+                
+                
+                            <a href="{% url 'home' %}" class="navbar__item home">
+                                <img src="{% static 'img/all/homenew.svg' %}" alt="" class="navbar__item-img">
+                                <div class="navbar__item-heading">home</div>
+                            </a>
+                            
+                        </ul>
+                    </div>
+                </div>
+                    <div class="col l-11">
+                        <!-- Header -->
+                        <div class="row no-gutters">
+                            <div class="col l-12">
+                                <div class="header">
+                                    <div class="header__wrapper">
+                                        <div class="header__heading">
+                                            <div class="header__heading-date">
+                                                12:00 AM Thursday, 30 / 11 /2023
+                                            </div>
+                                            <div class="header__search-wrapper">
+                                                <input type="text" class="header__search">
+                                                <img src="{% static 'img/all/brown-search.svg' %}" alt="" class="header__search-icon">
+                                            </div>
+                                            <div class="header__account">
+                                                <div class="header__account-wrapper">
+                                                    <img src="{% static 'img/all/avatar.svg' %}" alt="" class="header__account-img">
+                                                    <div class="header__account-info">
+                                                        <div class="header__account-name">@Dmin</div>
+                                                        <div class="header__acount-role">Admin</div>
+                                                    </div>
+                                                    <div class="header__logout-wrapper">
+                                                        <img src="{% static 'img/all/bell.svg' %}" alt="" class="header__logout-img">
+                                                    </div>
+                                                    <a href="{% url 'logout' %}" class="header__logout-wrapper">
+                                                        <img src="{% static 'img/all/logout.svg' %}" alt="" class="header__logout-img">
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Dash Board -->
+                        <div class="row no-gutters">
+                            <div class="col l-12">
+                                <div class="dashboard">
+                                    <div class="dashboard__header">
+                                        <img src="{% static 'img/all/robot.svg' %}" class="dashboard__icon">
+                                        <div class="dashboard__heading">
+                                            Welcome to Rooms Manager
+                                        </div>
+                                    </div>
+                                    <div class="dashboard__list">
+                                        <div class="dashboard__item">
+                                            <div class="dashboard-item__wrapper">
+                                                <img src="{% static 'img/all/manager-icon.svg' %}" alt="" class="dashboard__item-img">
+                                            </div>
+                                            <div class="dashboard-item__info">
+                                                <div class="dashboard__item-title">Total</div>
+                                                <div class="dashboard__item-number">{{room_count}}</div>
+                                            </div>
+                                        </div>
+                                        <div class="dashboard__item">
+                                            <div class="dashboard-item__wrapper green">
+                                                <img src="{% static 'img/all/manager-icon.svg' %}" alt="" class="dashboard__item-img">
+                                            </div>
+                                            <div class="dashboard-item__info">
+                                                <div class="dashboard__item-title">Free</div>
+                                                <div class="dashboard__item-number">{{room_free}}</div>
+                                            </div>
+                                        </div>
+                                        <div class="dashboard__item">
+                                            <div class="dashboard-item__wrapper blue">
+                                                <img src="{% static 'img/all/manager-icon.svg' %}" alt="" class="dashboard__item-img">
+                                            </div>
+                                            <div class="dashboard-item__info">
+                                                <div class="dashboard__item-title">In used</div>
+                                                <div class="dashboard__item-number">{{room_inused}}</div>
+                                            </div>
+                                        </div>
+                                        <div class="dashboard__item">
+                                            <div class="dashboard-item__wrapper red">
+                                                <img src="{% static 'img/all/manager-icon.svg' %}" alt="" class="dashboard__item-img">
+                                            </div>
+                                            <div class="dashboard-item__info">
+                                                <div class="dashboard__item-title">Stopped</div>
+                                                <div class="dashboard__item-number">{{room_stopped}}</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="row no-gutters">
+                            <div class="col l-12">
+                                <div class="service">
+                                    <div class="row no-gutters">
+                                        <div class="col l-12">
+                                            <div class="service__headers">
+                                                <div class="service__headers-wrapper">
+                                                    <img src="{% static 'img/all/paper.svg' %}" alt="" class="service__headers-img">
+                                                    <div class="service__heading">Rooms LIST</div>
+                                                    <div class="service__text">/ Room Modify</div>
+                                                </div>
+                                                <div class="service__headers-wrapper">
+                                                    <a href="{{ request.META.HTTP_REFERER }}" class="service__back-wrapper">
+                                                        <img class="service__back" src="{% static 'img/all/leftarrow.svg' %}" alt="">
+                                                    </a>
+                                                    <div class="service__edit-wrapper">
+                                                        <img src="{% static 'img/all/editbtn.svg' %}" alt="" class="service__edit-icon">
+                                                        <div class="service__edit-text">Edit</div>
+                                                    </div>
+                                                    <div class="service__edit-wrapper">
+                                                        <img src="{% static 'img/all/save-btn.svg' %}" alt="" class="service__edit-icon">
+                                                        <div class="service__edit-text">Save</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="service__info-wrapper">
+                                        <div class="row">
+                                            <div class="col l-3">
+                                                <div class="service__first">
+                                                    <div class="service__img-wrapper">
+                                                        <img src="{% static 'img/all/hospital.svg' %}" alt="" class="service__img">
+                                                    </div>
+                                                    <div class="service__status-heading">Status</div>
+                                                    {% if room.status == 1 %}
+                                                        <div class="service__status green">Free</div>
+                                                    {% elif room.status == 2 %}
+                                                        <div class="service__status blue">In-used</div>
+                                                    {% elif room.status == 3 %}
+                                                        <div class="service__status red">Stopped</div>
+                                                    {% endif %}
+                                                </div>
+                                            </div>
+                                            <div class="col l-3">
+                                                <div class="service__second">
+                                                    <div class="service__box-wrapper">
+                                                        <div class="service__box-headers">
+                                                            <img src="{% static 'img/all/card.svg' %}" alt="" class="service__box-icon">
+                                                            <div class="service__box-heading">Name</div>
+                                                        </div>
+                                                        <div class="service__box-body">
+                                                            {{room.room_name}}
+                                                        </div>
+                                                    </div>
+                                                    <div class="service__box-wrapper">
+                                                        <div class="service__box-headers">
+                                                            <img src="{% static 'img/all/card.svg' %}" alt="" class="service__box-icon">
+                                                            <div class="service__box-heading">ID</div>
+                                                        </div>
+                                                        <div class="service__box-body">
+                                                            {{room.room_id}}
+                                                        </div>
+                                                    </div>
+                                                    <div class="service__box-wrapper">
+                                                        <div class="service__box-headers">
+                                                            <img src="{% static 'img/all/file.svg' %}" alt="" class="service__box-icon">
+                                                            <div class="service__box-heading">Lastest appointment</div>
+                                                        </div>
+                                                        <div class="service__box-body">
+                                                            {{lastest_appointment.start_time}} {{lastest_appointment.appointment_date}}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col l-6">
+                                                <div class="service__third">
+                                                    <div class="desc__box-wrapper">
+                                                        <div class="desc__box-headers">
+                                                            <img src="{% static 'img/all/file.svg' %}" alt="" class="desc__box-icon">
+                                                            <div class="desc__box-heading">Services</div>
+                                                        </div>
+                                                        <div class="desc__box-body">
+                                                            <div class="service__list">
+                                                                <div class="service__item"></div>
+                                                                <div class="service__item"></div>
+                                                                <div class="service__item"></div>
+                                                            </div>
+                                                            <div class="service__list">
+                                                                <div class="service__item"></div>
+                                                                <div class="service__item"></div>
+                                                                <div class="service__item"></div>
+                                                            </div>
+                                                            <div class="service__list">
+                                                                <div class="service__item"></div>
+                                                                <div class="service__item"></div>
+                                                                <div class="service__item"></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>  
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
