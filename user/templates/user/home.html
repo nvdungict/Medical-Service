@@ -1,0 +1,477 @@
+{% extends 'main.html' %}
+
+{% block content %}
+<div class="content">
+    <!-- Hero Section -->
+    <div class="hero-section">
+        <div class="grid wide">
+            <div class="row large-gutters">
+                <div class="col l-6">
+                    <div class="hero-section__left-half">
+                        <div class="hero-section__heading">
+                            Welcome to Clinicx:<br> your health,
+                            <span class="hero-section__heading-color-text">our <br>priority</span>
+                        </div>
+                        <p class="hero-section__paragraph">
+                            At Medical Service, we’re committed to delivering compassionate, top-quality care designed around you.
+                            Our expert team uses the latest diagnostic tools and personalized treatment plans
+                            to help you and your loved ones achieve optimal health and well-
+                        </p>
+                        {% if request.user.role == 'ADMIN' %}
+                        <div class="hero-section__btn-wrapper">
+                            <a href="{% url 'admin+' %}" class="hero-section__btn btn">
+                                Admin control panel
+                            </a>    
+                        </div>
+                        {% elif request.user.role == 'DOCTOR'  %}
+                        <div class="hero-section__btn-wrapper">
+                            <a href="{% url 'doctorWork' request.user.id %}" class="hero-section__btn btn">
+                                Check coming appointments
+                            </a>    
+                        </div>
+                        {% else %}
+                        <div class="hero-section__btn-wrapper">
+                            <a href="{% url 'bookingPage' %}" class="hero-section__btn btn">
+                                Make an appointment 
+                            </a>    
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="col l-6">
+                    <div class="hero-section__right-half">
+                        <div class="hero-section__img-wrapper">
+                            <img class="hero-section__img" src="https://assets.website-files.com/64d6620e2ccbfaec26bbc78e/64d6620e2ccbfaec26bbc838_Paramedic%2520Insurance%2520-%2520assurances%2520inde%25CC%2581pendant%2520e%25CC%2581tudiants%2520inde%25CC%2581pendants%2520me%25CC%2581decins-p-1600.webp" alt="">
+                        </div>
+                        <div class="hero-section__quote">
+                            <img class="hero-section__quote-icon" src="https://assets.website-files.com/64d6620e2ccbfaec26bbc78e/64d6620e2ccbfaec26bbc7b5_Paramedic%20Insurance%20-%20Icone%20avis%20client.svg">
+                            <p class="hero-section__quote-paragraph">
+                                The whole team is superbly competent, 
+                                and we get an appointment quickly.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Services Section -->
+    <div class="services-section">
+        <div class="grid wide">
+            <div class="col medium-gutters">
+                <div class="services-section__header">
+                    <span class="services-section__heading heading">Services</span>
+                    <h2 class="services-section__sub-heading sub-heading">Comprehensive medical services tailored for you</h2>
+                </div>
+            </div>
+            
+            <div class="services-section__list">
+                <div class="row medium-gutters">
+                    <div class="col l-4">
+                        <div class="services-section__item">
+                            <a href="#" class="services-section__link">
+                                <div class="services-section__item-icon">
+                                    <img src="https://assets.website-files.com/64d9eef747edd1c43be00c2a/64da07de1df12d4a365bcc47_Clinicx%20Webflow%20Medical%20Template%20-%20icon%20neurology.svg" alt="">
+                                </div>
+                                <h3 class="services-section__item-heading">
+                                    Neurology Services
+                                </h3>
+                                <p class="services-section__item-paragraph">
+                                    Our neurology team provides comprehensive care for disorders of the brain and nervous system. 
+                                    From diagnostic EEGs and advanced neuroimaging to personalized treatment plans for conditions 
+                                    such as epilepsy, stroke, Parkinson’s, and multiple sclerosis, we combine the latest technology 
+                                    with compassionate expertise to help you achieve optimal neurological health.
+                                </p>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col l-4">
+                        <div class="services-section__item">
+                            <a href="#" class="services-section__link">
+                                <div class="services-section__item-icon">
+                                    <img src="https://assets.website-files.com/64d9eef747edd1c43be00c2a/64da07de1df12d4a365bcc47_Clinicx%20Webflow%20Medical%20Template%20-%20icon%20neurology.svg" alt="">
+                                </div>
+                                <h3 class="services-section__item-heading">
+                                    Cardiology Services
+                                </h3>
+                                <p class="services-section__item-paragraph">
+                                    Our cardiology specialists offer advanced diagnostics and treatments for all 
+                                    heart conditions. From non-invasive stress tests and echocardiograms to 
+                                    interventional procedures such as angioplasty, our team delivers personalized 
+                                    cardiac care to keep your heart healthy and strong.
+                                </p>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col l-4">
+                        <div class="services-section__item">
+                            <a href="#" class="services-section__link">
+                                <div class="services-section__item-icon">
+                                    <img src="https://assets.website-files.com/64d9eef747edd1c43be00c2a/64da07de1df12d4a365bcc47_Clinicx%20Webflow%20Medical%20Template%20-%20icon%20neurology.svg" alt="">
+                                </div>
+                                <h3 class="services-section__item-heading">
+                                    Pediatrics Services
+                                </h3>
+                                <p class="services-section__item-paragraph">
+                                    We provide compassionate, family-centered pediatric care for infants, children, 
+                                    and adolescents. Our services include well-child exams, immunizations, developmental screenings, 
+                                    and management of acute and chronic childhood illnesses to help your child thrive at every stage.
+                                </p>
+                            </a>
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="row mt-16 medium-gutters">
+                    <div class="col l-4">
+                        <div class="services-section__item">
+                            <a href="#" class="services-section__link">
+                                <div class="services-section__item-icon">
+                                    <img src="https://assets.website-files.com/64d9eef747edd1c43be00c2a/64da07de1df12d4a365bcc47_Clinicx%20Webflow%20Medical%20Template%20-%20icon%20neurology.svg" alt="">
+                                </div>
+                                <h3 class="services-section__item-heading">
+    Orthopedic Services
+</h3>
+<p class="services-section__item-paragraph">
+    Our orthopedic experts diagnose and treat a full range of musculoskeletal issues, from sports injuries to degenerative joint diseases. We offer minimally invasive arthroscopic procedures, joint replacement surgery, and tailored rehabilitation programs to restore your mobility and quality of life.
+</p>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col l-4">
+                        <div class="services-section__item">
+                            <a href="#" class="services-section__link">
+                                <div class="services-section__item-icon">
+                                    <img src="https://assets.website-files.com/64d9eef747edd1c43be00c2a/64da07de1df12d4a365bcc47_Clinicx%20Webflow%20Medical%20Template%20-%20icon%20neurology.svg" alt="">
+                                </div>
+                                <h3 class="services-section__item-heading">
+    Radiology Services
+</h3>
+<p class="services-section__item-paragraph">
+    Equipped with state-of-the-art imaging technology, our radiology department delivers precise diagnostic studies including MRI, CT, ultrasound, and X-ray. Our board-certified radiologists collaborate closely with your care team to provide accurate interpretations that guide effective treatment plans.
+</p>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col l-4">
+                        <div class="services-section__item">
+                            <a href="#" class="services-section__link">
+                                <div class="services-section__item-icon">
+                                    <img src="https://assets.website-files.com/64d9eef747edd1c43be00c2a/64da07de1df12d4a365bcc47_Clinicx%20Webflow%20Medical%20Template%20-%20icon%20neurology.svg" alt="">
+                                </div>
+                                <h3 class="services-section__item-heading">
+    Gastroenterology Services
+</h3>
+<p class="services-section__item-paragraph">
+    Our gastroenterology clinic specializes in the diagnosis and management of digestive disorders. We perform endoscopic procedures, liver function tests, and dietary consultations to address conditions such as IBS, GERD, hepatitis, and bowel diseases, helping you achieve optimal gastrointestinal health.
+</p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- About Section -->
+    <div class="about-section" id="about-section">
+        <div class="grid wide">
+            <div class="row medium-gutters">
+                <div class="col l-6">
+                    <div class="about-section__left-half">
+                        <div class="about-section__left-half-img-wrapper">
+                            <img class="about-section__left-half-img" src="https://assets.website-files.com/64d6620e2ccbfaec26bbc78e/64d6620e2ccbfaec26bbc83a_Paramedic%2520Insurance%2520-%2520assurances%2520inde%25CC%2581pendant%2520me%25CC%2581decin%2520ge%25CC%2581ne%25CC%2581raliste%2520inde%25CC%2581pendant-p-1600.webp" alt="">
+                            <div class="about-section__left-half-img-description">
+                                <span class="about-section__left-half-img-description-number">+600</span>
+                                Consultations each month
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col l-6">
+                    <div class="about-section__right-half">
+                        <div class="about-section__heading heading">Experience</div>
+                        <div class="about-section__sub-heading sub-heading">
+                            We've been looking after you for over 100 years
+                        </div>
+                        <p class="about-section__paragraph">
+                            For more than a century, Medical Service has combined tradition with innovation to provide
+                            compassionate, patient-centered care. Our dedicated team of physicians, nurses, and specialists
+                            work together to deliver the highest standards of treatment and support.
+                            <br><br>
+                            From groundbreaking surgical techniques and state-of-the-art diagnostics to holistic wellness
+                            programs, we continually evolve our services to meet your needs. Thank you for trusting us
+                            with your health and well-being through every generation.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Values Section -->
+    <div class="value-section">
+        <div class="grid wide">
+            <div class="row medium-gutters">
+                <div class="col l-6">
+                    <div class="value-section__left-section">
+                        <div class="value-section__heading heading">Values</div>
+                        <div class="value-section__sub-heading sub-heading">Key values that guide our work</div>
+                        <ul class="value-section__list">
+                            <div class="col l-6">
+    <li class="value-section__item">
+        <img src="https://assets.website-files.com/64d6620e2ccbfaec26bbc78e/64d6620e2ccbfaec26bbc7ee_Paramedic%20Insurance%20-%20icone%20experts%20a%CC%80%20l%27e%CC%81coute.svg" alt="" class="value-section__item-icon">
+        <div class="value-section__title">Collaborative Patient Partnerships</div>
+        <p class="value-section__paragraph">
+            We believe the best outcomes come from working together. Our team takes the time to understand your needs, answer your questions, and include you in every step of your care plan.
+        </p>
+    </li>
+</div>
+<div class="col l-6">
+    <li class="value-section__item">
+        <img src="https://assets.website-files.com/64d6620e2ccbfaec26bbc78e/64d6620e2ccbfaec26bbc7ee_Paramedic%20Insurance%20-%20icone%20experts%20a%CC%80%20l%27e%CC%81coute.svg" alt="" class="value-section__item-icon">
+        <div class="value-section__title">Comprehensive Clinic Network</div>
+        <p class="value-section__paragraph">
+            With a network of specialized clinics across the region, we make top-quality care convenient. From primary care to advanced diagnostics, you’ll find expert services close to home.
+        </p>
+    </li>
+</div>
+                            </div>
+                            <div class="row  mt-16">
+                                <div class="col l-6">
+                                    <li class="value-section__item">
+                                        <img src="https://assets.website-files.com/64d6620e2ccbfaec26bbc78e/64d6620e2ccbfaec26bbc7ee_Paramedic%20Insurance%20-%20icone%20experts%20a%CC%80%20l%27e%CC%81coute.svg" alt="" class="value-section__item-icon">
+                                        <div class="value-section__title">Professionals Who Listen</div>
+                                        <p class="value-section__paragraph">
+                                            Our compassionate team takes the time to understand your unique concerns and goals,
+                                            so every treatment plan is tailored to you. We believe that attentive listening is
+                                            the first step toward exceptional care.
+                                        </p>
+                                    </li>
+                                </div>
+                                <div class="col l-6">
+                                    <li class="value-section__item">
+                                        <img src="https://assets.website-files.com/64d6620e2ccbfaec26bbc78e/64d6620e2ccbfaec26bbc7ee_Paramedic%20Insurance%20-%20icone%20experts%20a%CC%80%20l%27e%CC%81coute.svg" alt="" class="value-section__item-icon">
+                                        <div class="value-section__title">Over 10 Specialized Clinics</div>
+                                        <p class="value-section__paragraph">
+                                            With more than ten fully equipped clinics across the region, we offer comprehensive
+                                            services—from diagnostic imaging to rehabilitation—bringing expert care closer to you.
+                                        </p>
+                                    </li>
+                                </div>
+                            </div>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col l-6">
+                    <div class="value-section__right-section">
+                        <div class="value-section__img-wrapper">
+                            <img src="https://assets.website-files.com/64d6620e2ccbfaec26bbc78e/64d6620e2ccbfaec26bbc837_Paramedic%2520Insurance%2520-%2520assurances%2520inde%25CC%2581pendant%2520me%25CC%2581dical-p-1600.webp" alt="" class="value-section__img">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Appointment Section -->
+    <div class="appointment-section">
+        <div class="grid wide">
+            <div class="row medium-gutters">
+                <div class="col l-7">
+                    <div class="appointment-section__heading">Make an appointment now</div>
+                    <div class="appointment-section__sub-heading">Make an appointment at our medical clinic and 
+                        trust our professionals to take care of your health.</div>
+                </div>
+                <div class="col l-5">
+                    <div class="appointment-section__btn-wrapper">
+                        <div class="appointment-section__call-btn-wrapper">
+                            <a href="" class="appointment-section__call-btn btn">Call us</a>
+                        </div>
+                        <div class="appointment-section__write-btn-wrapper">
+                            <a href="" class="appointment-section__write-btn btn white">Write us</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Team Section -->
+    <div class="team-section">
+        <div class="grid wide">
+            <div class="row medium-gutters">
+                <div class="col l-12">
+                    <div class="team-section__heading heading">Our team</div>
+                </div>
+            </div>
+            <div class="row medium-gutters">
+                <div class="col l-12">
+                    <div class="team-section__sub-heading sub-heading">Our team of professional doctors to serve you</div>
+                </div>
+            </div>
+            
+            
+            <ul class="team-section__list">
+                <div class="row medium-gutters">
+                    <div class="col l-4">
+                        <li class="team-section__item">
+                            <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="" class="team-section__img">
+                            <div class="team-section__name">John Caret</div>
+                            <div class="team-section__position">DENTIST</div>
+                        </li>
+                    </div>
+                    <div class="col l-4">
+                        <li class="team-section__item">
+                            <img src="https://randomuser.me/api/portraits/women/51.jpg" alt="" class="team-section__img">
+                            <div class="team-section__name">Susan Mitchell</div>
+                            <div class="team-section__position">PEDIATRICIAN</div>
+                        </li>
+                    </div>
+                    <div class="col l-4">
+                        <li class="team-section__item">
+                            <img src="https://randomuser.me/api/portraits/women/40.jpg" alt="" class="team-section__img">
+                            <div class="team-section__name">Emily Chen</div>
+                            <div class="team-section__position">CARDIOLOGIST</div>
+                        </li>
+                    </div>
+                </div>
+                <div class="row medium-gutters mt-16">
+                    <div class="col l-4">
+                        <li class="team-section__item">
+                            <img src="https://randomuser.me/api/portraits/men/67.jpg" alt="" class="team-section__img">
+                            <div class="team-section__name">Michael Brown</div>
+                            <div class="team-section__position">NEUROLOGIST</div>
+                        </li>
+                    </div>
+                    <div class="col l-4">
+                        <li class="team-section__item">
+                            <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="" class="team-section__img">
+                            <div class="team-section__name">Tiffany Potts</div>
+                            <div class="team-section__position">RADIOLOGIST</div>
+                        </li>
+                    </div>
+                    <div class="col l-4">
+                        <li class="team-section__item">
+                            <img src="https://randomuser.me/api/portraits/men/53.jpg" alt="" class="team-section__img">
+                            <div class="team-section__name">Jack Smith</div>
+                            <div class="team-section__position">GASTROENTEROLOGIST</div>
+                        </li>
+                    </div>
+                </div>
+            </ul>
+        </div>
+    </div>
+    <!-- Highlight Section -->
+    <div class="highlight-section">
+        <div class="grid wide">
+            <div class="highlight-section__header">
+                <div class="row medium-gutters">
+                    <div class="col l-6 l-o-3">
+                        <div class="highlight-section__heading">Our guiding principles</div>
+                    </div>
+                </div>
+                <div class="row medium-gutters">
+                    <div class="col l-8 l-o-2">
+                        <div class="highlight-section__sub-heading">At Clinicx, our core values shape every aspect of our care,
+                            ensuring that your well-being remains at the heart of our mission.</div>
+                    </div>
+                </div>
+            </div>
+            
+            <ul class="highlight-section__list">
+              <div class="row medium-gutters">
+                <div class="col l-4">
+                  <div class="highlight-section__item">
+                    <img src="https://assets.website-files.com/64d6620e2ccbfaec26bbc78e/icon-technology.svg" alt="Advanced Technology icon" class="highlight-section__item-icon">
+                    <div class="highlight-section__item-heading">Advanced Technology</div>
+                    <p class="highlight-section__item-paragraph">
+                      We harness the latest imaging and minimally invasive tools to provide faster, more 
+                      accurate diagnoses and treatments, improving outcomes and recovery times.
+                    </p>
+                  </div>
+                </div>
+                <div class="col l-4">
+                  <div class="highlight-section__item">
+                    <img src="https://assets.website-files.com/64d6620e2ccbfaec26bbc78e/icon-advocacy.svg" alt="Patient Advocacy icon" class="highlight-section__item-icon">
+                    <div class="highlight-section__item-heading">Patient Advocacy</div>
+                    <p class="highlight-section__item-paragraph">
+                      Our team acts as your champion—ensuring clear communication, shared decision-making, 
+                      and personalized support at every step of your care journey.
+                    </p>
+                  </div>
+                </div>
+                <div class="col l-4">
+                  <div class="highlight-section__item">
+                    <img src="https://assets.website-files.com/64d6620e2ccbfaec26bbc78e/icon-community.svg" alt="Community Outreach icon" class="highlight-section__item-icon">
+                    <div class="highlight-section__item-heading">Community Outreach</div>
+                    <p class="highlight-section__item-paragraph">
+                      Through health fairs, screenings, and educational workshops, we partner with 
+                      local organizations to build a healthier, more informed community.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </ul>
+        </div>
+    </div>
+    <!-- Blog Section -->
+    <div class="blog-section">
+        <div class="grid wide">
+            <div class="row medium-gutters">
+                <div class="col l-12">
+                    <div class="blog-section__heading heading">News</div>
+                </div>
+            </div>
+            <div class="row medium-gutters">
+                <div class="col l-12">
+                    <div class="blog-section__sub-heading sub-heading">Discover our latest blog posts</div>
+                </div>
+            </div>
+            <ul class="blog-section__list">
+  <div class="row medium-gutters">
+    <div class="col l-4">
+      <li class="blog-section__item">
+        <a href="managing-seasonal-allergies.html" class="blog-section__item-link card-item">
+          <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=400&h=300&q=80" alt="Seasonal allergies" class="blog__section-img">
+          <h3 class="blog-section__heading">Managing Seasonal Allergies: Tips for Relief</h3>
+          <p class="blog-section__preview">
+            Seasonal allergies affect millions each year. Learn proven strategies—from home remedies to prescription treatments—to minimize symptoms and breathe easier.
+          </p>
+          <div class="blog-section__btn-wrapper">
+            <div href="managing-seasonal-allergies.html" class="blog-section__btn btn">Read more</div>
+          </div>
+        </a>
+      </li>
+    </div>
+    <div class="col l-4">
+      <li class="blog-section__item">
+        <a href="importance-of-health-screenings.html" class="blog-section__item-link card-item">
+          <img loading="lazy" src="https://images.unsplash.com/photo-1583947582880-bf890d1480e4?auto=format&fit=crop&w=400&h=300&q=80" alt="Health screenings" class="blog__section-img">
+          <h3 class="blog-section__heading">The Importance of Regular Health Screenings</h3>
+          <p class="blog-section__preview">
+            Early detection saves lives. Discover which routine screenings you need at each stage of adulthood and how they help catch issues before they become serious.
+          </p>
+          <div class="blog-section__btn-wrapper">
+            <div href="importance-of-health-screenings.html" class="blog-section__btn btn">Read more</div>
+          </div>
+        </a>
+      </li>
+    </div>
+    <div class="col l-4">
+      <li class="blog-section__item">
+        <a href="balanced-nutrition-guide.html" class="blog-section__item-link card-item">
+          <img src="https://images.unsplash.com/photo-1540206395-68808572332f?auto=format&fit=crop&w=400&h=300&q=80" alt="Healthy meal" class="blog__section-img">
+          <h3 class="blog-section__heading">Nutrition Guide for a Balanced Diet</h3>
+          <p class="blog-section__preview">
+            Good nutrition is the foundation of health. Our expert guide walks you through balancing macronutrients, meal planning, and building sustainable eating habits.
+          </p>
+          <div class="blog-section__btn-wrapper">
+            <div href="balanced-nutrition-guide.html" class="blog-section__btn btn">Read more</div>
+          </div>
+        </a>
+      </li>
+    </div>
+  </div>
+</ul>
+        </div>
+    </div>
+    <!-- Testimonials Section -->
+</div>
+{% endblock %}
