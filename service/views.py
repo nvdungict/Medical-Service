@@ -120,7 +120,7 @@ def bookingPayment(request):
         membership_percent = membership.discount_percent
         discount = int(price)*membership_percent/100.0 
         vat = int(price) * 0.05
-        bill = int(price) - vat - discount
+        bill = int(price) + vat - discount
         print(membership)
         context = {
             'price': price,
@@ -390,7 +390,7 @@ def appointmentDetail(request,pk):
     membership_percent = appointment.patient.membership.discount_percent
     discount = int(price)*membership_percent/100.0 
     vat = int(price) * 0.05
-    bill = int(price) - vat - discount
+    bill = int(price) + vat - discount
 
     context = { 
         'appointment':appointment,
