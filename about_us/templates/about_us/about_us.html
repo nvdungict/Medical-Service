@@ -1,0 +1,40 @@
+{% extends 'main.html' %}
+
+{% block content %}
+<div class="about-us-content" style="max-width: 950px; margin: 140px auto 48px auto; background: #fff; border-radius: 18px; padding: 56px 40px; box-shadow: 0 4px 24px rgba(64,145,108,0.10); text-align: center;">
+    <h1 style="font-size: 3.2rem; margin-bottom: 18px; color: #198754; font-weight: bold; letter-spacing: 2px; text-shadow: 2px 4px 12px #b7e4c7;">
+        <span style="color: #40916c;">About</span> <span style="color: #1b4332;">Us</span>
+    </h1>
+    <p style="font-size: 1.35rem; color: #222; margin-bottom: 38px; font-weight: 500;">
+        Welcome to <span style="color: #198754; font-weight: bold;">Medical Service</span>!<br>
+        <span style="color: #40916c;">We are dedicated to providing <span style="background: linear-gradient(90deg,#b7e4c7,#52b788); color: #1b4332; padding: 2px 8px; border-radius: 4px;">high-quality healthcare</span> solutions for everyone.</span>
+        <br>Our platform connects patients with experienced doctors and modern medical services, making healthcare more accessible and convenient.
+    </p>
+    <hr style="margin: 36px 0; border: 0; border-top: 2px solid #b7e4c7;">
+    <h2 style="color: #198754; margin-bottom: 16px; font-size: 2.1rem; font-weight: bold; letter-spacing: 1px; text-shadow: 1px 2px 8px #d8f3dc;">
+        <i class="fa-solid fa-bullseye"></i> Our Mission
+    </h2>
+    <p style="margin-bottom: 32px; font-size: 1.18rem; color: #333;">
+        <span style="font-weight: bold; color: #40916c;">To improve community health</span> by offering reliable, efficient, and compassionate medical services.<br>
+        <span style="color: #1b4332;">We strive to bring the <span style="background: #b7e4c7; padding: 2px 8px; border-radius: 4px;">best care</span> to every patient, every day.</span>
+    </p>
+    <h2 style="color: #198754; margin-bottom: 16px; font-size: 2.1rem; font-weight: bold; letter-spacing: 1px; text-shadow: 1px 2px 8px #d8f3dc;">
+        <i class="fa-solid fa-users"></i> Our Team
+    </h2>
+    <p style="margin-bottom: 32px; font-size: 1.18rem; color: #333;">
+        Our team includes <span style="color: #40916c; font-weight: bold;">experienced doctors, nurses, and dedicated support staff</span> who are passionate about your well-being.<br>
+        We continuously update our knowledge and technology to serve you better.
+    </p>
+    <h2 style="color: #198754; margin-bottom: 16px; font-size: 2.1rem; font-weight: bold; letter-spacing: 1px; text-shadow: 1px 2px 8px #d8f3dc;">
+        <i class="fa-solid fa-address-book"></i> Contact Information
+    </h2>
+    <ul style="list-style: none; padding: 0; font-size: 1.15rem; color: #333; margin-bottom: 32px;">
+        <li style="margin-bottom: 8px;"><b>Address:</b> <span style="color: #40916c;">14 ngõ 40 Phương Liệt, Hà Nội</span></li>
+        <li style="margin-bottom: 8px;"><b>Phone:</b> <span style="color: #40916c;">0916 750 974</span></li>
+        <li><b>Email:</b> <a href="mailto:info@medicalservice.com" style="color: #198754; text-decoration: underline;">info@medicalservice.com</a></li>
+    </ul>
+    <div style="margin-top: 36px;">
+        <a href="{% url 'home' %}" class="header__navbar-link" style="color: #fff; background: linear-gradient(90deg,#40916c,#198754); padding: 14px 38px; border-radius: 8px; text-decoration: none; font-size: 1.1rem; font-weight: bold; box-shadow: 0 2px 8px #b7e4c7;">Back to Home</a>
+    </div>
+</div>
+{% endblock %}
