@@ -24,5 +24,7 @@ urlpatterns = [
     path('', include('service.urls')),
     path('', include('user.urls')),
     path('', include('admin.urls')),
-    path('', include('chatbot.urls'))
+    path('', include('chatbot.urls')),
+    path('about/', include('about_us.urls'))
+
 ]
